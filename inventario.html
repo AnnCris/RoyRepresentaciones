@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Gestión de Inventario FIFO - Sistema Roy Representaciones</title>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            /* Colores Primarios */
+            --color-purple: #6F42C1;
+            --color-blue: #007BFF;
+            --color-green: #28C76F;
+            --color-gold: #FFD700;
+            
+            /* Colores de Texto */
+            --text-dark: #1A1A1A;
+            --text-gray: #555555;
+            --text-light: #888888;
+            --text-muted: #9CA3AF;
+            
+            /* Colores de Fondo */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-tertiary: #F1F5F9;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            
+            /* Colores de Estado */
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --info: #3B82F6;
+            
+            /* Sombras */
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* Radios */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Espaciado */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ffffff, #cfe8ff);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 16px;
+            background-attachment: fixed;
+            font-weight: 400;
+            padding-top: 70px;
+        }
+
+        /* ============ NAVEGACIÓN MODERNA ============ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: var(--space-sm);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-logo {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.875rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .navbar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .navbar-link {
+            padding: var(--space-sm) var(--space-md);
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-link:hover {
+            color: var(--color-purple);
+            background: rgba(111, 66, 193, 0.05);
+        }
+
+        .navbar-link.active {
+            color: var(--color-purple);
+            background: rgba(111, 66, 193, 0.1);
+        }
+
+        /* ============ LAYOUT PRINCIPAL ============ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+        }
+
+        .section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        /* ============ CARDS ============ */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* ============ TIPOGRAFÍA ============ */
+        .text-h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: var(--space-lg);
+            letter-spacing: -0.02em;
+        }
+
+        .text-h2 {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.01em;
+        }
+
+        .text-h3 {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--color-blue);
+            margin-bottom: var(--space-md);
+        }
+
+        /* ============ BADGES Y ESTADOS ============ */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.375rem 1rem;
+            border-radius: var(--radius-lg);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: var(--space-xs);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .badge-available {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+        }
+
+        .badge-low-stock {
+            background: linear-gradient(135deg, var(--warning), #D97706);
+            color: white;
+        }
+
+        .badge-out-of-stock {
+            background: linear-gradient(135deg, var(--danger), #DC2626);
+            color: white;
+        }
+
+        .badge-paused {
+            background: linear-gradient(135deg, #6B7280, #4B5563);
+            color: white;
+        }
+
+        .badge-vencimiento-critico {
+            background: linear-gradient(135deg, #DC2626, #7F1D1D);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .badge-vencimiento-medio {
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: white;
+        }
+
+        .badge-vencimiento-seguro {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* ============ BOTONES ============ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            margin: var(--space-sm);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.025em;
+            min-width: 140px;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            min-width: auto;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            background: linear-gradient(135deg, var(--color-blue), var(--color-green));
+        }
+
+        .btn-secondary {
+            background: var(--bg-primary);
+            color: var(--color-blue);
+            border: 2px solid var(--color-blue);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning), #D97706);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), #DC2626);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ============ FORMULARIOS ============ */
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            background: var(--bg-primary);
+            color: var(--text-dark);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+            background: #FAFBFF;
+            transform: scale(1.01);
+        }
+
+        .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 1rem center;
+            background-repeat: no-repeat;
+            background-size: 1.25rem;
+            padding-right: 3rem;
+            appearance: none;
+        }
+
+        .text-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-xs);
+            display: block;
+        }
+
+        /* ============ TABLAS ============ */
+        .table-container {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th, td {
+            padding: var(--space-lg);
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        th {
+            background: rgba(111, 66, 193, 0.1);
+            font-weight: 700;
+            color: var(--color-purple);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        tr {
+            transition: all 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+            transform: scale(1.01);
+        }
+
+        /* ============ GRID SYSTEM ============ */
+        .grid {
+            display: grid;
+            gap: var(--space-xl);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* ============ ALERTAS ============ */
+        .alert {
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--space-lg) 0;
+            border-left: 4px solid;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1);
+            border-left-color: var(--danger);
+            color: #991b1b;
+        }
+
+        .alert-info {
+            background: rgba(59, 130, 246, 0.1);
+            border-left-color: var(--info);
+            color: #1e3a8a;
+        }
+
+        /* ============ UTILITIES ============ */
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .font-bold { font-weight: 700; }
+        .mb-0 { margin-bottom: 0; }
+        .mr-sm { margin-right: var(--space-sm); }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-md);
+            }
+            
+            .grid {
+                gap: var(--space-lg);
+            }
+            
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                padding: var(--space-lg);
+            }
+            
+            table {
+                min-width: 600px;
+            }
+            
+            th, td {
+                padding: var(--space-sm);
+                font-size: 0.875rem;
+            }
+        }
+
+        /* ============ CUSTOM STYLES ============ */
+        .fifo-indicator {
+            background: linear-gradient(45deg, var(--color-gold), #FFA500);
+            color: #8B4513;
+            font-weight: 800;
+            font-size: 0.65rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            display: inline-block;
+            margin-left: var(--space-xs);
+        }
+
+        .location-filter {
+            background: rgba(111, 66, 193, 0.1);
+            border: 2px solid var(--color-purple);
+            color: var(--color-purple);
+            font-weight: 600;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: var(--space-xl);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .search-input {
+            padding-left: 3.5rem;
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-purple);
+            margin-bottom: var(--space-sm);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .product-image {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-md);
+            object-fit: cover;
+            border: 2px solid var(--bg-secondary);
+        }
+
+        .vencimiento-days {
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+        }
+
+        .days-critical { background: #FEE2E2; color: #991B1B; }
+        .days-warning { background: #FEF3C7; color: #92400E; }
+        .days-safe { background: #D1FAE5; color: #065F46; }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-brand">
+                <div class="navbar-logo">ROY</div>
+                <span class="navbar-title">Sistema Roy</span>
+            </a>
+            <div class="navbar-menu">
+                <a href="#" class="navbar-link">Dashboard</a>
+                <a href="agregarproducto.html" class="navbar-link">Productos</a>
+                <a href="inventario.html" class="navbar-link active">Inventario</a>
+                <a href="nuevaventa.html" class="navbar-link">Ventas</a>
+                <a href="reportesventa.html" class="navbar-link">Reportes</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="section">
+            <div class="card">
+                <h1 class="text-h1">Gestión de Inventario FIFO</h1>
+                <p style="color: var(--text-gray);">Control inteligente de inventario con método First In, First Out y alertas de vencimiento automáticas</p>
+            </div>
+        </div>
+
+        <!-- Estadísticas Rápidas -->
+        <div class="section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1,962</div>
+                    <div class="stat-label">Productos Totales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">245</div>
+                    <div class="stat-label">Stock Bajo</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">38</div>
+                    <div class="stat-label">Próximos a Vencer</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Críticos (&lt;30 días)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">En Pausa</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filtros y Búsqueda -->
+        <div class="section">
+            <div class="card">
+                <h2 class="text-h2">Filtros de Inventario</h2>
+                <div class="grid grid-4">
+                    <div class="form-group">
+                        <label class="text-label">Ubicación</label>
+                        <select class="form-input form-select location-filter" id="ubicacion">
+                            <option value="todas">Todas las ubicaciones</option>
+                            <option value="deposito">Depósito Principal</option>
+                            <option value="roydent">Roydent (Tienda Central)</option>
+                            <option value="mundo_medico">Mundo Médico (Sucursal)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-label">Estado del Producto</label>
+                        <select class="form-input form-select" id="estado">
+                            <option value="todos">Todos los estados</option>
+                            <option value="activo">Activo</option>
+                            <option value="pausa">En Pausa</option>
+                            <option value="descontinuado">Descontinuado</option>
+                            <option value="estacional">Estacional</option>
+                            <option value="solo_pedido">Solo por Pedido</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-label">Nivel de Stock</label>
+                        <select class="form-input form-select" id="stock">
+                            <option value="todos">Todos los niveles</option>
+                            <option value="disponible">Disponible</option>
+                            <option value="stock_bajo">Stock Bajo</option>
+                            <option value="agotado">Agotado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-label">Vencimiento</label>
+                        <select class="form-input form-select" id="vencimiento">
+                            <option value="todos">Todos</option>
+                            <option value="critico">Crítico (&lt;30 días)</option>
+                            <option value="medio">Medio (30-60 días)</option>
+                            <option value="seguro">Seguro (&gt;60 días)</option>
+                            <option value="sin_vencimiento">Sin fecha vencimiento</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="form-input search-input" id="busqueda" placeholder="Buscar por código, nombre, marca o categoría...">
+                </div>
+            </div>
+        </div>
+
+        <!-- Alertas Críticas -->
+        <div class="section">
+            <div class="alert alert-danger">
+                <strong>⚠️ Productos Críticos:</strong> 15 productos vencen en menos de 30 días. <button class="btn btn-danger btn-sm" style="margin-left: 1rem;">Ver Productos Críticos</button>
+            </div>
+            <div class="alert alert-warning">
+                <strong>📦 Stock Bajo:</strong> 245 productos están por debajo del stock mínimo. <button class="btn btn-warning btn-sm" style="margin-left: 1rem;">Generar Pedido Automático</button>
+            </div>
+        </div>
+
+        <!-- Tabla de Inventario -->
+        <div class="section">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xl);">
+                    <h2 class="text-h2 mb-0">Inventario Detallado</h2>
+                    <div>
+                        <button class="btn btn-secondary">📊 Exportar Excel</button>
+                        <button class="btn btn-primary">➕ Nuevo Ingreso</button>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>FIFO</th>
+                                <th>Imagen</th>
+                                <th>Código</th>
+                                <th>Producto</th>
+                                <th>Marca</th>
+                                <th>Categoría</th>
+                                <th>Ubicación</th>
+                                <th>Stock Base</th>
+                                <th>Empaque</th>
+                                <th>Fecha Ingreso</th>
+                                <th>Vencimiento</th>
+                                <th>Días Rest.</th>
+                                <th>Estado</th>
+                                <th>Precio</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventario-table">
+                            <tr>
+                                <td><span class="fifo-indicator">1°</span></td>
+                                <td><img src="https://via.placeholder.com/60x60/6F42C1/FFFFFF?text=ANEST" alt="Producto" class="product-image"></td>
+                                <td><strong>ANE001</strong></td>
+                                <td>Anestesia Lidocaína 2% x 50ml</td>
+                                <td>Braun</td>
+                                <td>Anestésicos</td>
+                                <td>Roydent</td>
+                                <td><strong>15</strong> frascos</td>
+                                <td>3 cajas (5 frascos/caja)</td>
+                                <td>2024-08-15</td>
+                                <td>2025-02-15</td>
+                                <td><span class="vencimiento-days days-warning">160 días</span></td>
+                                <td><span class="badge badge-available">Disponible</span></td>
+                                <td>Bs. 45.00</td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm">📝</button>
+                                    <button class="btn btn-warning btn-sm">📦</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="fifo-indicator">2°</span></td>
+                                <td><img src="https://via.placeholder.com/60x60/007BFF/FFFFFF?text=GUAN" alt="Producto" class="product-image"></td>
+                                <td><strong>GUA025</strong></td>
+                                <td>Guantes Látex Talla M x 100</td>
+                                <td>Sempermed</td>
+                                <td>Protección</td>
+                                <td>Mundo Médico</td>
+                                <td><strong>250</strong> pares</td>
+                                <td>5 cajas (50 pares/caja)</td>
+                                <td>2024-09-01</td>
+                                <td>2026-09-01</td>
+                                <td><span class="vencimiento-days days-safe">732 días</span></td>
+                                <td><span class="badge badge-available">Disponible</span></td>
+                                <td>Bs. 28.50</td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm">📝</button>
+                                    <button class="btn btn-warning btn-sm">📦</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="fifo-indicator">3°</span></td>
+                                <td><img src="https://via.placeholder.com/60x60/28C76F/FFFFFF?text=MASK" alt="Producto" class="product-image"></td>
+                                <td><strong>MAS112</strong></td>
+                                <td>Mascarilla Quirúrgica 3 Capas x 50</td>
+                                <td>3M</td>
+                                <td>Protección</td>
+                                <td>Depósito</td>
+                                <td><strong>8</strong> cajas</td>
+                                <td>2 cajas (50 unidades/caja)</td>
+                                <td>2024-07-20</td>
+                                <td>2025-01-15</td>
+                                <td><span class="vencimiento-days days-critical">22 días</span></td>
+                                <td><span class="badge badge-vencimiento-critico">Crítico</span></td>
+                                <td>Bs. 35.00</td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm">⚠️</button>
+                                    <button class="btn btn-warning btn-sm">📦</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="fifo-indicator">4°</span></td>
+                                <td><img src="https://via.placeholder.com/60x60/FFD700/000000?text=SEDA" alt="Producto" class="product-image"></td>
+                                <td><strong>SED089</strong></td>
+                                <td>Seda Dental Fluorada x 50m</td>
+                                <td>Oral-B</td>
+                                <td>Higiene Oral</td>
+                                <td>Roydent</td>
+                                <td><strong>2</strong> unidades</td>
+                                <td>Casi agotado</td>
+                                <td>2024-06-10</td>
+                                <td>2027-06-10</td>
+                                <td><span class="vencimiento-days days-safe">1,004 días</span></td>
+                                <td><span class="badge badge-low-stock">Stock Bajo</span></td>
+                                <td>Bs. 18.00</td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm">📝</button>
+                                    <button class="btn btn-primary btn-sm">🛒</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="fifo-indicator">5°</span></td>
+                                <td><img src="https://via.placeholder.com/60x60/EF4444/FFFFFF?text=AGUJ" alt="Producto" class="product-image"></td>
+                                <td><strong>AGU201</strong></td>
+                                <td>Agujas Hipodérmicas 21G x 100</td>
+                                <td>BD</td>
+                                <td>Material Médico</td>
+                                <td>Mundo Médico</td>
+                                <td><strong>0</strong> cajas</td>
+                                <td>Agotado</td>
+                                <td>2024-05-15</td>
+                                <td>2026-05-15</td>
+                                <td><span class="vencimiento-days days-safe">613 días</span></td>
+                                <td><span class="badge badge-out-of-stock">Agotado</span></td>
+                                <td>Bs. 65.00</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm">🛒</button>
+                                    <button class="btn btn-secondary btn-sm">📞</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="fifo-indicator">-</span></td>
+                                <td><img src="https://via.placeholder.com/60x60/6B7280/FFFFFF?text=CAPS" alt="Producto" class="product-image"></td>
+                                <td><strong>CAP156</strong></td>
+                                <td>Cápsulas Amalgama x 50</td>
+                                <td>Heraeus</td>
+                                <td>Odontología</td>
+                                <td>Roydent</td>
+                                <td><strong>12</strong> cajas</td>
+                                <td>4 cajas (50 cápsulas/caja)</td>
+                                <td>2024-08-30</td>
+                                <td>Sin vencimiento</td>
+                                <td><span class="vencimiento-days days-safe">∞</span></td>
+                                <td><span class="badge badge-paused">Pausado</span></td>
+                                <td>Bs. 125.00</td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm">▶️</button>
+                                    <button class="btn btn-warning btn-sm">📦</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumen y Acciones -->
+        <div class="section">
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3 class="text-h3">Acciones Rápidas</h3>
+                    <div class="grid grid-2">
+                        <button class="btn btn-primary">📦 Nuevo Ingreso</button>
+                        <button class="btn btn-secondary">📊 Reporte FIFO</button>
+                        <button class="btn btn-warning">⚠️ Ver Críticos</button>
+                        <button class="btn btn-info">🔄 Actualizar Stock</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-h3">Próximas Acciones</h3>
+                    <div class="alert alert-info">
+                        <strong>📅 Recordatorios:</strong>
+                        <ul style="margin-top: 0.5rem; margin-bottom: 0;">
+                            <li>15 productos vencen en menos de 30 días</li>
+                            <li>3 proveedores pendientes de contactar</li>
+                            <li>Inventario físico programado para el 15/09</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="section">
+            <div class="card text-center">
+                <p style="color: var(--text-muted); margin-bottom: 0;">
+                    Sistema de Gestión FIFO - Roy Representaciones &copy; 2024
+                    <br>
+                    <small>Última actualización: 09 de Septiembre, 2025 - 14:30</small>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funcionalidad básica de filtros
+        document.addEventListener('DOMContentLoaded', function() {
+            const ubicacionSelect = document.getElementById('ubicacion');
+            const estadoSelect = document.getElementById('estado');
+            const stockSelect = document.getElementById('stock');
+            const vencimientoSelect = document.getElementById('vencimiento');
+            const busquedaInput = document.getElementById('busqueda');
+            
+            // Función para filtrar tabla
+            function filtrarTabla() {
+                const rows = document.querySelectorAll('#inventario-table tr');
+                const busqueda = busquedaInput.value.toLowerCase();
+                const ubicacion = ubicacionSelect.value;
+                const estado = estadoSelect.value;
+                const stock = stockSelect.value;
+                const vencimiento = vencimientoSelect.value;
+                
+                rows.forEach(row => {
+                    const texto = row.textContent.toLowerCase();
+                    let mostrar = true;
+                    
+                    // Filtro de búsqueda
+                    if (busqueda && !texto.includes(busqueda)) {
+                        mostrar = false;
+                    }
+                    
+                    // Aplicar otros filtros aquí según necesidades
+                    
+                    row.style.display = mostrar ? '' : 'none';
+                });
+            }
+            
+            // Event listeners
+            busquedaInput.addEventListener('input', filtrarTabla);
+            ubicacionSelect.addEventListener('change', filtrarTabla);
+            estadoSelect.addEventListener('change', filtrarTabla);
+            stockSelect.addEventListener('change', filtrarTabla);
+            vencimientoSelect.addEventListener('change', filtrarTabla);
+            
+            // Animación suave para cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

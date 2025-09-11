@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Guía de Estilos - Sistema Roy Representaciones</title>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        /* Colores Primarios */
+        --color-purple: #6f42c1;
+        --color-blue: #007bff;
+        --color-green: #28c76f;
+        --color-gold: #ffd700;
+
+        /* Colores de Texto */
+        --text-dark: #1a1a1a;
+        --text-gray: #555555;
+        --text-light: #888888;
+        --text-muted: #9ca3af;
+
+        /* Colores de Fondo */
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-tertiary: #f1f5f9;
+        --bg-card: rgba(255, 255, 255, 0.95);
+
+        /* Colores de Estado */
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --info: #3b82f6;
+
+        /* Sombras */
+        --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+        /* Radios */
+        --radius-sm: 0.375rem;
+        --radius-md: 0.5rem;
+        --radius-lg: 0.75rem;
+        --radius-xl: 1rem;
+        --radius-2xl: 1.5rem;
+
+        /* Espaciado */
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
+        --space-3xl: 4rem;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        background: linear-gradient(135deg, #ffffff, #cfe8ff);
+        min-height: 100vh;
+        color: var(--text-dark);
+        line-height: 1.6;
+        font-size: 16px;
+        background-attachment: fixed;
+        font-weight: 400;
+      }
+
+      /* ============ NAVEGACIÓN MODERNA ============ */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: var(--shadow-sm);
+        z-index: 1000;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .navbar-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--space-lg);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 70px;
+      }
+
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        gap: var(--space-sm);
+        transition: all 0.3s ease;
+      }
+
+      .navbar-brand:hover {
+        transform: scale(1.02);
+      }
+
+      .navbar-logo {
+        background: linear-gradient(
+          135deg,
+          var(--color-purple),
+          var(--color-blue)
+        );
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 0.875rem;
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s ease;
+      }
+
+      .navbar-logo:hover {
+        background: linear-gradient(
+          135deg,
+          var(--color-blue),
+          var(--color-green)
+        );
+        box-shadow: var(--shadow-lg);
+      }
+
+      .navbar-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        letter-spacing: -0.01em;
+      }
+
+      .navbar-menu {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+      }
+
+      .navbar-item {
+        position: relative;
+      }
+
+      .navbar-link {
+        display: flex;
+        align-items: center;
+        padding: var(--space-sm) var(--space-md);
+        color: var(--text-dark);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.875rem;
+        border-radius: var(--radius-md);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .navbar-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(111, 66, 193, 0.1),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .navbar-link:hover::before {
+        left: 100%;
+      }
+
+      .navbar-link:hover {
+        color: var(--color-purple);
+        background: rgba(111, 66, 193, 0.05);
+        transform: translateY(-1px);
+      }
+
+      .dropdown-toggle::after {
+        content: "▼";
+        margin-left: var(--space-xs);
+        font-size: 0.625rem;
+        transition: transform 0.3s ease;
+      }
+
+      .dropdown:hover .dropdown-toggle::after {
+        transform: rotate(180deg);
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--bg-card);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-xl);
+        min-width: 200px;
+        padding: var(--space-sm);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-item {
+        display: block;
+        padding: var(--space-sm) var(--space-md);
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 0.875rem;
+        border-radius: var(--radius-md);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .dropdown-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 123, 255, 0.1),
+          transparent
+        );
+        transition: left 0.4s;
+      }
+
+      .dropdown-item:hover::before {
+        left: 100%;
+      }
+
+      .dropdown-item:hover {
+        background: rgba(0, 123, 255, 0.05);
+        color: var(--color-blue);
+        transform: translateX(4px);
+      }
+
+      .navbar-auth {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+
+      .btn-nav {
+        padding: 0.625rem 1.25rem;
+        border-radius: var(--radius-lg);
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 0.025em;
+        text-transform: uppercase;
+      }
+
+      .btn-nav::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn-nav:hover::before {
+        left: 100%;
+      }
+
+      .btn-nav-login {
+        background: transparent;
+        color: var(--color-blue);
+        border: 2px solid var(--color-blue);
+      }
+
+      .btn-nav-login:hover {
+        background: var(--color-blue);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-nav-register {
+        background: linear-gradient(
+          135deg,
+          var(--color-purple),
+          var(--color-blue)
+        );
+        color: white;
+        border: 2px solid transparent;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-nav-register:hover {
+        background: linear-gradient(
+          135deg,
+          var(--color-blue),
+          var(--color-green)
+        );
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: var(--space-sm);
+        gap: 4px;
+      }
+
+      .mobile-menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background: var(--color-purple);
+        border-radius: 2px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: center;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+
+      .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+
+      /* ============ RESPONSIVE NAVEGACIÓN ============ */
+      @media (max-width: 768px) {
+        .navbar-container {
+          padding: 0 var(--space-md);
+        }
+
+        .mobile-menu-toggle {
+          display: flex;
+        }
+
+        .navbar-menu {
+          position: fixed;
+          top: 70px;
+          left: 0;
+          right: 0;
+          background: var(--bg-card);
+          backdrop-filter: blur(25px);
+          border-top: 1px solid rgba(255, 255, 255, 0.2);
+          box-shadow: var(--shadow-xl);
+          flex-direction: column;
+          gap: 0;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-20px);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          padding: var(--space-lg);
+          max-height: calc(100vh - 70px);
+          overflow-y: auto;
+        }
+
+        .navbar-menu.active {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .navbar-item {
+          width: 100%;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-item:last-child {
+          border-bottom: none;
+        }
+
+        .navbar-link {
+          width: 100%;
+          padding: var(--space-md);
+          justify-content: space-between;
+        }
+
+        .dropdown-menu {
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          box-shadow: none;
+          border: none;
+          background: rgba(111, 66, 193, 0.02);
+          margin-top: var(--space-sm);
+          border-radius: var(--radius-md);
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+          max-height: 300px;
+        }
+
+        .navbar-auth {
+          width: 100%;
+          flex-direction: column;
+          gap: var(--space-md);
+          margin-top: var(--space-lg);
+          padding-top: var(--space-lg);
+          border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-nav {
+          width: 100%;
+          text-align: center;
+          padding: var(--space-md);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .navbar-container {
+          height: 60px;
+          padding: 0 var(--space-sm);
+        }
+
+        .navbar-menu {
+          top: 60px;
+          padding: var(--space-md);
+        }
+
+        .navbar-title {
+          font-size: 1rem;
+        }
+
+        .navbar-logo {
+          width: 35px;
+          height: 35px;
+          font-size: 0.75rem;
+        }
+      }
+
+      /* ============ ESPACIADO PARA CONTENIDO ============ */
+      body {
+        padding-top: 70px; /* Espacio para el navbar fijo */
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding-top: 60px;
+        }
+      }
+
+      /* ============ LAYOUT RESPONSIVO ============ */
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: var(--space-xl);
+      }
+
+      .section {
+        margin-bottom: var(--space-3xl);
+      }
+
+      .grid {
+        display: grid;
+        gap: var(--space-xl);
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      /* ============ CARDS CON EFECTOS DE LUZ ============ */
+      .card {
+        background: var(--bg-card);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-xl);
+        box-shadow: var(--shadow-lg);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.6s;
+        z-index: 1;
+      }
+
+      .card:hover::before {
+        left: 100%;
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+        border-color: rgba(111, 66, 193, 0.3);
+      }
+
+      .card-animated {
+        position: relative;
+        border-radius: var(--radius-2xl);
+        padding: 0;
+        overflow: hidden;
+        background: transparent;
+      }
+
+      .card-animated::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(
+          90deg,
+          var(--color-purple),
+          var(--color-blue),
+          var(--color-green),
+          var(--color-gold),
+          var(--color-purple)
+        );
+        background-size: 200% 100%;
+        border-radius: var(--radius-2xl);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+      }
+
+      .card-animated::after {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        background: var(--bg-card);
+        backdrop-filter: blur(20px);
+        border-radius: calc(var(--radius-2xl) - 2px);
+        z-index: 0;
+      }
+
+      .card-animated:hover::before {
+        opacity: 1;
+        animation: movingLight 2s linear infinite;
+      }
+
+      @keyframes movingLight {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      .card-content {
+        position: relative;
+        z-index: 1;
+        padding: var(--space-xl);
+      }
+
+      /* ============ TIPOGRAFÍA MODERNA ============ */
+      .text-display {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 900;
+        line-height: 1.1;
+        color: var(--color-purple);
+        letter-spacing: -0.04em;
+        margin-bottom: var(--space-lg);
+        background: linear-gradient(
+          135deg,
+          var(--color-purple),
+          var(--color-blue)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .text-h1 {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        font-weight: 800;
+        line-height: 1.2;
+        color: var(--text-dark);
+        margin-bottom: var(--space-lg);
+        letter-spacing: -0.02em;
+      }
+
+      .text-h2 {
+        font-size: clamp(1.25rem, 3vw, 2rem);
+        font-weight: 700;
+        line-height: 1.3;
+        color: var(--text-dark);
+        margin-bottom: var(--space-md);
+        letter-spacing: -0.01em;
+      }
+
+      .text-h3 {
+        font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+        font-weight: 600;
+        line-height: 1.4;
+        color: var(--color-blue);
+        margin-bottom: var(--space-md);
+      }
+
+      .text-body {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.7;
+        color: var(--text-dark);
+        margin-bottom: var(--space-md);
+      }
+
+      .text-secondary {
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--text-gray);
+        margin-bottom: var(--space-sm);
+      }
+
+      .text-small {
+        font-size: 0.75rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--text-light);
+      }
+
+      .text-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        line-height: 1.4;
+        color: var(--text-gray);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: var(--space-xs);
+        display: block;
+      }
+
+      /* ============ BOTONES MODERNOS ============ */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.875rem 2rem;
+        border-radius: var(--radius-lg);
+        font-weight: 600;
+        font-size: 0.875rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none;
+        margin: var(--space-sm);
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 0.025em;
+        min-width: 140px;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--color-purple),
+          var(--color-blue)
+        );
+        color: white;
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: var(--shadow-xl);
+        background: linear-gradient(
+          135deg,
+          var(--color-blue),
+          var(--color-green)
+        );
+      }
+
+      .btn-secondary {
+        background: var(--bg-primary);
+        color: var(--color-blue);
+        border: 2px solid var(--color-blue);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-secondary:hover {
+        background: var(--color-blue);
+        color: white;
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .btn-success {
+        background: linear-gradient(135deg, var(--success), #059669);
+        color: white;
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-warning {
+        background: linear-gradient(135deg, var(--warning), #d97706);
+        color: white;
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-danger {
+        background: linear-gradient(135deg, var(--danger), #dc2626);
+        color: white;
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-success:hover,
+      .btn-warning:hover,
+      .btn-danger:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: var(--shadow-xl);
+      }
+
+      /* ============ FORMULARIOS MODERNOS ============ */
+      .form-group {
+        margin-bottom: var(--space-lg);
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 1rem 1.25rem;
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        border-radius: var(--radius-lg);
+        font-size: 1rem;
+        background: var(--bg-primary);
+        color: var(--text-dark);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-family: inherit;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: var(--color-blue);
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        background: #fafbff;
+        transform: scale(1.01);
+      }
+
+      .form-input::placeholder {
+        color: var(--text-muted);
+      }
+
+      .form-select {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 1rem center;
+        background-repeat: no-repeat;
+        background-size: 1.25rem;
+        padding-right: 3rem;
+        appearance: none;
+      }
+
+      .form-textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      /* ============ BADGES MODERNOS ============ */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.375rem 1rem;
+        border-radius: var(--radius-lg);
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin: var(--space-xs);
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s ease;
+      }
+
+      .badge:hover {
+        transform: scale(1.05);
+      }
+
+      .badge-available {
+        background: linear-gradient(135deg, var(--success), #059669);
+        color: white;
+      }
+
+      .badge-low-stock {
+        background: linear-gradient(135deg, var(--warning), #d97706);
+        color: white;
+      }
+
+      .badge-out-of-stock {
+        background: linear-gradient(135deg, var(--danger), #dc2626);
+        color: white;
+      }
+
+      .badge-paused {
+        background: linear-gradient(135deg, #6b7280, #4b5563);
+        color: white;
+      }
+
+      /* ============ LINKS MODERNOS ============ */
+      .link {
+        color: var(--color-blue);
+        text-decoration: none;
+        font-weight: 600;
+        position: relative;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+
+      .link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 50%;
+        background: linear-gradient(
+          90deg,
+          var(--color-gold),
+          var(--color-blue)
+        );
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(-50%);
+      }
+
+      .link:hover {
+        color: var(--color-gold);
+        transform: translateY(-2px);
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.7),
+          0 0 10px rgba(255, 215, 0, 0.5);
+      }
+
+      .link:hover::after {
+        width: 100%;
+      }
+
+      /* ============ LOGO MODERNO ============ */
+      .logo-circle {
+        background: linear-gradient(
+          135deg,
+          var(--color-purple),
+          var(--color-blue)
+        );
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-lg);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        margin: var(--space-lg) auto;
+        position: relative;
+        overflow: hidden;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 900;
+      }
+
+      .logo-circle::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(
+          45deg,
+          var(--color-purple),
+          var(--color-blue),
+          var(--color-green),
+          var(--color-gold)
+        );
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+      }
+
+      .logo-circle:hover::before {
+        opacity: 1;
+        animation: glowPulse 1.5s ease-in-out infinite;
+      }
+
+      .logo-circle:hover {
+        transform: scale(1.1);
+        box-shadow: var(--shadow-xl);
+      }
+
+      @keyframes glowPulse {
+        0%,
+        100% {
+          opacity: 0.8;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+      }
+
+      /* ============ COLORES SWATCHES ============ */
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: var(--space-lg);
+        margin: var(--space-xl) 0;
+      }
+
+      .color-swatch {
+        position: relative;
+        aspect-ratio: 1;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        overflow: hidden;
+      }
+
+      .color-swatch:hover {
+        transform: scale(1.05) rotate(2deg);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .color-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: var(--space-sm);
+        text-align: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+      }
+
+      .color-swatch:hover .color-info {
+        transform: translateY(0);
+      }
+
+      /* ============ TABLAS MODERNAS ============ */
+      .table-container {
+        background: var(--bg-card);
+        backdrop-filter: blur(20px);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: var(--space-lg);
+        text-align: left;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      th {
+        background: rgba(111, 66, 193, 0.1);
+        font-weight: 700;
+        color: var(--color-purple);
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+      }
+
+      tr {
+        transition: all 0.3s ease;
+      }
+
+      tr:hover {
+        background: rgba(59, 130, 246, 0.05);
+        transform: scale(1.01);
+      }
+
+      /* ============ VIÑETAS PERSONALIZADAS ============ */
+      .bullet-list {
+        list-style: none;
+        padding: 0;
+        margin: var(--space-lg) 0;
+      }
+
+      .bullet-list li {
+        position: relative;
+        padding-left: 2rem;
+        margin-bottom: var(--space-sm);
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      .bullet-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.5rem;
+        width: 8px;
+        height: 8px;
+        background: linear-gradient(
+          135deg,
+          var(--color-purple),
+          var(--color-blue)
+        );
+        border-radius: 50%;
+        transform: translateY(-50%);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .bullet-list.style-2 li::before {
+        background: linear-gradient(
+          135deg,
+          var(--color-green),
+          var(--color-gold)
+        );
+        width: 6px;
+        height: 6px;
+        border-radius: 2px;
+      }
+
+      .bullet-list.style-3 li::before {
+        background: var(--color-blue);
+        width: 4px;
+        height: 12px;
+        border-radius: 2px;
+        top: 0.25rem;
+      }
+
+      /* ============ NOTIFICACIONES Y ALERTAS ============ */
+      .alert {
+        padding: var(--space-lg);
+        border-radius: var(--radius-lg);
+        margin: var(--space-lg) 0;
+        border-left: 4px solid;
+        position: relative;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .alert-success {
+        background: rgba(16, 185, 129, 0.1);
+        border-left-color: var(--success);
+        color: #065f46;
+      }
+
+      .alert-warning {
+        background: rgba(245, 158, 11, 0.1);
+        border-left-color: var(--warning);
+        color: #92400e;
+      }
+
+      .alert-danger {
+        background: rgba(239, 68, 68, 0.1);
+        border-left-color: var(--danger);
+        color: #991b1b;
+      }
+
+      .alert-info {
+        background: rgba(59, 130, 246, 0.1);
+        border-left-color: var(--info);
+        color: #1e3a8a;
+      }
+
+      /* ============ UTILIDADES ============ */
+      .text-center {
+        text-align: center;
+      }
+      .text-left {
+        text-align: left;
+      }
+      .text-right {
+        text-align: right;
+      }
+      .font-bold {
+        font-weight: 700;
+      }
+      .font-semibold {
+        font-weight: 600;
+      }
+      .mb-0 {
+        margin-bottom: 0;
+      }
+      .mt-lg {
+        margin-top: var(--space-lg);
+      }
+
+      /* ============ RESPONSIVE ============ */
+      @media (max-width: 768px) {
+        .container {
+          padding: var(--space-md);
+        }
+
+        .grid {
+          gap: var(--space-lg);
+        }
+
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+          grid-template-columns: 1fr;
+        }
+
+        .card {
+          padding: var(--space-lg);
+        }
+
+        .btn {
+          width: 100%;
+          margin: var(--space-xs) 0;
+        }
+
+        .color-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--space-md);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .text-display {
+          font-size: 2rem;
+        }
+
+        .container {
+          padding: var(--space-sm);
+        }
+
+        .color-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============ ANIMACIONES ADICIONALES ============ */
+      .fade-in {
+        animation: fadeIn 0.6s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .slide-in {
+        animation: slideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* ============ CÓDIGO SYNTAX ============ */
+      .code-block {
+        background: #1a1a1a;
+        color: #f8f8f2;
+        padding: var(--space-lg);
+        border-radius: var(--radius-lg);
+        overflow-x: auto;
+        font-family: "Fira Code", "Courier New", monospace;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        margin: var(--space-lg) 0;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .code-block::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .code-block::-webkit-scrollbar-track {
+        background: #2a2a2a;
+        border-radius: 4px;
+      }
+
+      .code-block::-webkit-scrollbar-thumb {
+        background: var(--color-blue);
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="#" class="navbar-brand">
+          <div class="navbar-logo">ROY</div>
+          <span class="navbar-title">Sistema Roy</span>
+        </a>
+
+        <div class="navbar-menu" id="navbarMenu">
+          <div class="navbar-item">
+            <a href="#" class="navbar-link">Inicio</a>
+          </div>
+
+          <div class="navbar-item dropdown">
+            <a href="#" class="navbar-link dropdown-toggle">Productos</a>
+            <div class="dropdown-menu">
+              <a href="agregarproducto.html" class="dropdown-item">Agregar Producto</a>
+              <a href="gestioncategorias.html" class="dropdown-item">Categorías</a>
+              <a href="gestionproveedores.html" class="dropdown-item">Proveedores</a>
+            </div>
+          </div>
+
+          <div class="navbar-item dropdown">
+            <a href="inventario.html" class="navbar-link dropdown-toggle">Inventario</a>
+            <div class="dropdown-menu">
+              <a href="inventario.html" class="dropdown-item">Ver Inventario</a>
+            </div>
+          </div>
+
+          <div class="navbar-item dropdown">
+            <a href="#" class="navbar-link dropdown-toggle">Ventas</a>
+            <div class="dropdown-menu">
+              <a href="nuevaventa.html" class="dropdown-item">Nueva Venta</a>
+              <a href="historialventa.html" class="dropdown-item">Historial</a>
+              <a href="reportesventa.html" class="dropdown-item">Reportes</a>
+              <a href="gestionclientes.html" class="dropdown-item">Clientes</a>
+            </div>
+          </div>
+
+          <div class="navbar-item dropdown">
+            <a href="#" class="navbar-link dropdown-toggle">Sistema</a>
+            <div class="dropdown-menu">
+              <a href="Dashboard.html" class="dropdown-item">Dashboard</a>
+              <a href="configuracion.html" class="dropdown-item">Configuración</a>
+              <a href="gestionusuario.html" class="dropdown-item">Usuarios</a>
+              <a href="backups.html" class="dropdown-item">Backup</a>
+              <a href="perfilusuario.html" class="dropdown-item">Perfil de Usuario</a>
+            </div>
+          </div>
+
+          <div class="navbar-auth">
+            <a href="login.html" class="btn-nav btn-nav-login"
+              >Iniciar Sesión</a
+            >
+            <a href="registro.html" class="btn-nav btn-nav-register"
+              >Registrarse</a
+            >
+          </div>
+        </div>
+
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="container">
+      <!-- Encabezado Principal -->
+      <div class="section">
+        <div class="card text-center fade-in">
+          <div class="logo-circle">ROY</div>
+          <h1 class="text-display">Sistema Roy Representaciones</h1>
+          <p class="text-body">
+            Guía completa de estilos y componentes para el sistema de gestión de
+            productos
+          </p>
+          <div>
+            <button class="btn btn-primary">Comenzar</button>
+            <button class="btn btn-secondary">Documentación</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tipografía -->
+      <div class="section">
+        <div class="card slide-in">
+          <h2 class="text-h1">Tipografía y Jerarquía</h2>
+          <div class="grid grid-2">
+            <div>
+              <h1 class="text-display mb-0">Display</h1>
+              <p class="text-small">
+                Font-size: clamp(2rem, 5vw, 3.5rem) • Weight: 900
+              </p>
+
+              <h1 class="text-h1 mb-0">Título H1</h1>
+              <p class="text-small">
+                Font-size: clamp(1.5rem, 4vw, 2.5rem) • Weight: 800
+              </p>
+
+              <h2 class="text-h2 mb-0">Título H2</h2>
+              <p class="text-small">
+                Font-size: clamp(1.25rem, 3vw, 2rem) • Weight: 700
+              </p>
+
+              <h3 class="text-h3 mb-0">Título H3</h3>
+              <p class="text-small">
+                Font-size: clamp(1.125rem, 2.5vw, 1.5rem) • Weight: 600
+              </p>
+            </div>
+            <div>
+              <p class="text-body mb-0">Texto Principal</p>
+              <p class="text-small">
+                Font-size: 1rem • Weight: 400 • Line-height: 1.7
+              </p>
+
+              <p class="text-secondary mb-0">Texto Secundario</p>
+              <p class="text-small">Font-size: 0.875rem • Weight: 400</p>
+
+              <label class="text-label">Etiqueta de Campo</label>
+              <p class="text-small">
+                Font-size: 0.875rem • Weight: 600 • Uppercase
+              </p>
+
+              <p class="text-small mb-0">Texto Pequeño</p>
+              <p class="text-small">Font-size: 0.75rem • Weight: 400</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paleta de Colores -->
+      <div class="section">
+        <div class="card">
+          <h2 class="text-h1">Paleta de Colores</h2>
+          <div class="color-grid">
+            <div class="color-swatch" style="background: var(--color-purple)">
+              <div class="color-info">Purple<br />#6F42C1</div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-blue)">
+              <div class="color-info">Blue<br />#007BFF</div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-green)">
+              <div class="color-info">Green<br />#28C76F</div>
+            </div>
+            <div class="color-swatch" style="background: var(--color-gold)">
+              <div class="color-info">Gold<br />#FFD700</div>
+            </div>
+            <div class="color-swatch" style="background: var(--success)">
+              <div class="color-info">Success<br />#10B981</div>
+            </div>
+            <div class="color-swatch" style="background: var(--warning)">
+              <div class="color-info">Warning<br />#F59E0B</div>
+            </div>
+            <div class="color-swatch" style="background: var(--danger)">
+              <div class="color-info">Danger<br />#EF4444</div>
+            </div>
+            <div class="color-swatch" style="background: var(--info)">
+              <div class="color-info">Info<br />#3B82F6</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones y Estados -->
+      <div class="section">
+        <div class="card">
+          <h2 class="text-h1">Botones y Estados</h2>
+          <div class="grid grid-2">
+            <div>
+              <h3 class="text-h3">Botones Principales</h3>
+              <button class="btn btn-primary">Primario</button>
+              <button class="btn btn-secondary">Secundario</button>
+              <button class="btn btn-success">Éxito</button>
+              <button class="btn btn-warning">Advertencia</button>
+              <button class="btn btn-danger">Peligro</button>
+            </div>
+            <div>
+              <h3 class="text-h3">Estados de Producto</h3>
+              <span class="badge badge-available">Disponible</span>
+              <span class="badge badge-low-stock">Stock Bajo</span>
+              <span class="badge badge-out-of-stock">Sin Stock</span>
+              <span class="badge badge-paused">Pausado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formularios -->
+      <div class="section">
+        <div class="card">
+          <h2 class="text-h1">Formularios Modernos</h2>
+          <div class="grid grid-2">
+            <div>
+              <div class="form-group">
+                <label class="text-label">Nombre del Producto</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Ej: Laptop HP Pavilion"
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="text-label">Descripción</label>
+                <textarea
+                  class="form-input form-textarea"
+                  placeholder="Describe las características principales del producto..."
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="text-label">Categoría</label>
+                <select class="form-input form-select">
+                  <option>Seleccionar categoría</option>
+                  <option>Electrónicos</option>
+                  <option>Ropa y Accesorios</option>
+                  <option>Hogar y Jardín</option>
+                  <option>Deportes</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <div class="form-group">
+                <label class="text-label">Precio (Bs.)</label>
+                <input type="number" class="form-input" placeholder="25.50" />
+              </div>
+
+              <div class="form-group">
+                <label class="text-label">Stock Mínimo</label>
+                <input type="number" class="form-input" placeholder="10" />
+              </div>
+
+              <div class="form-group">
+                <label class="text-label">Proveedor</label>
+                <select class="form-input form-select">
+                  <option>Seleccionar proveedor</option>
+                  <option>Proveedor Nacional A</option>
+                  <option>Proveedor Internacional B</option>
+                  <option>Distribuidor Regional C</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary">Guardar Producto</button>
+          <button class="btn btn-secondary">Cancelar</button>
+        </div>
+      </div>
+
+      <!-- Enlaces y Navegación -->
+      <div class="section">
+        <div class="card">
+          <h2 class="text-h1">Enlaces y Navegación</h2>
+          <p class="text-body">
+            Este párrafo contiene un
+            <a href="#" class="link">enlace interactivo</a> que muestra el
+            efecto hover dorado. También puede incluir
+            <a href="#" class="link">múltiples enlaces</a> con animaciones
+            suaves y <a href="#" class="link">efectos visuales modernos</a> para
+            mejorar la experiencia del usuario.
+          </p>
+          <p class="text-body">
+            Los enlaces del sistema pueden dirigir a
+            <a href="#" class="link">gestión de inventario</a>,
+            <a href="#" class="link">reportes de ventas</a>,
+            <a href="#" class="link">configuración</a> y
+            <a href="#" class="link">panel administrativo</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Cards Especiales -->
+      <div class="section">
+        <div class="grid grid-2">
+          <div class="card">
+            <h3 class="text-h2">Card Estándar</h3>
+            <p class="text-body">
+              Card con diseño glassmorphism y efectos de luz que se mueven al
+              hacer hover para contenido regular del sistema.
+            </p>
+            <button class="btn btn-secondary">Ver Detalles</button>
+          </div>
+
+          <div class="card-animated">
+            <div class="card-content">
+              <h3 class="text-h2">Card con Luces</h3>
+              <p class="text-body">
+                Card premium con efectos de luz de colores que se mueven por los
+                bordes para destacar contenido importante.
+              </p>
+              <button class="btn btn-primary">Acción Principal</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tablas -->
+      <div class="section">
+        <div class="card">
+          <h2 class="text-h1">Tablas de Datos</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Categoría</th>
+                  <th>Stock</th>
+                  <th>Precio</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Laptop HP Pavilion 15</td>
+                  <td>Electrónicos</td>
+                  <td>25</td>
+                  <td>Bs. 2,450.00</td>
+                  <td><span class="badge badge-available">Disponible</span></td>
+                </tr>
+                <tr>
+                  <td>Mouse Logitech MX</td>
+                  <td>Accesorios</td>
+                  <td>8</td>
+                  <td>Bs. 150.00</td>
+                  <td><span class="badge badge-low-stock">Stock Bajo</span></td>
+                </tr>
+                <tr>
+                  <td>Teclado Mecánico RGB</td>
+                  <td>Accesorios</td>
+                  <td>0</td>
+                  <td>Bs. 280.00</td>
+                  <td>
+                    <span class="badge badge-out-of-stock">Sin Stock</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Monitor Samsung 24"</td>
+                  <td>Electrónicos</td>
+                  <td>15</td>
+                  <td>Bs. 890.00</td>
+                  <td><span class="badge badge-paused">Pausado</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Listas con Viñetas -->
+      <div class="section">
+        <div class="grid grid-3">
+          <div class="card">
+            <h3 class="text-h2">Lista Estilo 1</h3>
+            <ul class="bullet-list">
+              <li>Gestión completa de inventario</li>
+              <li>Control de stock en tiempo real</li>
+              <li>Alertas de productos con bajo stock</li>
+              <li>Reportes detallados de ventas</li>
+              <li>Integración con proveedores</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3 class="text-h2">Lista Estilo 2</h3>
+            <ul class="bullet-list style-2">
+              <li>Dashboard intuitivo y moderno</li>
+              <li>Búsqueda avanzada de productos</li>
+              <li>Categorización automática</li>
+              <li>Historial de movimientos</li>
+              <li>Backup automático de datos</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3 class="text-h2">Lista Estilo 3</h3>
+            <ul class="bullet-list style-3">
+              <li>Soporte técnico 24/7</li>
+              <li>Actualizaciones automáticas</li>
+              <li>Múltiples usuarios y roles</li>
+              <li>Exportación a Excel/PDF</li>
+              <li>API para integraciones</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alertas y Notificaciones -->
+      <div class="section">
+        <div class="card">
+          <h2 class="text-h1">Alertas y Notificaciones</h2>
+
+          <div class="alert alert-success">
+            <strong>¡Éxito!</strong> El producto se ha agregado correctamente al
+            inventario.
+          </div>
+
+          <div class="alert alert-warning">
+            <strong>Advertencia:</strong> El stock del producto "Laptop HP
+            Pavilion" está por debajo del mínimo establecido.
+          </div>
+
+          <div class="alert alert-danger">
+            <strong>Error:</strong> No se pudo conectar con el servidor. Intente
+            nuevamente.
+          </div>
+
+          <div class="alert alert-info">
+            <strong>Información:</strong> Se ha programado una actualización del
+            sistema para esta noche.
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards de Productos -->
+      <div class="section">
+        <div class="card">
+          <h2 class="text-h1">Cards de Productos</h2>
+          <div class="grid grid-3">
+            <div class="card">
+              <div
+                style="
+                  background: linear-gradient(135deg, #667eea, #764ba2);
+                  height: 150px;
+                  border-radius: var(--radius-lg);
+                  margin-bottom: var(--space-md);
+                "
+              ></div>
+              <h3 class="text-h3">Laptop Gaming Pro</h3>
+              <p class="text-secondary">Intel i7, 16GB RAM, RTX 3060</p>
+              <p class="text-body font-bold">Bs. 4,250.00</p>
+              <span class="badge badge-available">25 unidades</span>
+              <div class="mt-lg">
+                <button class="btn btn-primary">Agregar al Carrito</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <div
+                style="
+                  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+                  height: 150px;
+                  border-radius: var(--radius-lg);
+                  margin-bottom: var(--space-md);
+                "
+              ></div>
+              <h3 class="text-h3">Mouse Inalámbrico</h3>
+              <p class="text-secondary">Ergonómico, 1600 DPI, Bluetooth</p>
+              <p class="text-body font-bold">Bs. 125.00</p>
+              <span class="badge badge-low-stock">3 unidades</span>
+              <div class="mt-lg">
+                <button class="btn btn-warning">Stock Bajo</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <div
+                style="
+                  background: linear-gradient(135deg, #a8edea, #fed6e3);
+                  height: 150px;
+                  border-radius: var(--radius-lg);
+                  margin-bottom: var(--space-md);
+                "
+              ></div>
+              <h3 class="text-h3">Auriculares Premium</h3>
+              <p class="text-secondary">Cancelación de ruido, 30h batería</p>
+              <p class="text-body font-bold">Bs. 890.00</p>
+              <span class="badge badge-out-of-stock">Sin stock</span>
+              <div class="mt-lg">
+                <button class="btn btn-danger">Agotado</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ejemplo de Código -->
+      <div class="section">
+        <div class="card">
+          <h2 class="text-h1">Ejemplo de Implementación</h2>
+          <p class="text-body">
+            Ejemplo de cómo implementar un botón primario con las clases del
+            sistema:
+          </p>
+
+          <div class="code-block">
+            &lt;button class="btn btn-primary"&gt; Guardar Producto
+            &lt;/button&gt; &lt;div class="card"&gt; &lt;h3
+            class="text-h2"&gt;Título de la Card&lt;/h3&gt; &lt;p
+            class="text-body"&gt;Contenido descriptivo&lt;/p&gt; &lt;span
+            class="badge badge-available"&gt;Estado&lt;/span&gt; &lt;/div&gt;
+            &lt;!-- Card con efectos de luz --&gt; &lt;div
+            class="card-animated"&gt; &lt;div class="card-content"&gt; &lt;h3
+            class="text-h2"&gt;Card Premium&lt;/h3&gt; &lt;p
+            class="text-body"&gt;Contenido destacado&lt;/p&gt; &lt;/div&gt;
+            &lt;/div&gt;
+          </div>
+
+          <p class="text-body">
+            Las clases están optimizadas para ser reutilizables y mantener
+            consistencia visual en todo el sistema con efectos de luz modernos.
+          </p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="section">
+        <div class="card text-center">
+          <h2 class="text-h2">Sistema Roy Representaciones</h2>
+          <p class="text-secondary">
+            Guía de estilos v2.0 - Desarrollado con efectos de luz modernos
+          </p>
+          <p class="text-small">
+            © 2025 Roy Representaciones. Todos los derechos reservados.
+          </p>
+          <div>
+            <a href="#" class="link">Documentación</a>
+            <a href="#" class="link">Soporte</a>
+            <a href="#" class="link">API</a>
+            <a href="#" class="link">Contacto</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Esperar a que el DOM esté completamente cargado
+      document.addEventListener("DOMContentLoaded", function () {
+        // Función para toggle del menú móvil
+        window.toggleMobileMenu = function () {
+          const menu = document.getElementById("navbarMenu");
+          const toggle = document.querySelector(".mobile-menu-toggle");
+          if (menu && toggle) {
+            menu.classList.toggle("active");
+            toggle.classList.toggle("active");
+          }
+        };
+
+        // Cerrar menú móvil al hacer clic fuera
+        document.addEventListener("click", function (event) {
+          const menu = document.getElementById("navbarMenu");
+          const toggle = document.querySelector(".mobile-menu-toggle");
+
+          if (
+            menu &&
+            toggle &&
+            !menu.contains(event.target) &&
+            !toggle.contains(event.target)
+          ) {
+            menu.classList.remove("active");
+          }
+        });
+
+        // Efecto de scroll en el navbar
+        window.addEventListener("scroll", function () {
+          const navbar = document.querySelector(".navbar");
+          if (navbar) {
+            if (window.scrollY > 50) {
+              navbar.style.background = "rgba(255, 255, 255, 0.98)";
+              navbar.style.backdropFilter = "blur(25px)";
+            } else {
+              navbar.style.background = "rgba(255, 255, 255, 0.95)";
+              navbar.style.backdropFilter = "blur(20px)";
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

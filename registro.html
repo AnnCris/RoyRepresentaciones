@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registro - Sistema Roy Representaciones</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+    :root {
+        --color-purple: #6F42C1;
+        --color-blue: #007BFF;
+        --color-green: #28C76F;
+        --color-gold: #FFD700;
+        --text-dark: #1A1A1A;
+        --text-gray: #555;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #ffffff, #cfe8ff);
+        min-height: 100vh;
+        color: var(--text-dark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    /* Card con borde giratorio */
+    .card {
+        position: relative;
+        border-radius: 20px;
+        padding: 2rem;
+        overflow: hidden;
+        width: 100%;
+        max-width: 800px;
+    }
+
+    /* Fondo animado alrededor */
+    .card::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        background: conic-gradient(
+            from 0deg,
+            var(--color-purple),
+            var(--color-blue),
+            var(--color-green),
+            var(--color-gold),
+            var(--color-purple)
+        );
+        border-radius: 24px;
+        animation: spin 6s linear infinite;
+        z-index: 0;
+    }
+
+    /* Interior */
+    .card::after {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        background: #fff;
+        border-radius: 16px;
+        z-index: 1;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .card-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .form-input {
+        @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 transition duration-200 ease-in-out bg-white;
+    }
+    .form-input:focus {
+        border-color: var(--color-blue);
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    }
+
+    .form-select {
+        @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 transition duration-200 ease-in-out bg-white appearance-none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 1rem center;
+        background-repeat: no-repeat;
+        background-size: 1.25rem;
+        padding-right: 3rem;
+    }
+    .form-select:focus {
+        border-color: var(--color-blue);
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    }
+
+    .btn-primary {
+        background: linear-gradient(90deg, var(--color-purple), var(--color-blue), var(--color-green));
+        @apply w-full text-white py-3 px-4 rounded-lg font-bold shadow-md transition duration-300;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(90deg, var(--color-green), var(--color-blue), var(--color-purple));
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    .link {
+        color: var(--color-blue);
+        transition: 0.3s;
+    }
+    .link:hover {
+        color: var(--color-gold);
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.7), 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .logo-circle {
+        background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+        @apply w-20 h-20 mx-auto rounded-full flex items-center justify-center shadow-lg;
+    }
+
+    .form-label {
+        @apply block text-sm font-medium mb-1;
+        color: var(--text-gray);
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            margin: 10px;
+            padding: 1.5rem;
+        }
+        
+        .grid-cols-2 {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="w-full card">
+        <div class="card-content space-y-8">
+            <div class="text-center">
+                <div class="logo-circle">
+                    <span class="text-white font-black text-xl">ROY</span>
+                </div>
+                <h2 class="mt-6 text-3xl font-extrabold text-[var(--color-purple)]">Crear Cuenta</h2>
+                <p class="mt-2 text-sm text-[var(--text-gray)]">
+                    Únete a <span class="font-semibold text-[var(--color-blue)]">Sistema RoyDent y Mundo Medico</span>
+                </p>
+            </div>
+
+            <form action="#" method="POST" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="form-label" for="username">Nombre de usuario</label>
+                        <input class="form-input" id="username" name="username" placeholder="Elige un nombre de usuario" required type="text"/>
+                    </div>
+                    <div>
+                        <label class="form-label" for="password">Contraseña</label>
+                        <input class="form-input" id="password" name="password" placeholder="Crea una contraseña segura" required type="password"/>
+                    </div>
+                    <div>
+                        <label class="form-label" for="first-name">Nombres</label>
+                        <input class="form-input" id="first-name" name="first-name" placeholder="Ingresa tus nombres" required type="text"/>
+                    </div>
+                    <div>
+                        <label class="form-label" for="last-name-p">Apellido Paterno</label>
+                        <input class="form-input" id="last-name-p" name="last-name-p" placeholder="Ingresa tu apellido paterno" required type="text"/>
+                    </div>
+                    <div>
+                        <label class="form-label" for="last-name-m">Apellido Materno</label>
+                        <input class="form-input" id="last-name-m" name="last-name-m" placeholder="Ingresa tu apellido materno" type="text"/>
+                    </div>
+                    <div>
+                        <label class="form-label" for="ci">Cédula de Identidad</label>
+                        <input class="form-input" id="ci" name="ci" placeholder="Ingresa tu número de CI" required type="text"/>
+                    </div>
+                    <div>
+                        <label class="form-label" for="phone-number">Número de celular</label>
+                        <input class="form-input" id="phone-number" name="phone-number" placeholder="Ingresa tu número de celular" required type="tel"/>
+                    </div>
+                    <div>
+                        <label class="form-label" for="email">Correo electrónico</label>
+                        <input autocomplete="email" class="form-input" id="email" name="email" placeholder="Ingresa tu correo electrónico" required type="email"/>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-label" for="client-type">Tipo de cliente</label>
+                    <select class="form-select" id="client-type" name="client-type" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="mayorista">Estudiante</option>
+                        <option value="minorista">Medico</option>
+                        <option value="distribuidor">Dentista</option>
+                        <option value="empresa">Empresa</option>
+                        <option value="particular">Particular</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">Registrarse</button>
+            </form>
+
+            <p class="text-center text-sm text-gray-600">
+                ¿Ya tienes una cuenta?
+                <a href="login.html" class="link font-semibold">Inicia sesión aquí</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

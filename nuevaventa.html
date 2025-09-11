@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Nueva Venta - Sistema Roy Representaciones</title>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --color-purple: #6F42C1;
+            --color-blue: #007BFF;
+            --color-green: #28C76F;
+            --color-gold: #FFD700;
+            --text-dark: #1A1A1A;
+            --text-gray: #555555;
+            --text-light: #888888;
+            --text-muted: #9CA3AF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-tertiary: #F1F5F9;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --info: #3B82F6;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ffffff, #cfe8ff);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 16px;
+            background-attachment: fixed;
+            font-weight: 400;
+            padding-top: 70px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: var(--space-sm);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-logo {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.875rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .navbar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .navbar-link {
+            padding: var(--space-sm) var(--space-md);
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-link:hover {
+            color: var(--color-purple);
+            background: rgba(111, 66, 193, 0.05);
+        }
+
+        .navbar-link.active {
+            color: var(--color-purple);
+            background: rgba(111, 66, 193, 0.1);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+        }
+
+        .section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .text-h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: var(--space-lg);
+            letter-spacing: -0.02em;
+        }
+
+        .text-h2 {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.01em;
+        }
+
+        .text-h3 {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--color-blue);
+            margin-bottom: var(--space-md);
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--space-xl);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            background: var(--bg-primary);
+            color: var(--text-dark);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+            background: #FAFBFF;
+            transform: scale(1.01);
+        }
+
+        .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 1rem center;
+            background-repeat: no-repeat;
+            background-size: 1.25rem;
+            padding-right: 3rem;
+            appearance: none;
+        }
+
+        .text-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-xs);
+            display: block;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            margin: var(--space-sm);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.025em;
+            min-width: 140px;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            min-width: auto;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            background: linear-gradient(135deg, var(--color-blue), var(--color-green));
+        }
+
+        .btn-secondary {
+            background: var(--bg-primary);
+            color: var(--color-blue);
+            border: 2px solid var(--color-blue);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning), #D97706);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), #DC2626);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .table-container {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th, td {
+            padding: var(--space-lg);
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        th {
+            background: rgba(111, 66, 193, 0.1);
+            font-weight: 700;
+            color: var(--color-purple);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        tr {
+            transition: all 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+            transform: scale(1.01);
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: var(--space-xl);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .search-input {
+            padding-left: 3.5rem;
+            font-size: 1.1rem;
+        }
+
+        .resumen-venta {
+            position: sticky;
+            top: 90px;
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .cliente-info {
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid var(--color-blue);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+
+        .producto-item {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .producto-item:hover {
+            background: rgba(59, 130, 246, 0.05);
+            transform: translateX(5px);
+        }
+
+        .cantidad-input {
+            width: 80px;
+            text-align: center;
+            margin: 0 var(--space-sm);
+        }
+
+        .precio-total {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-green);
+            margin: var(--space-lg) 0;
+        }
+
+        .alert {
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--space-lg) 0;
+            border-left: 4px solid;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: var(--success);
+            color: #047857;
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-info {
+            background: rgba(59, 130, 246, 0.1);
+            border-left-color: var(--info);
+            color: #1e3a8a;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-md);
+            }
+            
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                padding: var(--space-lg);
+            }
+            
+            .resumen-venta {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-brand">
+                <div class="navbar-logo">ROY</div>
+                <span class="navbar-title">Sistema Roy</span>
+            </a>
+            <div class="navbar-menu">
+                <a href="#" class="navbar-link">Dashboard</a>
+                <a href="agregarproducto.html" class="navbar-link">Productos</a>
+                <a href="inventario.html" class="navbar-link">Inventario</a>
+                <a href="nuevaventa.html" class="navbar-link active">Ventas</a>
+                <a href="reportesventa.html" class="navbar-link">Reportes</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="section">
+            <div class="card">
+                <h1 class="text-h1">💳 Nueva Venta</h1>
+                <p style="color: var(--text-gray);">Registra una nueva venta con control automático de inventario FIFO</p>
+            </div>
+        </div>
+
+        <div class="grid grid-2" style="align-items: start;">
+            <!-- Formulario de Venta -->
+            <div>
+                <!-- Información del Cliente -->
+                <div class="card">
+                    <h2 class="text-h2">👤 Información del Cliente</h2>
+                    <div class="grid grid-2">
+                        <div class="form-group">
+                            <label class="text-label">Cliente</label>
+                            <select class="form-input form-select" id="cliente">
+                                <option value="">Seleccionar cliente...</option>
+                                <option value="nuevo">➕ Nuevo Cliente</option>
+                                <option value="1">Dr. Carlos Mendoza - CI: 12345678</option>
+                                <option value="2">Dra. Ana García - CI: 87654321</option>
+                                <option value="3">Clínica Dental Norte - NIT: 123456789</option>
+                                <option value="4">Hospital San Juan - NIT: 987654321</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-label">Tipo de Venta</label>
+                            <select class="form-input form-select" id="tipo-venta">
+                                <option value="contado">Contado</option>
+                                <option value="credito">Crédito</option>
+                                <option value="cheque">Cheque</option>
+                                <option value="transferencia">Transferencia</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="cliente-info" class="cliente-info" style="display: none;">
+                        <h3>📋 Datos del Cliente</h3>
+                        <p><strong>Nombre:</strong> <span id="cliente-nombre"></span></p>
+                        <p><strong>Documento:</strong> <span id="cliente-documento"></span></p>
+                        <p><strong>Teléfono:</strong> <span id="cliente-telefono"></span></p>
+                        <p><strong>Dirección:</strong> <span id="cliente-direccion"></span></p>
+                    </div>
+                </div>
+
+                <!-- Búsqueda y Selección de Productos -->
+                <div class="card">
+                    <h2 class="text-h2">🔍 Agregar Productos</h2>
+                    <div class="search-container">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="form-input search-input" id="buscar-producto" placeholder="Buscar por código, nombre o marca...">
+                    </div>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Producto</th>
+                                    <th>Stock</th>
+                                    <th>Precio</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productos-disponibles">
+                                <tr>
+                                    <td><strong>ANE001</strong></td>
+                                    <td>Anestesia Lidocaína 2% x 50ml</td>
+                                    <td><span style="color: var(--success); font-weight: 600;">15 unidades</span></td>
+                                    <td><strong>Bs. 45.00</strong></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm" onclick="agregarProducto('ANE001', 'Anestesia Lidocaína 2% x 50ml', 45.00, 15)">➕ Agregar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>GUA025</strong></td>
+                                    <td>Guantes Látex Talla M x 100</td>
+                                    <td><span style="color: var(--success); font-weight: 600;">250 pares</span></td>
+                                    <td><strong>Bs. 28.50</strong></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm" onclick="agregarProducto('GUA025', 'Guantes Látex Talla M x 100', 28.50, 250)">➕ Agregar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>SED089</strong></td>
+                                    <td>Seda Dental Fluorada x 50m</td>
+                                    <td><span style="color: var(--warning); font-weight: 600;">2 unidades</span></td>
+                                    <td><strong>Bs. 18.00</strong></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm" onclick="agregarProducto('SED089', 'Seda Dental Fluorada x 50m', 18.00, 2)">➕ Agregar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CAP156</strong></td>
+                                    <td>Cápsulas Amalgama x 50</td>
+                                    <td><span style="color: var(--success); font-weight: 600;">12 cajas</span></td>
+                                    <td><strong>Bs. 125.00</strong></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm" onclick="agregarProducto('CAP156', 'Cápsulas Amalgama x 50', 125.00, 12)">➕ Agregar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen de Venta -->
+            <div>
+                <div class="card resumen-venta">
+                    <h2 style="color: white; margin-bottom: var(--space-lg);">🧾 Resumen de Venta</h2>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.1); border-radius: var(--radius-lg); padding: var(--space-lg); margin-bottom: var(--space-lg);">
+                        <h3 style="color: white; margin-bottom: var(--space-md);">📦 Productos Seleccionados</h3>
+                        <div id="productos-venta">
+                            <p style="color: rgba(255, 255, 255, 0.7); text-align: center; padding: var(--space-lg);">
+                                No hay productos seleccionados
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div style="border-top: 2px solid rgba(255, 255, 255, 0.2); padding-top: var(--space-lg);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-sm);">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">Bs. 0.00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-sm);">
+                            <span>Descuento:</span>
+                            <input type="number" id="descuento" value="0" min="0" max="100" style="width: 80px; padding: 0.25rem; border-radius: var(--radius-sm); border: none; text-align: right;" onchange="calcularTotal()">%
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 800; margin-top: var(--space-md); padding-top: var(--space-md); border-top: 2px solid rgba(255, 255, 255, 0.2);">
+                            <span>TOTAL:</span>
+                            <span id="total">Bs. 0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: var(--space-xl);">
+                        <button class="btn btn-success" style="width: 100%; font-size: 1.1rem; padding: 1rem;" onclick="procesarVenta()">
+                            💳 Procesar Venta
+                        </button>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: var(--space-sm);" onclick="limpiarVenta()">
+                            🗑️ Limpiar Todo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let productosVenta = [];
+        let subtotalVenta = 0;
+
+        // Datos de clientes de ejemplo
+        const clientes = {
+            '1': {
+                nombre: 'Dr. Carlos Mendoza',
+                documento: 'CI: 12345678',
+                telefono: '+591 70123456',
+                direccion: 'Av. Arce #1234, La Paz'
+            },
+            '2': {
+                nombre: 'Dra. Ana García',
+                documento: 'CI: 87654321',
+                telefono: '+591 77789456',
+                direccion: 'Calle Murillo #567, La Paz'
+            },
+            '3': {
+                nombre: 'Clínica Dental Norte',
+                documento: 'NIT: 123456789',
+                telefono: '+591 2-2345678',
+                direccion: 'Zona Norte, Calle 15 #890'
+            },
+            '4': {
+                nombre: 'Hospital San Juan',
+                documento: 'NIT: 987654321',
+                telefono: '+591 2-2876543',
+                direccion: 'Av. 6 de Agosto #2345'
+            }
+        };
+
+        // Mostrar información del cliente seleccionado
+        document.getElementById('cliente').addEventListener('change', function() {
+            const clienteId = this.value;
+            const clienteInfo = document.getElementById('cliente-info');
+            
+            if (clienteId && clientes[clienteId]) {
+                const cliente = clientes[clienteId];
+                document.getElementById('cliente-nombre').textContent = cliente.nombre;
+                document.getElementById('cliente-documento').textContent = cliente.documento;
+                document.getElementById('cliente-telefono').textContent = cliente.telefono;
+                document.getElementById('cliente-direccion').textContent = cliente.direccion;
+                clienteInfo.style.display = 'block';
+            } else {
+                clienteInfo.style.display = 'none';
+            }
+        });
+
+        // Función para agregar producto a la venta
+        function agregarProducto(codigo, nombre, precio, stock) {
+            const productoExistente = productosVenta.find(p => p.codigo === codigo);
+            
+            if (productoExistente) {
+                if (productoExistente.cantidad < stock) {
+                    productoExistente.cantidad++;
+                    productoExistente.total = productoExistente.cantidad * productoExistente.precio;
+                } else {
+                    alert('⚠️ No hay suficiente stock disponible');
+                    return;
+                }
+            } else {
+                productosVenta.push({
+                    codigo: codigo,
+                    nombre: nombre,
+                    precio: precio,
+                    cantidad: 1,
+                    stock: stock,
+                    total: precio
+                });
+            }
+            
+            actualizarResumenVenta();
+        }
+
+        // Función para remover producto
+        function removerProducto(codigo) {
+            productosVenta = productosVenta.filter(p => p.codigo !== codigo);
+            actualizarResumenVenta();
+        }
+
+        // Función para actualizar cantidad
+        function actualizarCantidad(codigo, nuevaCantidad) {
+            const producto = productosVenta.find(p => p.codigo === codigo);
+            if (producto) {
+                if (nuevaCantidad <= producto.stock && nuevaCantidad > 0) {
+                    producto.cantidad = nuevaCantidad;
+                    producto.total = producto.cantidad * producto.precio;
+                    actualizarResumenVenta();
+                } else {
+                    alert('⚠️ Cantidad no válida o insuficiente stock');
+                }
+            }
+        }
+
+        // Función para actualizar el resumen de venta
+        function actualizarResumenVenta() {
+            const contenedor = document.getElementById('productos-venta');
+            
+            if (productosVenta.length === 0) {
+                contenedor.innerHTML = `
+                    <p style="color: rgba(255, 255, 255, 0.7); text-align: center; padding: var(--space-lg);">
+                        No hay productos seleccionados
+                    </p>
+                `;
+            } else {
+                contenedor.innerHTML = productosVenta.map(producto => `
+                    <div class="producto-item" style="background: rgba(255, 255, 255, 0.1); color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+                        <div>
+                            <div style="font-weight: 600;">${producto.nombre}</div>
+                            <div style="font-size: 0.875rem; opacity: 0.8;">${producto.codigo}</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                            <input type="number" value="${producto.cantidad}" min="1" max="${producto.stock}" 
+                                   class="cantidad-input" style="background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255, 255, 255, 0.3);"
+                                   onchange="actualizarCantidad('${producto.codigo}', parseInt(this.value))">
+                            <span style="font-weight: 600;">Bs. ${producto.total.toFixed(2)}</span>
+                            <button onclick="removerProducto('${producto.codigo}')" style="background: rgba(239, 68, 68, 0.3); color: white; border: none; border-radius: var(--radius-sm); padding: 0.25rem 0.5rem; cursor: pointer;">✕</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            calcularTotal();
+        }
+
+        // Función para calcular total
+        function calcularTotal() {
+            subtotalVenta = productosVenta.reduce((sum, producto) => sum + producto.total, 0);
+            const descuento = parseFloat(document.getElementById('descuento').value) || 0;
+            const total = subtotalVenta * (1 - descuento / 100);
+            
+            document.getElementById('subtotal').textContent = `Bs. ${subtotalVenta.toFixed(2)}`;
+            document.getElementById('total').textContent = `Bs. ${total.toFixed(2)}`;
+        }
+
+        // Función para procesar venta
+        function procesarVenta() {
+            const clienteId = document.getElementById('cliente').value;
+            const tipoVenta = document.getElementById('tipo-venta').value;
+            
+            if (!clienteId) {
+                alert('⚠️ Por favor selecciona un cliente');
+                return;
+            }
+            
+            if (productosVenta.length === 0) {
+                alert('⚠️ Por favor agrega al menos un producto');
+                return;
+            }
+            
+            const descuento = parseFloat(document.getElementById('descuento').value) || 0;
+            const total = subtotalVenta * (1 - descuento / 100);
+            
+            if (confirm(`💰 ¿Confirmar venta por Bs. ${total.toFixed(2)}?`)) {
+                alert('✅ Venta procesada exitosamente!\n🧾 Factura #VT-2024-001 generada');
+                limpiarVenta();
+            }
+        }
+
+        // Función para limpiar venta
+        function limpiarVenta() {
+            productosVenta = [];
+            document.getElementById('cliente').value = '';
+            document.getElementById('cliente-info').style.display = 'none';
+            document.getElementById('descuento').value = '0';
+            actualizarResumenVenta();
+        }
+
+        // Búsqueda de productos
+        document.getElementById('buscar-producto').addEventListener('input', function() {
+            const busqueda = this.value.toLowerCase();
+            const filas = document.querySelectorAll('#productos-disponibles tr');
+            
+            filas.forEach(fila => {
+                const texto = fila.textContent.toLowerCase();
+                fila.style.display = texto.includes(busqueda) ? '' : 'none';
+            });
+        });
+
+        // Animaciones de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

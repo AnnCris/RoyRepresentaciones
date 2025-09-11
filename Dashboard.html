@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Dashboard - Sistema Roy Representaciones</title>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            /* Colores Primarios */
+            --color-purple: #6f42c1;
+            --color-blue: #007bff;
+            --color-green: #28c76f;
+            --color-gold: #ffd700;
+
+            /* Colores de Texto */
+            --text-dark: #1a1a1a;
+            --text-gray: #555555;
+            --text-light: #888888;
+            --text-muted: #9ca3af;
+
+            /* Colores de Fondo */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.95);
+
+            /* Colores de Estado */
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+
+            /* Sombras */
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+            /* Radios */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+
+            /* Espaciado */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #ffffff, #cfe8ff);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 16px;
+            background-attachment: fixed;
+            font-weight: 400;
+        }
+
+        /* ============ SIDEBAR MODERNO ============ */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: var(--space-xl);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+            margin-bottom: var(--space-md);
+        }
+
+        .sidebar-logo {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.875rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: var(--space-xs);
+        }
+
+        .sidebar-nav {
+            padding: var(--space-md);
+        }
+
+        .nav-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-md);
+            padding: 0 var(--space-md);
+        }
+
+        .nav-item {
+            margin-bottom: var(--space-xs);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: var(--space-md);
+            color: var(--text-gray);
+            text-decoration: none;
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.875rem;
+            gap: var(--space-sm);
+        }
+
+        .nav-link:hover {
+            background: rgba(111, 66, 193, 0.1);
+            color: var(--color-purple);
+            transform: translateX(4px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        /* ============ MAIN CONTENT ============ */
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ============ NAVEGACIÓN MÓVIL ============ */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-sm);
+            z-index: 1001;
+            padding: var(--space-md);
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* ============ LAYOUT RESPONSIVO ============ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+        }
+
+        .section {
+            margin-bottom: var(--space-3xl);
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--space-xl);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* ============ CARDS CON EFECTOS DE LUZ ============ */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s;
+            z-index: 1;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(111, 66, 193, 0.3);
+        }
+
+        .card-animated {
+            position: relative;
+            border-radius: var(--radius-2xl);
+            padding: 0;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .card-animated::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(90deg, var(--color-purple), var(--color-blue), var(--color-green), var(--color-gold), var(--color-purple));
+            background-size: 200% 100%;
+            border-radius: var(--radius-2xl);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .card-animated::after {
+            content: "";
+            position: absolute;
+            inset: 2px;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border-radius: calc(var(--radius-2xl) - 2px);
+            z-index: 0;
+        }
+
+        .card-animated:hover::before {
+            opacity: 1;
+            animation: movingLight 2s linear infinite;
+        }
+
+        @keyframes movingLight {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+            padding: var(--space-xl);
+        }
+
+        /* ============ TIPOGRAFÍA MODERNA ============ */
+        .text-display {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--color-purple);
+            letter-spacing: -0.04em;
+            margin-bottom: var(--space-lg);
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: var(--space-lg);
+            letter-spacing: -0.02em;
+        }
+
+        .text-h2 {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.01em;
+        }
+
+        .text-h3 {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--color-blue);
+            margin-bottom: var(--space-md);
+        }
+
+        .text-body {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+        }
+
+        /* ============ ESTADÍSTICAS ============ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            padding: var(--space-lg);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-purple);
+            margin-bottom: var(--space-sm);
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-card.danger .stat-number { color: var(--danger); }
+        .stat-card.warning .stat-number { color: var(--warning); }
+        .stat-card.success .stat-number { color: var(--success); }
+        .stat-card.info .stat-number { color: var(--info); }
+
+        /* ============ BOTONES MODERNOS ============ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            letter-spacing: 0.025em;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            background: linear-gradient(135deg, var(--color-blue), var(--color-green));
+        }
+
+        .btn-secondary {
+            background: var(--bg-primary);
+            color: var(--color-blue);
+            border: 2px solid var(--color-blue);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-blue);
+            color: white;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ============ ACCIONES RÁPIDAS ============ */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+        }
+
+        /* ============ ALERTAS ============ */
+        .alert {
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--space-lg) 0;
+            border-left: 4px solid;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1);
+            border-left-color: var(--danger);
+            color: #991b1b;
+        }
+
+        .alert-info {
+            background: rgba(59, 130, 246, 0.1);
+            border-left-color: var(--info);
+            color: #1e3a8a;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: var(--success);
+            color: #047857;
+        }
+
+        /* ============ GRÁFICOS ============ */
+        .chart-placeholder {
+            background: var(--bg-secondary);
+            height: 300px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            font-weight: 600;
+            border: 2px dashed rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .chart-placeholder:hover {
+            background: rgba(111, 66, 193, 0.05);
+            border-color: var(--color-purple);
+        }
+
+        /* ============ ACTIVIDAD RECIENTE ============ */
+        .activity-item {
+            padding: var(--space-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-sm);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .activity-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            background: rgba(111, 66, 193, 0.05);
+        }
+
+        .activity-title {
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            color: var(--text-dark);
+        }
+
+        .activity-description {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+        }
+
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-sm);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .product-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .product-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .product-count {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding-top: 70px;
+            }
+
+            .mobile-header {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-md);
+            }
+            
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                padding: var(--space-lg);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding-top: 60px;
+            }
+            
+            .container {
+                padding: var(--space-sm);
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-brand">
+                <div class="sidebar-logo">ROY</div>
+                <div>
+                    <div class="sidebar-title">Sistema Roy</div>
+                    <div class="sidebar-subtitle">Representaciones</div>
+                </div>
+            </a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-title">Principal</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <div class="nav-icon">🏠</div>
+                        Dashboard
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📊</div>
+                        Analíticas
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Productos</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">➕</div>
+                        Agregar Producto
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📦</div>
+                        Lista de Productos
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">🏷️</div>
+                        Categorías
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">🔄</div>
+                        Control FIFO
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Inventario</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📋</div>
+                        Inventario General
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">⚠️</div>
+                        Stock Bajo
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📍</div>
+                        Ubicaciones
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Ventas</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">🛒</div>
+                        Nueva Venta
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">💰</div>
+                        Historial Ventas
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">👥</div>
+                        Clientes
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Reportes</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📈</div>
+                        Reportes de Ventas
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📉</div>
+                        Análisis de Inventario
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">💼</div>
+                        Reportes Financieros
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Configuración</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">⚙️</div>
+                        Configuración
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">👤</div>
+                        Perfil
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">👥</div>
+                        Usuarios
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">💾</div>
+                        Backup
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header" id="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="sidebar-brand">
+            <div class="sidebar-logo">ROY</div>
+            <span class="sidebar-title">Sistema Roy</span>
+        </div>
+    </header>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Header -->
+            <div class="section">
+                <div class="card-animated">
+                    <div class="card-content">
+                        <h1 class="text-display text-center">Dashboard Principal</h1>
+                        <p class="text-body text-center">Panel de control y métricas en tiempo real - Mundo Médico y RoyDent</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estadísticas Principales -->
+            <div class="section">
+                <div class="stats-grid">
+                    <div class="stat-card" onclick="verVentas()">
+                        <div class="stat-number">Bs. 2.4M</div>
+                        <div class="stat-label">Ventas Este Mes</div>
+                    </div>
+                    <div class="stat-card success" onclick="verProductos()">
+                        <div class="stat-number">1,847</div>
+                        <div class="stat-label">Productos Activos</div>
+                    </div>
+                    <div class="stat-card warning" onclick="verStockBajo()">
+                        <div class="stat-number">245</div>
+                        <div class="stat-label">Stock Bajo</div>
+                    </div>
+                    <div class="stat-card danger" onclick="verCriticos()">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Productos Críticos</div>
+                    </div>
+                    <div class="stat-card info" onclick="verClientes()">
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">Clientes Activos</div>
+                    </div>
+                    <div class="stat-card" onclick="verProveedores()">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Proveedores</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alertas y Notificaciones -->
+            <div class="section">
+                <div class="alert alert-danger">
+                    <strong>Productos Críticos:</strong> 15 productos vencen en menos de 30 días y requieren atención inmediata.
+                </div>
+                <div class="alert alert-warning">
+                    <strong>Stock Bajo:</strong> 245 productos están por debajo del stock mínimo recomendado.
+                </div>
+                <div class="alert alert-success">
+                    <strong>Meta Alcanzada:</strong> Has superado el objetivo de ventas mensual en un 15%.
+                </div>
+            </div>
+
+            <!-- Gráficos y Análisis -->
+            <div class="section">
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 class="text-h3">Ventas Mensuales</h3>
+                        <div class="chart-placeholder" onclick="abrirGraficoVentas()">
+                            📈 Gráfico de Ventas
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="text-h3">Top Productos</h3>
+                        <div class="chart-placeholder" onclick="abrirGraficoProductos()">
+                            🏆 Productos Más Vendidos
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acciones Rápidas -->
+            <div class="section">
+                <div class="card">
+                    <h2 class="text-h2">Acciones Rápidas</h2>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" onclick="nuevaVenta()">🛒 Nueva Venta</button>
+                        <button class="btn btn-primary" onclick="nuevoProducto()">➕ Agregar Producto</button>
+                        <button class="btn btn-secondary" onclick="verInventario()">📋 Ver Inventario</button>
+                        <button class="btn btn-secondary" onclick="nuevoCliente()">👤 Nuevo Cliente</button>
+                        <button class="btn btn-secondary" onclick="generarReporte()">📊 Generar Reporte</button>
+                        <button class="btn btn-secondary" onclick="verCriticos()">⚠️ Ver Críticos</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actividad Reciente -->
+            <div class="section">
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 class="text-h3">Últimas Ventas</h3>
+                        <div style="margin-top: var(--space-lg);">
+                            <div class="activity-item" onclick="verVenta('001234')">
+                                <div class="activity-title">Venta #001234</div>
+                                <div class="activity-description">Dr. Carlos Mendoza - Bs. 450.00</div>
+                            </div>
+                            <div class="activity-item" onclick="verVenta('001235')">
+                                <div class="activity-title">Venta #001235</div>
+                                <div class="activity-description">Clínica Norte - Bs. 1,200.00</div>
+                            </div>
+                            <div class="activity-item" onclick="verVenta('001236')">
+                                <div class="activity-title">Venta #001236</div>
+                                <div class="activity-description">Hospital San Juan - Bs. 2,800.00</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="text-h3">Productos Más Vendidos</h3>
+                        <div style="margin-top: var(--space-lg);">
+                            <div class="product-item" onclick="verProducto('guantes-latex')">
+                                <span class="product-name">Guantes Látex</span>
+                                <span class="product-count">245 vendidos</span>
+                            </div>
+                            <div class="product-item" onclick="verProducto('mascarillas-3m')">
+                                <span class="product-name">Mascarillas 3M</span>
+                                <span class="product-count">189 vendidos</span>
+                            </div>
+                            <div class="product-item" onclick="verProducto('anestesia-lidocaina')">
+                                <span class="product-name">Anestesia Lidocaína</span>
+                                <span class="product-count">156 vendidos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen de Ubicaciones -->
+            <div class="section">
+                <div class="card">
+                    <h2 class="text-h2">Estado de Ubicaciones</h2>
+                    <div class="grid grid-3">
+                        <div class="stat-card success">
+                            <div class="stat-number">89%</div>
+                            <div class="stat-label">RoyDent - Ocupación</div>
+                        </div>
+                        <div class="stat-card warning">
+                            <div class="stat-number">76%</div>
+                            <div class="stat-label">Mundo Médico - Ocupación</div>
+                        </div>
+                        <div class="stat-card info">
+                            <div class="stat-number">92%</div>
+                            <div class="stat-label">Depósito - Ocupación</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ============ FUNCIONES DEL SIDEBAR ============
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // ============ FUNCIONES DE NAVEGACIÓN ============
+        function nuevaVenta() {
+            mostrarAlerta('Redirigiendo a nueva venta...', 'info');
+            setTimeout(() => {
+                window.location.href = 'nueva-venta.html';
+            }, 1000);
+        }
+
+        function nuevoProducto() {
+            mostrarAlerta('Redirigiendo a agregar producto...', 'info');
+            setTimeout(() => {
+                window.location.href = 'agregar-producto.html';
+            }, 1000);
+        }
+
+        function verInventario() {
+            mostrarAlerta('Abriendo inventario general...', 'info');
+            setTimeout(() => {
+                window.location.href = 'inventario.html';
+            }, 1000);
+        }
+
+        function nuevoCliente() {
+            mostrarAlerta('Redirigiendo a registro de cliente...', 'info');
+            setTimeout(() => {
+                window.location.href = 'clientes.html';
+            }, 1000);
+        }
+
+        function generarReporte() {
+            mostrarAlerta('Generando reporte personalizado...', 'info');
+            setTimeout(() => {
+                window.location.href = 'reportes.html';
+            }, 1000);
+        }
+
+        // ============ FUNCIONES DE ESTADÍSTICAS ============
+        function verVentas() {
+            mostrarAlerta('Mostrando detalles de ventas del mes...', 'info');
+        }
+
+        function verProductos() {
+            mostrarAlerta('Mostrando catálogo de productos activos...', 'success');
+        }
+
+        function verStockBajo() {
+            mostrarAlerta('Mostrando productos con stock bajo...', 'warning');
+        }
+
+        function verCriticos() {
+            mostrarAlerta('⚠️ Mostrando productos con vencimiento crítico...', 'danger');
+        }
+
+        function verClientes() {
+            mostrarAlerta('Mostrando base de datos de clientes...', 'info');
+        }
+
+        function verProveedores() {
+            mostrarAlerta('Mostrando directorio de proveedores...', 'info');
+        }
+
+        // ============ FUNCIONES DE GRÁFICOS ============
+        function abrirGraficoVentas() {
+            mostrarAlerta('Abriendo análisis detallado de ventas...', 'info');
+        }
+
+        function abrirGraficoProductos() {
+            mostrarAlerta('Mostrando ranking de productos más vendidos...', 'info');
+        }
+
+        // ============ FUNCIONES DE ACTIVIDAD ============
+        function verVenta(numeroVenta) {
+            mostrarAlerta(`Abriendo detalles de la venta #${numeroVenta}...`, 'info');
+        }
+
+        function verProducto(productoId) {
+            mostrarAlerta(`Mostrando información detallada del producto...`, 'info');
+        }
+
+        // ============ FUNCIÓN PARA MOSTRAR ALERTAS ============
+        function mostrarAlerta(mensaje, tipo) {
+            const alerta = document.createElement('div');
+            alerta.className = `alert alert-${tipo}`;
+            alerta.innerHTML = `<strong>${tipo === 'success' ? 'Éxito!' : tipo === 'warning' ? 'Advertencia:' : tipo === 'danger' ? 'Crítico:' : 'Info:'}</strong> ${mensaje}`;
+            alerta.style.position = 'fixed';
+            alerta.style.top = '20px';
+            alerta.style.right = '20px';
+            alerta.style.zIndex = '1000';
+            alerta.style.minWidth = '300px';
+            alerta.style.boxShadow = 'var(--shadow-lg)';
+            
+            document.body.appendChild(alerta);
+            
+            setTimeout(() => {
+                alerta.remove();
+            }, 3000);
+        }
+
+        // ============ ANIMACIONES DE ENTRADA ============
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.card, .stat-card, .alert');
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    element.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            // Actualizar estadísticas cada 30 segundos (simulado)
+            setInterval(actualizarEstadisticas, 30000);
+        });
+
+        // ============ ACTUALIZACIÓN DE DATOS ============
+        function actualizarEstadisticas() {
+            const estadisticas = [
+                { selector: '.stats-grid .stat-card:nth-child(1) .stat-number', value: `Bs. ${(Math.random() * 3 + 2).toFixed(1)}M` },
+                { selector: '.stats-grid .stat-card:nth-child(2) .stat-number', value: Math.floor(Math.random() * 100 + 1800) },
+                { selector: '.stats-grid .stat-card:nth-child(3) .stat-number', value: Math.floor(Math.random() * 50 + 200) },
+                { selector: '.stats-grid .stat-card:nth-child(4) .stat-number', value: Math.floor(Math.random() * 10 + 10) },
+                { selector: '.stats-grid .stat-card:nth-child(5) .stat-number', value: Math.floor(Math.random() * 20 + 140) },
+                { selector: '.stats-grid .stat-card:nth-child(6) .stat-number', value: Math.floor(Math.random() * 5 + 22) }
+            ];
+
+            estadisticas.forEach(stat => {
+                const elemento = document.querySelector(stat.selector);
+                if (elemento) {
+                    elemento.style.transform = 'scale(1.1)';
+                    elemento.style.transition = 'transform 0.3s ease';
+                    
+                    setTimeout(() => {
+                        elemento.textContent = stat.value;
+                        elemento.style.transform = 'scale(1)';
+                    }, 150);
+                }
+            });
+        }
+
+        // ============ DETECCIÓN DE INACTIVIDAD ============
+        let tiempoInactivo = 0;
+        const TIEMPO_LIMITE = 300000; // 5 minutos
+
+        function resetearTiempo() {
+            tiempoInactivo = 0;
+        }
+
+        function verificarInactividad() {
+            tiempoInactivo += 1000;
+            if (tiempoInactivo >= TIEMPO_LIMITE) {
+                mostrarAlerta('Sesión inactiva detectada. Considera hacer un backup.', 'warning');
+                tiempoInactivo = 0;
+            }
+        }
+
+        // Eventos para detectar actividad
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(evento => {
+            document.addEventListener(evento, resetearTiempo, true);
+        });
+
+        // Verificar inactividad cada segundo
+        setInterval(verificarInactividad, 1000);
+
+        console.log('Dashboard Sistema Roy Representaciones iniciado');
+        console.log('Funciones disponibles: sidebar responsivo, estadísticas en tiempo real, navegación rápida');
+    </script>
+</body>
+</html>

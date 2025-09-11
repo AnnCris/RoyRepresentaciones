@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Iniciar Sesión - Mundo Medico Y RoyDent</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+    :root {
+        --color-purple: #6F42C1;
+        --color-blue: #007BFF;
+        --color-green: #28C76F;
+        --color-gold: #FFD700; /* dorado metálico secundario */
+        --text-dark: #1A1A1A;
+        --text-gray: #555;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #ffffff, #cfe8ff);
+        min-height: 100vh;
+        color: var(--text-dark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Card con borde giratorio */
+    .card {
+        position: relative;
+        border-radius: 20px;
+        padding: 2rem;
+        overflow: hidden;
+    }
+
+    /* Fondo animado alrededor */
+    .card::before {
+        content: "";
+        position: absolute;
+        inset: -4px; /* grosor del borde */
+        background: conic-gradient(
+            from 0deg,
+            var(--color-purple),
+            var(--color-blue),
+            var(--color-green),
+            var(--color-purple)
+        );
+        border-radius: 24px;
+        animation: spin 4s linear infinite;
+        z-index: 0;
+    }
+
+    /* Interior */
+    .card::after {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        background: #fff;
+        border-radius: 16px;
+        z-index: 1;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .card-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .form-input {
+        @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 transition duration-200 ease-in-out bg-white;
+    }
+    .form-input:focus {
+        border-color: var(--color-blue);
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    }
+
+    .btn-primary {
+        background: linear-gradient(90deg, var(--color-purple), var(--color-blue), var(--color-green));
+        @apply w-full text-white py-3 px-4 rounded-lg font-bold shadow-md transition duration-300;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(90deg, var(--color-green), var(--color-blue), var(--color-purple));
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    .link {
+        color: var(--color-blue);
+        transition: 0.3s;
+    }
+    .link:hover {
+        color: var(--color-gold);
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.7), 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .logo-circle {
+        background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+        @apply w-20 h-20 mx-auto rounded-full flex items-center justify-center shadow-lg;
+    }
+</style>
+</head>
+<body>
+    <div class="max-w-md w-full card">
+        <div class="card-content space-y-8">
+            <div class="text-center">
+                <div class="logo-circle">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                    </svg>
+                </div>
+                <h2 class="mt-6 text-3xl font-extrabold text-[var(--color-purple)]">Iniciar Sesión</h2>
+                <p class="mt-2 text-sm text-[var(--text-gray)]">
+                    Bienvenido de nuevo a <span class="font-semibold text-[var(--color-blue)]">Mundo Medico y RoyDent</span>
+                </p>
+            </div>
+
+            <form action="#" method="POST" class="space-y-6">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-[var(--text-gray)]">Nombre de usuario</label>
+                    <input id="username" name="username" type="text" required placeholder="Ingrese su usuario" class="form-input"/>
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-[var(--text-gray)]">Contraseña</label>
+                    <input id="password" name="password" type="password" required placeholder="Ingrese su contraseña" class="form-input"/>
+                </div>
+
+                <div class="flex items-center justify-end">
+                    <a href="cambiocontrasena.html" class="link text-sm font-medium">¿Olvidó su contraseña?</a>
+                </div>
+
+                <button type="submit" class="btn-primary">Ingresar</button>
+            </form>
+
+            <p class="text-center text-sm text-gray-600">
+                ¿No tienes una cuenta?
+                <a href="registro.html" class="link font-semibold">Regístrate</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

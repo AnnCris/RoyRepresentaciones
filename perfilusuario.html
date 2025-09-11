@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Perfil de Usuario - Sistema Roy Representaciones</title>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --color-purple: #6F42C1;
+            --color-blue: #007BFF;
+            --color-green: #28C76F;
+            --color-gold: #FFD700;
+            --text-dark: #1A1A1A;
+            --text-gray: #555555;
+            --text-light: #888888;
+            --text-muted: #9CA3AF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-tertiary: #F1F5F9;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --info: #3B82F6;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ffffff, #cfe8ff);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 16px;
+            background-attachment: fixed;
+            font-weight: 400;
+            padding-top: 70px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: var(--space-sm);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-logo {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.875rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .navbar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .navbar-link {
+            padding: var(--space-sm) var(--space-md);
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-link:hover {
+            color: var(--color-purple);
+            background: rgba(111, 66, 193, 0.05);
+        }
+
+        .navbar-link.active {
+            color: var(--color-purple);
+            background: rgba(111, 66, 193, 0.1);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+        }
+
+        .section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .text-h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: var(--space-lg);
+            letter-spacing: -0.02em;
+        }
+
+        .text-h2 {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.01em;
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--space-xl);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .user-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 4px solid var(--color-gold);
+            position: relative;
+            margin: 0 auto var(--space-lg) auto;
+        }
+
+        .edit-avatar-btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--color-blue);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .edit-avatar-btn:hover {
+            background: var(--color-purple);
+            transform: scale(1.1);
+        }
+
+        .info-card {
+            background: var(--bg-secondary);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-xs);
+        }
+
+        .info-value {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .info-value.highlight {
+            color: var(--color-purple);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            letter-spacing: 0.025em;
+            min-width: 140px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            background: linear-gradient(135deg, var(--color-blue), var(--color-green));
+        }
+
+        .btn-secondary {
+            background: var(--bg-primary);
+            color: var(--color-blue);
+            border: 2px solid var(--color-blue);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-purple);
+            margin-bottom: var(--space-sm);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-md);
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                padding: var(--space-lg);
+            }
+            
+            .navbar-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-brand">
+                <div class="navbar-logo">ROY</div>
+                <span class="navbar-title">Sistema Roy</span>
+            </a>
+            <div class="navbar-menu">
+                <a href="#" class="navbar-link">Dashboard</a>
+                <a href="#" class="navbar-link">Productos</a>
+                <a href="#" class="navbar-link">Inventario</a>
+                <a href="#" class="navbar-link">Ventas</a>
+                <a href="#" class="navbar-link active">Perfil</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="section">
+            <div class="card">
+                <h1 class="text-h1">Perfil de Usuario</h1>
+                <p style="color: var(--text-gray);">Tu información personal en Mundo Médico y RoyDent</p>
+            </div>
+        </div>
+
+        <!-- Perfil Principal -->
+        <div class="section">
+            <div class="card">
+                <div style="text-align: center;">
+                    <div class="user-avatar">
+                        JP
+                        <button class="edit-avatar-btn" onclick="editarFoto()">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <h2 class="text-h2" style="margin-bottom: 0;">Juan Pérez Gómez</h2>
+                    <p style="color: var(--text-gray); margin-bottom: var(--space-xl);">@juan_perez</p>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="info-card">
+                        <div class="info-label">Nombre de usuario</div>
+                        <div class="info-value">juan_perez</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-label">Nombres</div>
+                        <div class="info-value">Juan</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-label">Apellido Paterno</div>
+                        <div class="info-value">Pérez</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-label">Apellido Materno</div>
+                        <div class="info-value">Gómez</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-label">Cédula de Identidad</div>
+                        <div class="info-value">1234567 LP</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-label">Número de celular</div>
+                        <div class="info-value">+591 71234567</div>
+                    </div>
+                    
+                    <div class="info-card" style="grid-column: 1 / -1;">
+                        <div class="info-label">Correo electrónico</div>
+                        <div class="info-value">juan.perez@mundomedico.com</div>
+                    </div>
+                    
+                    <div class="info-card" style="grid-column: 1 / -1;">
+                        <div class="info-label">Tipo de cliente</div>
+                        <div class="info-value highlight">Hospital Médico</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: var(--space-xl); display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="editarPerfil()">Editar Perfil</button>
+                    <button class="btn btn-secondary" onclick="cambiarContrasena()">Cambiar Contraseña</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estadísticas del Usuario -->
+        <div class="section">
+            <div class="card">
+                <h2 class="text-h2">Actividad de la Cuenta</h2>
+                <div class="stats-section">
+                    <div class="stat-card">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Pedidos Realizados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Bs. 45,670</div>
+                        <div class="stat-label">Total Compras</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">Productos Favoritos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2 años</div>
+                        <div class="stat-label">Cliente desde</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configuraciones -->
+        <div class="section">
+            <div class="card">
+                <h2 class="text-h2">Configuraciones</h2>
+                <div class="grid grid-2">
+                    <div class="info-card" style="cursor: pointer;" onclick="configurarNotificaciones()">
+                        <div class="info-label">Notificaciones</div>
+                        <div class="info-value">Habilitadas</div>
+                    </div>
+                    
+                    <div class="info-card" style="cursor: pointer;" onclick="configurarPrivacidad()">
+                        <div class="info-label">Privacidad</div>
+                        <div class="info-value">Configurar</div>
+                    </div>
+                    
+                    <div class="info-card" style="cursor: pointer;" onclick="descargarDatos()">
+                        <div class="info-label">Mis Datos</div>
+                        <div class="info-value">Descargar</div>
+                    </div>
+                    
+                    <div class="info-card" style="cursor: pointer;" onclick="cerrarSesion()">
+                        <div class="info-label">Sesión</div>
+                        <div class="info-value" style="color: var(--danger);">Cerrar Sesión</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function editarFoto() {
+            alert('Función para editar foto de perfil');
+        }
+
+        function editarPerfil() {
+            alert('Redirigiendo a editar perfil...');
+        }
+
+        function cambiarContrasena() {
+            alert('Redirigiendo a cambiar contraseña...');
+        }
+
+        function configurarNotificaciones() {
+            alert('Configurar notificaciones');
+        }
+
+        function configurarPrivacidad() {
+            alert('Configurar privacidad');
+        }
+
+        function descargarDatos() {
+            alert('Descargando datos del usuario...');
+        }
+
+        function cerrarSesion() {
+            if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+                alert('Cerrando sesión...');
+            }
+        }
+
+        // Animaciones de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card, .info-card, .stat-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

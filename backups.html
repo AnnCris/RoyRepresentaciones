@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sistema de Backup - Sistema Roy Representaciones</title>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --color-purple: #6F42C1;
+            --color-blue: #007BFF;
+            --color-green: #28C76F;
+            --color-gold: #FFD700;
+            --text-dark: #1A1A1A;
+            --text-gray: #555555;
+            --text-light: #888888;
+            --text-muted: #9CA3AF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-tertiary: #F1F5F9;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --info: #3B82F6;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ffffff, #cfe8ff);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 16px;
+            background-attachment: fixed;
+            font-weight: 400;
+            padding-top: 70px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: var(--space-sm);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-logo {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.875rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .navbar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .navbar-link {
+            padding: var(--space-sm) var(--space-md);
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-link:hover {
+            color: var(--color-purple);
+            background: rgba(111, 66, 193, 0.05);
+        }
+
+        .navbar-link.active {
+            color: var(--color-purple);
+            background: rgba(111, 66, 193, 0.1);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+        }
+
+        .section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .text-h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: var(--space-lg);
+            letter-spacing: -0.02em;
+        }
+
+        .text-h2 {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.01em;
+        }
+
+        .text-h3 {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--color-blue);
+            margin-bottom: var(--space-md);
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--space-xl);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            letter-spacing: 0.025em;
+            width: 100%;
+            margin-bottom: var(--space-md);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            background: linear-gradient(135deg, var(--color-blue), var(--color-green));
+        }
+
+        .btn-secondary {
+            background: var(--bg-primary);
+            color: var(--color-blue);
+            border: 2px solid var(--color-blue);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning), #D97706);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), #DC2626);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, var(--info), #1D4ED8);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-purple);
+            margin-bottom: var(--space-sm);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .backup-item {
+            background: var(--bg-secondary);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .backup-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .backup-info h4 {
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .backup-info p {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            margin: var(--space-md) 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-purple), var(--color-blue));
+            transition: width 0.3s ease;
+        }
+
+        .alert {
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--space-lg) 0;
+            border-left: 4px solid;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: var(--success);
+            color: #047857;
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1);
+            border-left-color: var(--danger);
+            color: #991b1b;
+        }
+
+        .alert-info {
+            background: rgba(59, 130, 246, 0.1);
+            border-left-color: var(--info);
+            color: #1e3a8a;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-md);
+            }
+            
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                padding: var(--space-lg);
+            }
+
+            .backup-item {
+                flex-direction: column;
+                gap: var(--space-md);
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-brand">
+                <div class="navbar-logo">ROY</div>
+                <span class="navbar-title">Sistema Roy</span>
+            </a>
+            <div class="navbar-menu">
+                <a href="dashboard.html" class="navbar-link">Dashboard</a>
+                <a href="configuracion.html" class="navbar-link">Configuración</a>
+                <a href="usuarios.html" class="navbar-link">Usuarios</a>
+                <a href="#" class="navbar-link active">Backup</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="section">
+            <div class="card">
+                <h1 class="text-h1">Sistema de Backup y Restauración</h1>
+                <p style="color: var(--text-gray);">Protege los datos de Mundo Médico y RoyDent con respaldos automáticos y manuales</p>
+            </div>
+        </div>
+
+        <!-- Estado del Sistema -->
+        <div class="section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Backups Totales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2.4 GB</div>
+                    <div class="stat-label">Espacio Utilizado</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Último Backup</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Éxito Backups</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30 días</div>
+                    <div class="stat-label">Retención</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estado Actual -->
+        <div class="section">
+            <div class="alert alert-success">
+                <strong>Sistema Operativo:</strong> Todos los sistemas de backup funcionan correctamente. Último backup automático realizado hace 24 horas.
+            </div>
+        </div>
+
+        <!-- Acciones de Backup -->
+        <div class="section">
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3 class="text-h3">Backup Completo</h3>
+                    <p style="color: var(--text-gray); margin-bottom: var(--space-lg);">
+                        Respalda toda la base de datos, configuraciones y archivos del sistema.
+                    </p>
+                    <div style="margin-bottom: var(--space-md);">
+                        <small style="color: var(--text-muted);">Tiempo estimado: 15-20 minutos</small>
+                    </div>
+                    <button class="btn btn-primary" onclick="iniciarBackupCompleto()">Iniciar Backup Completo</button>
+                </div>
+
+                <div class="card">
+                    <h3 class="text-h3">Backup de Datos</h3>
+                    <p style="color: var(--text-gray); margin-bottom: var(--space-lg);">
+                        Respalda únicamente los datos críticos: productos, ventas, clientes e inventario.
+                    </p>
+                    <div style="margin-bottom: var(--space-md);">
+                        <small style="color: var(--text-muted);">Tiempo estimado: 5-8 minutos</small>
+                    </div>
+                    <button class="btn btn-info" onclick="iniciarBackupDatos()">Backup de Datos</button>
+                </div>
+
+                <div class="card">
+                    <h3 class="text-h3">Backup Configuración</h3>
+                    <p style="color: var(--text-gray); margin-bottom: var(--space-lg);">
+                        Respalda solo las configuraciones del sistema y preferencias de usuarios.
+                    </p>
+                    <div style="margin-bottom: var(--space-md);">
+                        <small style="color: var(--text-muted);">Tiempo estimado: 1-2 minutos</small>
+                    </div>
+                    <button class="btn btn-secondary" onclick="iniciarBackupConfig()">Backup Configuración</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historial de Backups -->
+        <div class="section">
+            <div class="card">
+                <h2 class="text-h2">Historial de Backups</h2>
+                <div style="margin-top: var(--space-lg);">
+                    <div class="backup-item">
+                        <div class="backup-info">
+                            <h4>Backup Completo - 09/09/2025 14:30</h4>
+                            <p>Backup automático diario - Todos los datos y configuraciones</p>
+                            <p><strong>Tamaño:</strong> 2.4 GB | <strong>Estado:</strong> Completado</p>
+                        </div>
+                        <div style="display: flex; gap: var(--space-sm);">
+                            <button class="btn btn-success" style="width: auto; margin: 0;" onclick="descargarBackup('backup_20250909_1430')">Descargar</button>
+                            <button class="btn btn-warning" style="width: auto; margin: 0;" onclick="restaurarBackup('backup_20250909_1430')">Restaurar</button>
+                        </div>
+                    </div>
+
+                    <div class="backup-item">
+                        <div class="backup-info">
+                            <h4>Backup de Datos - 08/09/2025 14:30</h4>
+                            <p>Backup automático diario - Solo datos críticos</p>
+                            <p><strong>Tamaño:</strong> 1.8 GB | <strong>Estado:</strong> Completado</p>
+                        </div>
+                        <div style="display: flex; gap: var(--space-sm);">
+                            <button class="btn btn-success" style="width: auto; margin: 0;" onclick="descargarBackup('backup_20250908_1430')">Descargar</button>
+                            <button class="btn btn-warning" style="width: auto; margin: 0;" onclick="restaurarBackup('backup_20250908_1430')">Restaurar</button>
+                        </div>
+                    </div>
+
+                    <div class="backup-item">
+                        <div class="backup-info">
+                            <h4>Backup Completo - 07/09/2025 14:30</h4>
+                            <p>Backup automático diario - Todos los datos y configuraciones</p>
+                            <p><strong>Tamaño:</strong> 2.3 GB | <strong>Estado:</strong> Completado</p>
+                        </div>
+                        <div style="display: flex; gap: var(--space-sm);">
+                            <button class="btn btn-success" style="width: auto; margin: 0;" onclick="descargarBackup('backup_20250907_1430')">Descargar</button>
+                            <button class="btn btn-warning" style="width: auto; margin: 0;" onclick="restaurarBackup('backup_20250907_1430')">Restaurar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configuración de Backup Automático -->
+        <div class="section">
+            <div class="card">
+                <h2 class="text-h2">Configuración de Backup Automático</h2>
+                <div class="grid grid-2">
+                    <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-lg);">
+                        <h4 style="margin-bottom: var(--space-md);">Configuración Actual</h4>
+                        <ul style="color: var(--text-gray); line-height: 1.8;">
+                            <li><strong>Frecuencia:</strong> Diario a las 14:30</li>
+                            <li><strong>Tipo:</strong> Backup Completo</li>
+                            <li><strong>Retención:</strong> 30 días</li>
+                            <li><strong>Compresión:</strong> Habilitada</li>
+                            <li><strong>Encriptación:</strong> AES-256</li>
+                        </ul>
+                        <button class="btn btn-secondary" style="width: auto; margin-top: var(--space-md);">Modificar Configuración</button>
+                    </div>
+
+                    <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-lg);">
+                        <h4 style="margin-bottom: var(--space-md);">Almacenamiento</h4>
+                        <ul style="color: var(--text-gray); line-height: 1.8;">
+                            <li><strong>Ubicación:</strong> Servidor Local + Nube</li>
+                            <li><strong>Espacio Total:</strong> 50 GB</li>
+                            <li><strong>Espacio Usado:</strong> 12.4 GB (24.8%)</li>
+                            <li><strong>Espacio Libre:</strong> 37.6 GB</li>
+                            <li><strong>Próxima Limpieza:</strong> En 7 días</li>
+                        </ul>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restauración de Sistema -->
+        <div class="section">
+            <div class="card">
+                <h2 class="text-h2" style="color: var(--warning);">Restauración de Sistema</h2>
+                <div class="alert alert-warning">
+                    <strong>Advertencia:</strong> La restauración de un backup reemplazará todos los datos actuales. Esta acción no se puede deshacer.
+                </div>
+                
+                <div style="display: flex; gap: var(--space-md); flex-wrap: wrap; margin-top: var(--space-lg);">
+                    <button class="btn btn-warning" style="width: auto;" onclick="subirBackup()">Subir Backup desde Archivo</button>
+                    <button class="btn btn-info" style="width: auto;" onclick="verificarIntegridad()">Verificar Integridad</button>
+                    <button class="btn btn-secondary" style="width: auto;" onclick="exportarLogs()">Exportar Logs</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Herramientas Avanzadas -->
+        <div class="section">
+            <div class="card">
+                <h2 class="text-h2">Herramientas Avanzadas</h2>
+                <div class="grid grid-2">
+                    <div>
+                        <h4 style="margin-bottom: var(--space-md);">Mantenimiento</h4>
+                        <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                            <button class="btn btn-info" onclick="limpiarBackupsAntiguos()">Limpiar Backups Antiguos</button>
+                            <button class="btn btn-secondary" onclick="optimizarBaseDatos()">Optimizar Base de Datos</button>
+                            <button class="btn btn-secondary" onclick="verificarSistema()">Verificar Sistema</button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="margin-bottom: var(--space-md);">Exportación</h4>
+                        <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                            <button class="btn btn-success" onclick="exportarDatosCSV()">Exportar Datos (CSV)</button>
+                            <button class="btn btn-success" onclick="exportarDatosJSON()">Exportar Datos (JSON)</button>
+                            <button class="btn btn-success" onclick="exportarConfiguracion()">Exportar Configuración</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zona de Emergencia -->
+        <div class="section">
+            <div class="card">
+                <h2 class="text-h2" style="color: var(--danger);">Procedimientos de Emergencia</h2>
+                <div class="alert alert-danger">
+                    <strong>Solo para Emergencias:</strong> Estas herramientas están diseñadas para situaciones críticas donde el sistema principal no responde.
+                </div>
+                
+                <div style="display: flex; gap: var(--space-md); flex-wrap: wrap; margin-top: var(--space-lg);">
+                    <button class="btn btn-danger" style="width: auto;" onclick="backupEmergencia()">Backup de Emergencia</button>
+                    <button class="btn btn-danger" style="width: auto;" onclick="restauracionCompleta()">Restauración Completa</button>
+                    <button class="btn btn-warning" style="width: auto;" onclick="resetearSistema()">Resetear Sistema</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function iniciarBackupCompleto() {
+            if (confirm('¿Iniciar backup completo del sistema? Este proceso puede tomar 15-20 minutos.')) {
+                alert('Iniciando backup completo...\nRecibirás una notificación cuando termine.');
+                // Aquí simularías el progreso del backup
+                mostrarProgreso('Backup Completo');
+            }
+        }
+
+        function iniciarBackupDatos() {
+            if (confirm('¿Iniciar backup de datos críticos? Este proceso puede tomar 5-8 minutos.')) {
+                alert('Iniciando backup de datos...');
+                mostrarProgreso('Backup de Datos');
+            }
+        }
+
+        function iniciarBackupConfig() {
+            if (confirm('¿Iniciar backup de configuración? Este proceso puede tomar 1-2 minutos.')) {
+                alert('Iniciando backup de configuración...');
+                mostrarProgreso('Backup de Configuración');
+            }
+        }
+
+        function descargarBackup(backupId) {
+            alert('Descargando backup: ' + backupId + '\nEl archivo se guardará en tu carpeta de descargas.');
+        }
+
+        function restaurarBackup(backupId) {
+            if (confirm('¿Restaurar el backup ' + backupId + '?\n\nADVERTENCIA: Esto reemplazará todos los datos actuales.')) {
+                if (confirm('CONFIRMACIÓN FINAL: ¿Estás seguro de restaurar este backup?')) {
+                    alert('Iniciando restauración...\nEl sistema se reiniciará automáticamente.');
+                }
+            }
+        }
+
+        function subirBackup() {
+            alert('Abriendo selector de archivos para subir backup...');
+        }
+
+        function verificarIntegridad() {
+            alert('Verificando integridad de todos los backups...\nEsto puede tomar unos minutos.');
+        }
+
+        function exportarLogs() {
+            alert('Exportando logs del sistema de backup...');
+        }
+
+        function limpiarBackupsAntiguos() {
+            if (confirm('¿Eliminar backups de más de 30 días?')) {
+                alert('Limpiando backups antiguos...\nSe liberaron 2.1 GB de espacio.');
+            }
+        }
+
+        function optimizarBaseDatos() {
+            if (confirm('¿Optimizar la base de datos? Este proceso puede tomar varios minutos.')) {
+                alert('Optimizando base de datos...\nEl sistema puede estar lento durante este proceso.');
+            }
+        }
+
+        function verificarSistema() {
+            alert('Verificando integridad del sistema...\nRevisando archivos y configuraciones.');
+        }
+
+        function exportarDatosCSV() {
+            alert('Exportando todos los datos en formato CSV...');
+        }
+
+        function exportarDatosJSON() {
+            alert('Exportando todos los datos en formato JSON...');
+        }
+
+        function exportarConfiguracion() {
+            alert('Exportando configuración del sistema...');
+        }
+
+        function backupEmergencia() {
+            if (confirm('¿Realizar backup de emergencia?\nEste proceso es prioritario y puede afectar el rendimiento del sistema.')) {
+                alert('Iniciando backup de emergencia...\nEste proceso tiene máxima prioridad.');
+            }
+        }
+
+        function restauracionCompleta() {
+            if (confirm('¿Realizar restauración completa del sistema?\nEsta acción revertirá TODO el sistema al estado del último backup.')) {
+                if (confirm('ÚLTIMA CONFIRMACIÓN: ¿Restaurar completamente el sistema?')) {
+                    alert('Iniciando restauración completa...\nEl sistema se reiniciará automáticamente.');
+                }
+            }
+        }
+
+        function resetearSistema() {
+            if (confirm('¿RESETEAR COMPLETAMENTE EL SISTEMA?\nEsta acción eliminará TODOS los datos y configuraciones.')) {
+                if (confirm('CONFIRMACIÓN FINAL: ¿Eliminar TODO y resetear el sistema?')) {
+                    alert('Reseteando sistema...\nTodos los datos serán eliminados.');
+                }
+            }
+        }
+
+        function mostrarProgreso(tipo) {
+            // Simulación de progreso del backup
+            console.log('Iniciando ' + tipo + '...');
+        }
+
+        // Animaciones de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card, .stat-card, .backup-item');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
