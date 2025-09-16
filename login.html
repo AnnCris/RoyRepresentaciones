@@ -6,6 +6,7 @@
 <title>Iniciar Sesión - Mundo Medico Y RoyDent</title>
 <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style type="text/tailwindcss">
     :root {
@@ -118,8 +119,8 @@
         font-weight: 500;
     }
     .link:hover {
-        color: var(--color-purple);
-        text-shadow: 0 0 8px rgba(111, 66, 193, 0.3);
+        color: var(--color-gold);
+        text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
     }
 
     .custom-image {
@@ -163,6 +164,30 @@
         top: 50%;
         left: 70%;
     }
+    
+    .password-container {
+        position: relative;
+    }
+    
+    .toggle-password {
+        position: absolute;
+        right: 12px;
+        top: 70%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: var(--text-gray);
+    }
+    
+    .toggle-password:hover {
+        color: var(--color-blue);
+    }
+    
+    .error-message {
+        color: #e53e3e;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: none;
+    }
 </style>
 </head>
 <body>
@@ -191,14 +216,15 @@
                 </p>
             </div>
 
-            <form action="#" method="POST" class="space-y-6">
+            <form id="loginForm" class="space-y-6">
                 <div>
                     <label for="username" class="block text-sm font-medium text-[var(--text-gray)] mb-2">Nombre de usuario</label>
                     <input id="username" name="username" type="text" required placeholder="anacrisitincadteorondega@gmail.com" class="form-input"/>
                 </div>
-                <div>
+                <div class="password-container">
                     <label for="password" class="block text-sm font-medium text-[var(--text-gray)] mb-2">Contraseña</label>
                     <input id="password" name="password" type="password" required placeholder="··············" class="form-input"/>
+                    <i class="toggle-password fas fa-eye" id="togglePassword"></i>
                 </div>
 
                 <div class="flex items-center justify-end">
@@ -206,6 +232,8 @@
                 </div>
 
                 <button type="submit" class="btn-primary">Ingresar</button>
+                
+                <div class="error-message text-center" id="errorMessage"></div>
             </form>
 
             <p class="text-center text-sm text-[var(--text-gray)]">
@@ -216,6 +244,30 @@
     </div>
 
     <script>
+        // Base de datos de usuarios y sus redirecciones
+        const users = {
+            'admin': {
+                password: 'admin123',
+                redirect: 'panel-admin.html'
+            },
+            'roydent': {
+                password: 'roydent123',
+                redirect: 'panel-roydent.html'
+            },
+            'mundomedico': {
+                password: 'mundo123',
+                redirect: 'panel-mundomedico.html'
+            },
+            'cliente': {
+                password: 'cliente123',
+                redirect: 'catalogo.html'
+            },
+            'anacrisitincadteorondega@gmail.com': {
+                password: 'password123',
+                redirect: 'catalogo.html'
+            }
+        };
+
         function handleImageError() {
             // Ocultar imagen personalizada y mostrar logo por defecto
             document.getElementById('customLogo').style.display = 'none';
@@ -237,6 +289,46 @@
                     handleImageError();
                 }
             }, 1000);
+            
+            // Funcionalidad para mostrar/ocultar contraseña
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('password');
+            
+            togglePassword.addEventListener('click', function() {
+                // Cambiar el tipo de input
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                
+                // Cambiar el icono
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+            
+            // Manejar el envío del formulario
+            const loginForm = document.getElementById('loginForm');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                // Validar credenciales
+                if (users[username] && users[username].password === password) {
+                    // Redirigir según el tipo de usuario
+                    window.location.href = users[username].redirect;
+                } else {
+                    // Mostrar mensaje de error
+                    errorMessage.textContent = 'Usuario o contraseña incorrectos';
+                    errorMessage.style.display = 'block';
+                    
+                    // Ocultar el mensaje después de 3 segundos
+                    setTimeout(function() {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
+                }
+            });
         });
     </script>
 </body>
