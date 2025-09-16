@@ -5,66 +5,87 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Iniciar Sesión - Mundo Medico Y RoyDent</title>
 <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style type="text/tailwindcss">
     :root {
         --color-purple: #6F42C1;
         --color-blue: #007BFF;
         --color-green: #28C76F;
-        --color-gold: #FFD700; /* dorado metálico secundario */
-        --text-dark: #1A1A1A;
-        --text-gray: #555;
+        --color-gold: #FFD700;
+        --text-dark: #2D3748;
+        --text-gray: #718096;
     }
 
     body {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #ffffff, #cfe8ff);
+        background: linear-gradient(135deg, #f0f4ff, #e6f0ff, #f0f9ff);
         min-height: 100vh;
         color: var(--text-dark);
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow-x: hidden;
+        position: relative;
     }
 
-    /* Card con borde giratorio */
-    .card {
+    /* Efecto de vidrio con bordes animados */
+    .glass-card {
         position: relative;
         border-radius: 20px;
-        padding: 2rem;
+        padding: 2.5rem;
         overflow: hidden;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+        width: 100%;
+        max-width: 450px;
     }
 
-    /* Fondo animado alrededor */
-    .card::before {
+    /* Borde animado */
+    .glass-card::before {
         content: "";
         position: absolute;
-        inset: -4px; /* grosor del borde */
-        background: conic-gradient(
-            from 0deg,
-            var(--color-purple),
-            var(--color-blue),
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        background: linear-gradient(45deg, 
+            var(--color-purple), 
+            var(--color-blue), 
             var(--color-green),
-            var(--color-purple)
-        );
-        border-radius: 24px;
-        animation: spin 4s linear infinite;
-        z-index: 0;
+            var(--color-purple));
+        background-size: 300% 300%;
+        border-radius: 22px;
+        animation: gradientMove 4s ease infinite;
+        z-index: -1;
     }
 
-    /* Interior */
-    .card::after {
+    /* Fondo interior para el efecto de vidrio */
+    .glass-card::after {
         content: "";
         position: absolute;
-        inset: 4px;
-        background: #fff;
-        border-radius: 16px;
-        z-index: 1;
+        top: 2px;
+        left: 2px;
+        right: 2px;
+        bottom: 2px;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 18px;
+        z-index: -1;
     }
 
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+    @keyframes gradientMove {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
     }
 
     .card-content {
@@ -73,75 +94,150 @@
     }
 
     .form-input {
-        @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 transition duration-200 ease-in-out bg-white;
+        @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 transition duration-200 ease-in-out;
+        background: rgba(255, 255, 255, 0.8);
     }
     .form-input:focus {
         border-color: var(--color-blue);
-        box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
     }
 
     .btn-primary {
-        background: linear-gradient(90deg, var(--color-purple), var(--color-blue), var(--color-green));
-        @apply w-full text-white py-3 px-4 rounded-lg font-bold shadow-md transition duration-300;
+        background: linear-gradient(90deg, var(--color-purple), var(--color-blue));
+        @apply w-full text-white py-3 px-4 rounded-lg font-bold shadow-lg transition duration-300;
     }
     .btn-primary:hover {
-        background: linear-gradient(90deg, var(--color-green), var(--color-blue), var(--color-purple));
+        background: linear-gradient(90deg, var(--color-blue), var(--color-purple));
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
 
     .link {
         color: var(--color-blue);
-        transition: 0.3s;
+        transition: all 0.3s;
+        font-weight: 500;
     }
     .link:hover {
-        color: var(--color-gold);
-        text-shadow: 0 0 5px rgba(255, 215, 0, 0.7), 0 0 10px rgba(255, 215, 0, 0.5);
+        color: var(--color-purple);
+        text-shadow: 0 0 8px rgba(111, 66, 193, 0.3);
     }
 
-    .logo-circle {
-        background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
-        @apply w-20 h-20 mx-auto rounded-full flex items-center justify-center shadow-lg;
+    .custom-image {
+        @apply w-32 h-32 mx-auto rounded-full shadow-lg object-cover;
+        /* Se ha eliminado el borde */
+    }
+
+    .logo-default {
+        @apply w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-[#6F42C1] to-[#007BFF] flex items-center justify-center shadow-lg;
+    }
+
+    /* Elementos decorativos de fondo */
+    .bg-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.2;
+        z-index: 0;
+    }
+    
+    .blob-1 {
+        width: 400px;
+        height: 400px;
+        background: var(--color-purple);
+        top: -100px;
+        left: -100px;
+    }
+    
+    .blob-2 {
+        width: 500px;
+        height: 500px;
+        background: var(--color-blue);
+        bottom: -150px;
+        right: -150px;
+    }
+    
+    .blob-3 {
+        width: 300px;
+        height: 300px;
+        background: var(--color-green);
+        top: 50%;
+        left: 70%;
     }
 </style>
 </head>
 <body>
-    <div class="max-w-md w-full card">
-        <div class="card-content space-y-8">
+    <!-- Elementos decorativos de fondo -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+    
+    <div class="glass-card mx-4">
+        <div class="card-content space-y-6">
             <div class="text-center">
-                <div class="logo-circle">
-                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <!-- Imagen integrada desde código -->
+                <!-- IMPORTANTE: Cambia la ruta de la imagen según donde esté ubicada -->
+                <img src="assets/images/Roydent.png" alt="Logo de Mundo Medico y RoyDent" class="custom-image mb-4" id="customLogo" onerror="handleImageError()">
+                
+                <!-- Logo por defecto (oculto inicialmente) -->
+                <div class="logo-default" id="defaultLogo" style="display: none;">
+                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                         <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
                     </svg>
                 </div>
-                <h2 class="mt-6 text-3xl font-extrabold text-[var(--color-purple)]">Iniciar Sesión</h2>
-                <p class="mt-2 text-sm text-[var(--text-gray)]">
+                
+                <h2 class="text-3xl font-bold text-[var(--text-dark)] mt-4">Iniciar Sesión</h2>
+                <p class="mt-2 text-[var(--text-gray)]">
                     Bienvenido de nuevo a <span class="font-semibold text-[var(--color-blue)]">Mundo Medico y RoyDent</span>
                 </p>
             </div>
 
             <form action="#" method="POST" class="space-y-6">
                 <div>
-                    <label for="username" class="block text-sm font-medium text-[var(--text-gray)]">Nombre de usuario</label>
-                    <input id="username" name="username" type="text" required placeholder="Ingrese su usuario" class="form-input"/>
+                    <label for="username" class="block text-sm font-medium text-[var(--text-gray)] mb-2">Nombre de usuario</label>
+                    <input id="username" name="username" type="text" required placeholder="anacrisitincadteorondega@gmail.com" class="form-input"/>
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium text-[var(--text-gray)]">Contraseña</label>
-                    <input id="password" name="password" type="password" required placeholder="Ingrese su contraseña" class="form-input"/>
+                    <label for="password" class="block text-sm font-medium text-[var(--text-gray)] mb-2">Contraseña</label>
+                    <input id="password" name="password" type="password" required placeholder="··············" class="form-input"/>
                 </div>
 
                 <div class="flex items-center justify-end">
-                    <a href="cambiocontrasena.html" class="link text-sm font-medium">¿Olvidó su contraseña?</a>
+                    <a href="cambiocontrasena.html" class="link text-sm">¿Olvidó su contraseña?</a>
                 </div>
 
                 <button type="submit" class="btn-primary">Ingresar</button>
             </form>
 
-            <p class="text-center text-sm text-gray-600">
+            <p class="text-center text-sm text-[var(--text-gray)]">
                 ¿No tienes una cuenta?
                 <a href="registro.html" class="link font-semibold">Regístrate</a>
             </p>
         </div>
     </div>
+
+    <script>
+        function handleImageError() {
+            // Ocultar imagen personalizada y mostrar logo por defecto
+            document.getElementById('customLogo').style.display = 'none';
+            document.getElementById('defaultLogo').style.display = 'flex';
+        }
+        
+        // Verificar si la imagen se cargó correctamente al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const customImage = document.getElementById('customLogo');
+            
+            // Si la imagen no se cargó correctamente, mostrar el logo por defecto
+            if (customImage && (customImage.complete && customImage.naturalHeight === 0)) {
+                handleImageError();
+            }
+            
+            // También verificar después de un tiempo por si la carga es lenta
+            setTimeout(function() {
+                if (customImage && (customImage.complete && customImage.naturalHeight === 0)) {
+                    handleImageError();
+                }
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
