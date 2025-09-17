@@ -1,1012 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Agregar Producto - Sistema Roy Representaciones</title>
-    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-    <style>
-        :root {
-            /* Colores Primarios */
-            --color-purple: #6f42c1;
-            --color-blue: #007bff;
-            --color-green: #28c76f;
-            --color-gold: #ffd700;
-
-            /* Colores de Texto */
-            --text-dark: #1a1a1a;
-            --text-gray: #555555;
-            --text-light: #888888;
-            --text-muted: #9ca3af;
-
-            /* Colores de Fondo */
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --bg-tertiary: #f1f5f9;
-            --bg-card: rgba(255, 255, 255, 0.95);
-
-            /* Colores de Estado */
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --info: #3b82f6;
-
-            /* Sombras */
-            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-
-            /* Radios */
-            --radius-sm: 0.375rem;
-            --radius-md: 0.5rem;
-            --radius-lg: 0.75rem;
-            --radius-xl: 1rem;
-            --radius-2xl: 1.5rem;
-
-            /* Espaciado */
-            --space-xs: 0.25rem;
-            --space-sm: 0.5rem;
-            --space-md: 1rem;
-            --space-lg: 1.5rem;
-            --space-xl: 2rem;
-            --space-2xl: 3rem;
-            --space-3xl: 4rem;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(135deg, #ffffff, #cfe8ff);
-            min-height: 100vh;
-            color: var(--text-dark);
-            line-height: 1.6;
-            font-size: 16px;
-            background-attachment: fixed;
-            font-weight: 400;
-        }
-
-        /* ============ SIDEBAR MODERNO ============ */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 280px;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-right: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow-lg);
-            z-index: 1000;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto;
-        }
-
-        .sidebar-header {
-            padding: var(--space-xl);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .sidebar-brand {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            text-decoration: none;
-            margin-bottom: var(--space-md);
-        }
-
-        .sidebar-logo {
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 0.875rem;
-            box-shadow: var(--shadow-md);
-        }
-
-        .sidebar-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            letter-spacing: -0.01em;
-        }
-
-        .sidebar-subtitle {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-top: var(--space-xs);
-        }
-
-        .sidebar-nav {
-            padding: var(--space-md);
-        }
-
-        .nav-section {
-            margin-bottom: var(--space-xl);
-        }
-
-        .nav-title {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: var(--space-md);
-            padding: 0 var(--space-md);
-        }
-
-        .nav-item {
-            margin-bottom: var(--space-xs);
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            padding: var(--space-md);
-            color: var(--text-gray);
-            text-decoration: none;
-            border-radius: var(--radius-lg);
-            transition: all 0.3s ease;
-            font-weight: 500;
-            font-size: 0.875rem;
-            gap: var(--space-sm);
-        }
-
-        .nav-link:hover {
-            background: rgba(111, 66, 193, 0.1);
-            color: var(--color-purple);
-            transform: translateX(4px);
-        }
-
-        .nav-link.active {
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .nav-icon {
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-        }
-
-        /* ============ MAIN CONTENT ============ */
-        .main-content {
-            margin-left: 280px;
-            min-height: 100vh;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* ============ NAVEGACIÓN MÓVIL ============ */
-        .mobile-header {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow-sm);
-            z-index: 1001;
-            padding: var(--space-md);
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .mobile-menu-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-dark);
-        }
-
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        /* ============ LAYOUT RESPONSIVO ============ */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: var(--space-xl);
-        }
-
-        .section {
-            margin-bottom: var(--space-3xl);
-        }
-
-        .grid {
-            display: grid;
-            gap: var(--space-xl);
-        }
-
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        }
-
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-
-        /* ============ CARDS CON EFECTOS DE LUZ ============ */
-        .card {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-2xl);
-            padding: var(--space-xl);
-            box-shadow: var(--shadow-lg);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.6s;
-            z-index: 1;
-        }
-
-        .card:hover::before {
-            left: 100%;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-            border-color: rgba(111, 66, 193, 0.3);
-        }
-
-        .card-animated {
-            position: relative;
-            border-radius: var(--radius-2xl);
-            padding: 0;
-            overflow: hidden;
-            background: transparent;
-        }
-
-        .card-animated::before {
-            content: "";
-            position: absolute;
-            inset: -2px;
-            background: linear-gradient(90deg, var(--color-purple), var(--color-blue), var(--color-green), var(--color-gold), var(--color-purple));
-            background-size: 200% 100%;
-            border-radius: var(--radius-2xl);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-
-        .card-animated::after {
-            content: "";
-            position: absolute;
-            inset: 2px;
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border-radius: calc(var(--radius-2xl) - 2px);
-            z-index: 0;
-        }
-
-        .card-animated:hover::before {
-            opacity: 1;
-            animation: movingLight 2s linear infinite;
-        }
-
-        @keyframes movingLight {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        .card-content {
-            position: relative;
-            z-index: 1;
-            padding: var(--space-xl);
-        }
-
-        /* ============ TIPOGRAFÍA MODERNA ============ */
-        .text-display {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            color: var(--color-purple);
-            letter-spacing: -0.04em;
-            margin-bottom: var(--space-lg);
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .text-h1 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 800;
-            line-height: 1.2;
-            color: var(--text-dark);
-            margin-bottom: var(--space-lg);
-            letter-spacing: -0.02em;
-        }
-
-        .text-h2 {
-            font-size: clamp(1.25rem, 3vw, 2rem);
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--text-dark);
-            margin-bottom: var(--space-md);
-            letter-spacing: -0.01em;
-        }
-
-        .text-h3 {
-            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-            font-weight: 600;
-            line-height: 1.4;
-            color: var(--color-blue);
-            margin-bottom: var(--space-md);
-        }
-
-        .text-body {
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.7;
-            color: var(--text-dark);
-            margin-bottom: var(--space-md);
-        }
-
-        .text-secondary {
-            font-size: 0.875rem;
-            font-weight: 400;
-            line-height: 1.6;
-            color: var(--text-gray);
-            margin-bottom: var(--space-sm);
-        }
-
-        .text-label {
-            font-size: 0.875rem;
-            font-weight: 600;
-            line-height: 1.4;
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: var(--space-xs);
-            display: block;
-        }
-
-        /* ============ BOTONES MODERNOS ============ */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.875rem 2rem;
-            border-radius: var(--radius-lg);
-            font-weight: 600;
-            font-size: 0.875rem;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
-            margin: var(--space-sm);
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.025em;
-            min-width: 140px;
-        }
-
-        .btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: var(--shadow-xl);
-            background: linear-gradient(135deg, var(--color-blue), var(--color-green));
-        }
-
-        .btn-secondary {
-            background: var(--bg-primary);
-            color: var(--color-blue);
-            border: 2px solid var(--color-blue);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-secondary:hover {
-            background: var(--color-blue);
-            color: white;
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, var(--success), #059669);
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-warning {
-            background: linear-gradient(135deg, var(--warning), #d97706);
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-danger {
-            background: linear-gradient(135deg, var(--danger), #dc2626);
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-success:hover,
-        .btn-warning:hover,
-        .btn-danger:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .btn-icon {
-            padding: 0.75rem;
-            min-width: auto;
-            width: 40px;
-            height: 40px;
-            margin: 0;
-        }
-
-        /* ============ FORMULARIOS MODERNOS ============ */
-        .form-group {
-            margin-bottom: var(--space-lg);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem 1.25rem;
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            border-radius: var(--radius-lg);
-            font-size: 1rem;
-            background: var(--bg-primary);
-            color: var(--text-dark);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-family: inherit;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--color-blue);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-            background: #fafbff;
-            transform: scale(1.01);
-        }
-
-        .form-input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .form-select {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 1rem center;
-            background-repeat: no-repeat;
-            background-size: 1.25rem;
-            padding-right: 3rem;
-            appearance: none;
-        }
-
-        .form-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-help {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            margin-top: var(--space-xs);
-        }
-
-        /* ============ BADGES MODERNOS ============ */
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.375rem 1rem;
-            border-radius: var(--radius-lg);
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin: var(--space-xs);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-        }
-
-        .badge:hover {
-            transform: scale(1.05);
-        }
-
-        .badge-available {
-            background: linear-gradient(135deg, var(--success), #059669);
-            color: white;
-        }
-
-        .badge-low-stock {
-            background: linear-gradient(135deg, var(--warning), #d97706);
-            color: white;
-        }
-
-        .badge-out-of-stock {
-            background: linear-gradient(135deg, var(--danger), #dc2626);
-            color: white;
-        }
-
-        .badge-paused {
-            background: linear-gradient(135deg, #6b7280, #4b5563);
-            color: white;
-        }
-
-        /* ============ ALERTAS ============ */
-        .alert {
-            padding: var(--space-lg);
-            border-radius: var(--radius-lg);
-            margin: var(--space-lg) 0;
-            border-left: 4px solid;
-            position: relative;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .alert-success {
-            background: rgba(16, 185, 129, 0.1);
-            border-left-color: var(--success);
-            color: #065f46;
-        }
-
-        .alert-warning {
-            background: rgba(245, 158, 11, 0.1);
-            border-left-color: var(--warning);
-            color: #92400e;
-        }
-
-        .alert-info {
-            background: rgba(59, 130, 246, 0.1);
-            border-left-color: var(--info);
-            color: #1e3a8a;
-        }
-
-        /* ============ STEPS INDICATOR ============ */
-        .steps-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: var(--space-xl);
-            padding: var(--space-lg) 0;
-        }
-
-        .step {
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-
-        .step:not(:last-child)::after {
-            content: '';
-            width: 80px;
-            height: 2px;
-            background: var(--bg-tertiary);
-            position: absolute;
-            left: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-
-        .step.completed:not(:last-child)::after {
-            background: var(--success);
-        }
-
-        .step-number {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--bg-tertiary);
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 0.875rem;
-            position: relative;
-            z-index: 2;
-            transition: all 0.3s ease;
-        }
-
-        .step.active .step-number {
-            background: var(--color-blue);
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .step.completed .step-number {
-            background: var(--success);
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .step-label {
-            margin-left: var(--space-sm);
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--text-gray);
-            white-space: nowrap;
-        }
-
-        /* ============ FORM SECTIONS ============ */
-        .form-section {
-            display: none;
-        }
-
-        .form-section.active {
-            display: block;
-            animation: fadeIn 0.6s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ============ UPLOAD AREA ============ */
-        .upload-area {
-            border: 2px dashed rgba(0, 0, 0, 0.1);
-            border-radius: var(--radius-lg);
-            padding: var(--space-2xl);
-            text-align: center;
-            background: var(--bg-secondary);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .upload-area:hover {
-            border-color: var(--color-blue);
-            background: rgba(0, 123, 255, 0.05);
-        }
-
-        .upload-area.dragover {
-            border-color: var(--success);
-            background: rgba(16, 185, 129, 0.05);
-        }
-
-        .upload-icon {
-            font-size: 3rem;
-            margin-bottom: var(--space-md);
-            opacity: 0.5;
-        }
-
-        .upload-text {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--text-gray);
-            margin-bottom: var(--space-sm);
-        }
-
-        .upload-subtext {
-            font-size: 0.875rem;
-            color: var(--text-light);
-        }
-
-        .preview-image {
-            max-width: 200px;
-            max-height: 200px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            margin: var(--space-md) auto;
-            display: block;
-        }
-
-        /* ============ PROGRESS BAR ============ */
-        .progress {
-            height: 6px;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-            margin: var(--space-md) 0;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--color-purple), var(--color-blue));
-            border-radius: var(--radius-sm);
-            transition: width 0.3s ease;
-        }
-
-        .step-info {
-            text-align: center;
-            flex: 1;
-            margin: 0 var(--space-md);
-        }
-
-        .step-text {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            margin-top: var(--space-xs);
-        }
-
-        /* ============ FORM ACTIONS ============ */
-        .form-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: var(--space-lg);
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            margin-top: var(--space-xl);
-        }
-
-        /* ============ TABLE CONTAINER MEJORADA ============ */
-        .table-container {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-        }
-
-        .table-header {
-            padding: var(--space-lg);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            justify-content: between;
-            align-items: center;
-            gap: var(--space-md);
-        }
-
-        .table-search {
-            flex: 1;
-            max-width: 300px;
-        }
-
-        .table-actions {
-            display: flex;
-            gap: var(--space-sm);
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-            max-height: 500px;
-            overflow-y: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            position: relative;
-        }
-
-        th, td {
-            padding: var(--space-lg);
-            text-align: left;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        th {
-            background: rgba(111, 66, 193, 0.1);
-            font-weight: 700;
-            color: var(--color-purple);
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        tbody tr {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        tbody tr:hover {
-            background: rgba(59, 130, 246, 0.05);
-            transform: scale(1.002);
-        }
-
-        tbody tr.selected {
-            background: rgba(111, 66, 193, 0.1);
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: var(--space-xs);
-            align-items: center;
-        }
-
-        .table-pagination {
-            padding: var(--space-lg);
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            justify-content: between;
-            align-items: center;
-            gap: var(--space-md);
-        }
-
-        .pagination-info {
-            font-size: 0.875rem;
-            color: var(--text-gray);
-        }
-
-        .pagination-controls {
-            display: flex;
-            gap: var(--space-sm);
-            align-items: center;
-        }
-
-        /* ============ UTILIDADES ============ */
-        .text-center { text-align: center; }
-        .mb-0 { margin-bottom: 0; }
-        .mt-lg { margin-top: var(--space-lg); }
-        .font-bold { font-weight: 700; }
-
-        /* ============ RESPONSIVE ============ */
-        @media (max-width: 1024px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .sidebar-overlay.active {
-                display: block;
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding-top: 70px;
-            }
-
-            .mobile-header {
-                display: flex;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: var(--space-md);
-            }
-            
-            .grid-2, .grid-3 {
-                grid-template-columns: 1fr;
-            }
-            
-            .card {
-                padding: var(--space-lg);
-            }
-            
-            .form-actions {
-                flex-direction: column;
-                gap: var(--space-md);
-            }
-            
-            .step-info {
-                order: -1;
-                margin: 0 0 var(--space-md) 0;
-            }
-            
-            .steps-container {
-                overflow-x: auto;
-                padding: var(--space-md) 0;
-            }
-            
-            .step:not(:last-child)::after {
-                width: 60px;
-            }
-            
-            .step-label {
-                display: none;
-            }
-
-            .table-header {
-                flex-direction: column;
-                align-items: stretch;
-                gap: var(--space-sm);
-            }
-
-            .table-search {
-                max-width: none;
-            }
-
-            .table-actions {
-                justify-content: center;
-            }
-
-            .table-pagination {
-                flex-direction: column;
-                gap: var(--space-sm);
-                text-align: center;
-            }
-
-            .action-buttons {
-                flex-wrap: wrap;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-content {
-                padding-top: 60px;
-            }
-            
-            .container {
-                padding: var(--space-sm);
-            }
-
-            th, td {
-                padding: var(--space-sm);
-                font-size: 0.75rem;
-            }
-
-            .btn-icon {
-                width: 32px;
-                height: 32px;
-                padding: 0.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
+<!-- Elementos decorativos de fondo -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+    
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <a href="#" class="sidebar-brand">
-                <div class="sidebar-logo">ROY</div>
+                <!-- Logo desde la carpeta assets -->
+                <img src="assets/images/Roydent.png" alt="Logo de RoyDent" class="sidebar-logo-img" id="sidebarLogo" onerror="handleLogoError()">
+                <!-- Logo por defecto (oculto inicialmente) -->
+                <div class="logo-default" id="defaultLogo" style="display: none;">
+                    ROY
+                </div>
                 <div>
-                    <div class="sidebar-title">Sistema Roy</div>
-                    <div class="sidebar-subtitle">Representaciones</div>
+                    <div class="sidebar-title">Sistema RoyDent</div>
+                    <div class="sidebar-subtitle">Y Mundo Medico</div>
                 </div>
             </a>
         </div>
@@ -1015,7 +24,7 @@
             <div class="nav-section">
                 <div class="nav-title">Principal</div>
                 <div class="nav-item">
-                    <a href="Dashboard.html" class="nav-link">
+                    <a href="dashboard.html" class="nav-link">
                         <div class="nav-icon">🏠</div>
                         Dashboard
                     </a>
@@ -1031,7 +40,7 @@
             <div class="nav-section">
                 <div class="nav-title">Productos</div>
                 <div class="nav-item">
-                    <a href="agregarproducto.html" class="nav-link active">
+                    <a href="#" class="nav-link active">
                         <div class="nav-icon">➕</div>
                         Agregar Producto
                     </a>
@@ -1043,7 +52,7 @@
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="gestioncategorias.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <div class="nav-icon">🏷️</div>
                         Categorías
                     </a>
@@ -1059,7 +68,7 @@
             <div class="nav-section">
                 <div class="nav-title">Inventario</div>
                 <div class="nav-item">
-                    <a href="inventario.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <div class="nav-icon">📋</div>
                         Inventario General
                     </a>
@@ -1081,19 +90,19 @@
             <div class="nav-section">
                 <div class="nav-title">Ventas</div>
                 <div class="nav-item">
-                    <a href="nuevaventa.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <div class="nav-icon">🛒</div>
                         Nueva Venta
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="historialventa.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <div class="nav-icon">💰</div>
                         Historial Ventas
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="gestionclientes.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <div class="nav-icon">👥</div>
                         Clientes
                     </a>
@@ -1103,7 +112,7 @@
             <div class="nav-section">
                 <div class="nav-title">Reportes</div>
                 <div class="nav-item">
-                    <a href="reportesventa.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <div class="nav-icon">📈</div>
                         Reportes de Ventas
                     </a>
@@ -1125,15 +134,27 @@
             <div class="nav-section">
                 <div class="nav-title">Configuración</div>
                 <div class="nav-item">
-                    <a href="configuracion.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <div class="nav-icon">⚙️</div>
                         Configuración
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="perfilusuario.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <div class="nav-icon">👤</div>
                         Perfil
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">👥</div>
+                        Usuarios
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">💾</div>
+                        Backup
                     </a>
                 </div>
             </div>
@@ -1143,10 +164,7 @@
     <!-- Mobile Header -->
     <header class="mobile-header" id="mobile-header">
         <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
-        <div class="sidebar-brand">
-            <div class="sidebar-logo">ROY</div>
-            <span class="sidebar-title">Sistema Roy</span>
-        </div>
+        <img src="assets/images/Roydent.png" alt="Logo de RoyDent" class="mobile-logo" id="mobileLogo" onerror="handleMobileLogoError()">
     </header>
 
     <!-- Sidebar Overlay -->
@@ -1157,7 +175,7 @@
         <div class="container">
             <!-- Header -->
             <div class="section">
-                <div class="card-animated">
+                <div class="card">
                     <div class="card-content">
                         <h1 class="text-display text-center">Agregar Nuevo Producto</h1>
                         <p class="text-body text-center">Registra productos médicos y odontológicos con control FIFO automático</p>
@@ -1183,7 +201,7 @@
                         </div>
                         <div class="step" id="step-4">
                             <div class="step-number">4</div>
-                            <div class="step-label">Finalización</div>
+                            <div class="step-label">Imagen y Finalización</div>
                         </div>
                     </div>
                 </div>
@@ -1199,19 +217,19 @@
                             
                             <div class="grid grid-2">
                                 <div class="form-group">
-                                    <label class="text-label">Código del Producto</label>
+                                    <label class="form-label">Código del Producto</label>
                                     <input type="text" class="form-input" id="codigo" placeholder="Ej: ANE001" required>
                                     <div class="form-help">Código único para identificación</div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="text-label">Nombre del Producto</label>
+                                    <label class="form-label">Nombre del Producto</label>
                                     <input type="text" class="form-input" id="nombre" placeholder="Ej: Anestesia Lidocaína 2% x 50ml" required>
                                 </div>
                             </div>
 
                             <div class="grid grid-3">
                                 <div class="form-group">
-                                    <label class="text-label">Categoría</label>
+                                    <label class="form-label">Categoría</label>
                                     <select class="form-input form-select" id="categoria" required>
                                         <option value="">Seleccionar categoría...</option>
                                         <option value="anestesicos">Anestésicos</option>
@@ -1223,11 +241,11 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="text-label">Marca</label>
+                                    <label class="form-label">Marca</label>
                                     <input type="text" class="form-input" id="marca" placeholder="Ej: Braun, 3M, Oral-B" required>
                                 </div>
                                 <div class="form-group">
-                                    <label class="text-label">Proveedor</label>
+                                    <label class="form-label">Proveedor</label>
                                     <select class="form-input form-select" id="proveedor" required>
                                         <option value="">Seleccionar proveedor...</option>
                                         <option value="proveedor-1">Distribuidora Médica S.A.</option>
@@ -1239,7 +257,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="text-label">Descripción Detallada</label>
+                                <label class="form-label">Descripción Detallada</label>
                                 <textarea class="form-input form-textarea" id="descripcion" placeholder="Descripción completa del producto, características técnicas, indicaciones de uso..."></textarea>
                             </div>
                         </div>
@@ -1250,39 +268,57 @@
                             
                             <div class="grid grid-3">
                                 <div class="form-group">
-                                    <label class="text-label">Precio de Costo</label>
+                                    <label class="form-label">Precio de Costo</label>
                                     <input type="number" class="form-input" id="precio-costo" step="0.01" placeholder="0.00" required>
                                     <div class="form-help">Precio de compra al proveedor</div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="text-label">Precio de Venta</label>
-                                    <input type="number" class="form-input" id="precio-venta" step="0.01" placeholder="0.00" required>
-                                    <div class="form-help">Precio de venta al público</div>
+                                    <label class="form-label">Precio con Factura (Al por menor)</label>
+                                    <input type="number" class="form-input" id="precio-con-factura" step="0.01" placeholder="0.00" required>
+                                    <div class="form-help">Precio de venta al por menor con factura</div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="text-label">Margen de Ganancia</label>
-                                    <input type="text" class="form-input" id="margen" readonly style="background: var(--bg-secondary);">
-                                    <div class="form-help">Calculado automáticamente</div>
+                                    <label class="form-label">Precio sin Factura (Al por mayor)</label>
+                                    <input type="number" class="form-input" id="precio-sin-factura" step="0.01" placeholder="0.00" required>
+                                    <div class="form-help">Precio de venta al por mayor sin factura</div>
                                 </div>
                             </div>
 
-                            <div class="grid grid-2">
+                            <div class="grid grid-3">
                                 <div class="form-group">
-                                    <label class="text-label">Moneda</label>
+                                    <label class="form-label">Margen Con Factura</label>
+                                    <input type="text" class="form-input" id="margen-con-factura" readonly style="background: var(--bg-secondary);">
+                                    <div class="form-help">Calculado automáticamente</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Margen Sin Factura</label>
+                                    <input type="text" class="form-input" id="margen-sin-factura" readonly style="background: var(--bg-secondary);">
+                                    <div class="form-help">Calculado automáticamente</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Moneda</label>
                                     <select class="form-input form-select" id="moneda">
                                         <option value="BOB">Bolivianos (Bs.)</option>
                                         <option value="USD">Dólares (USD)</option>
                                     </select>
                                 </div>
+                            </div>
+
+                            <div class="grid grid-2">
                                 <div class="form-group">
-                                    <label class="text-label">Impuesto (%)</label>
+                                    <label class="form-label">Impuesto (%)</label>
                                     <input type="number" class="form-input" id="impuesto" value="13" min="0" max="100" step="0.01">
                                     <div class="form-help">IVA u otros impuestos aplicables</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Diferencia de Precios</label>
+                                    <input type="text" class="form-input" id="diferencia-precios" readonly style="background: var(--bg-secondary);">
+                                    <div class="form-help">Diferencia entre precio con y sin factura</div>
                                 </div>
                             </div>
 
                             <div class="alert alert-info">
-                                <strong>Recomendación:</strong> El margen recomendado para productos médicos es entre 25% y 40%.
+                                <strong>Recomendación:</strong> El margen recomendado para productos médicos es entre 25% y 40%. El precio sin factura debería ser menor al precio con factura.
                             </div>
                         </div>
 
@@ -1292,17 +328,17 @@
                             
                             <div class="grid grid-3">
                                 <div class="form-group">
-                                    <label class="text-label">Stock Inicial</label>
+                                    <label class="form-label">Stock Inicial</label>
                                     <input type="number" class="form-input" id="stock-inicial" min="0" placeholder="0" required>
                                     <div class="form-help">Cantidad inicial en inventario</div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="text-label">Stock Mínimo</label>
+                                    <label class="form-label">Stock Mínimo</label>
                                     <input type="number" class="form-input" id="stock-minimo" min="0" placeholder="0" required>
                                     <div class="form-help">Nivel de alerta para reposición</div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="text-label">Stock Máximo</label>
+                                    <label class="form-label">Stock Máximo</label>
                                     <input type="number" class="form-input" id="stock-maximo" min="0" placeholder="0">
                                     <div class="form-help">Capacidad máxima de almacenaje</div>
                                 </div>
@@ -1310,7 +346,7 @@
 
                             <div class="grid grid-2">
                                 <div class="form-group">
-                                    <label class="text-label">Unidad de Medida</label>
+                                    <label class="form-label">Unidad de Medida</label>
                                     <select class="form-input form-select" id="unidad-medida" required>
                                         <option value="">Seleccionar unidad...</option>
                                         <option value="unidad">Unidad</option>
@@ -1324,7 +360,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="text-label">Ubicación en Almacén</label>
+                                    <label class="form-label">Ubicación en Almacén</label>
                                     <select class="form-input form-select" id="ubicacion" required>
                                         <option value="">Seleccionar ubicación...</option>
                                         <option value="deposito">Depósito Principal</option>
@@ -1337,12 +373,12 @@
 
                             <div class="grid grid-2">
                                 <div class="form-group">
-                                    <label class="text-label">Fecha de Vencimiento</label>
+                                    <label class="form-label">Fecha de Vencimiento</label>
                                     <input type="date" class="form-input" id="fecha-vencimiento">
                                     <div class="form-help">Dejar vacío si no aplica</div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="text-label">Requiere Refrigeración</label>
+                                    <label class="form-label">Requiere Refrigeración</label>
                                     <select class="form-input form-select" id="refrigeracion">
                                         <option value="no">No requiere</option>
                                         <option value="si">Sí requiere</option>
@@ -1356,19 +392,39 @@
                             <h3 class="text-h3">Imagen y Finalización</h3>
                             
                             <div class="form-group">
-                                <label class="text-label">Subir Imagen del Producto</label>
-                                <div class="upload-area" id="upload-area">
-                                    <div class="upload-icon">📷</div>
-                                    <div class="upload-text">Arrastra una imagen aquí</div>
-                                    <div class="upload-subtext">o haz clic para seleccionar archivo (JPG, PNG, máx. 5MB)</div>
+                                <label class="form-label">Imagen del Producto</label>
+                                
+                                <!-- Selector de tipo de imagen -->
+                                <div class="image-input-container">
+                                    <div class="image-source-toggle">
+                                        <button type="button" class="toggle-btn active" id="btn-file" onclick="toggleImageSource('file')">Subir Archivo</button>
+                                        <button type="button" class="toggle-btn" id="btn-url" onclick="toggleImageSource('url')">URL de Imagen</button>
+                                    </div>
                                 </div>
-                                <input type="file" id="imagen-input" accept="image/*" style="display: none;">
+
+                                <!-- Área de subida de archivo -->
+                                <div id="file-upload-area">
+                                    <div class="upload-area" id="upload-area">
+                                        <div class="upload-icon">📷</div>
+                                        <div class="upload-text">Arrastra una imagen aquí</div>
+                                        <div class="upload-subtext">o haz clic para seleccionar archivo (JPG, PNG, máx. 5MB)</div>
+                                    </div>
+                                    <input type="file" id="imagen-input" accept="image/*" style="display: none;">
+                                </div>
+
+                                <!-- Campo de URL -->
+                                <div id="url-input-area" style="display: none;">
+                                    <input type="url" class="form-input" id="imagen-url" placeholder="https://ejemplo.com/imagen.jpg">
+                                    <button type="button" class="btn btn-secondary" onclick="previewUrl()" style="margin-top: 0.5rem; width: auto;">Previsualizar</button>
+                                    <div class="form-help">Pega la URL de una imagen desde internet</div>
+                                </div>
+
                                 <img id="preview-imagen" class="preview-image" style="display: none;">
                             </div>
 
                             <div class="grid grid-2">
                                 <div class="form-group">
-                                    <label class="text-label">Estado del Producto</label>
+                                    <label class="form-label">Estado del Producto</label>
                                     <select class="form-input form-select" id="estado">
                                         <option value="activo">Activo</option>
                                         <option value="pausa">En Pausa</option>
@@ -1376,13 +432,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="text-label">Código de Barras</label>
+                                    <label class="form-label">Código de Barras</label>
                                     <input type="text" class="form-input" id="codigo-barras" placeholder="Código de barras (opcional)">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="text-label">Notas Adicionales</label>
+                                <label class="form-label">Notas Adicionales</label>
                                 <textarea class="form-input form-textarea" id="notas" placeholder="Instrucciones especiales, condiciones de almacenamiento, advertencias..."></textarea>
                             </div>
 
@@ -1409,153 +465,61 @@
                             <button type="button" class="btn btn-primary" id="btn-siguiente" onclick="siguientePaso()">
                                 Siguiente →
                             </button>
-                            <button type="submit" class="btn btn-success" id="btn-guardar" style="display: none;">
+                            <button type="submit" class="btn btn-primary" id="btn-guardar" style="display: none;">
                                 Guardar Producto
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
-
-            <!-- Productos Recientes -->
-            <div class="section">
-                <div class="card">
-                    <h2 class="text-h2">Productos Agregados Recientemente</h2>
-                    
-                    <div class="table-container">
-                        <div class="table-header">
-                            <input type="text" class="form-input table-search" id="search-productos" placeholder="Buscar productos...">
-                            <div class="table-actions">
-                                <button class="btn btn-secondary btn-icon" onclick="exportarTabla()" title="Exportar">📄</button>
-                                <button class="btn btn-primary btn-icon" onclick="refreshTabla()" title="Actualizar">🔄</button>
-                            </div>
-                        </div>
-                        
-                        <div class="table-wrapper">
-                            <table id="productos-table">
-                                <thead>
-                                    <tr>
-                                        <th onclick="ordenarTabla(0)">Código 🔽</th>
-                                        <th onclick="ordenarTabla(1)">Producto 🔽</th>
-                                        <th onclick="ordenarTabla(2)">Categoría 🔽</th>
-                                        <th onclick="ordenarTabla(3)">Precio 🔽</th>
-                                        <th onclick="ordenarTabla(4)">Stock 🔽</th>
-                                        <th onclick="ordenarTabla(5)">Estado 🔽</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="productos-recientes">
-                                    <tr data-id="1" onclick="seleccionarFila(this)">
-                                        <td><strong>ANE002</strong></td>
-                                        <td>Anestesia Articaína 4% x 50ml</td>
-                                        <td>Anestésicos</td>
-                                        <td><strong>Bs. 52.00</strong></td>
-                                        <td>25 frascos</td>
-                                        <td><span class="badge badge-available">Activo</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-info btn-icon" onclick="verProducto(1)" title="Ver detalles">👁️</button>
-                                                <button class="btn btn-warning btn-icon" onclick="editarProducto(1)" title="Editar">✏️</button>
-                                                <button class="btn btn-danger btn-icon" onclick="eliminarProducto(1)" title="Eliminar">🗑️</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr data-id="2" onclick="seleccionarFila(this)">
-                                        <td><strong>GUA026</strong></td>
-                                        <td>Guantes Nitrilo Talla L x 100</td>
-                                        <td>Protección</td>
-                                        <td><strong>Bs. 35.00</strong></td>
-                                        <td>180 pares</td>
-                                        <td><span class="badge badge-available">Activo</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-info btn-icon" onclick="verProducto(2)" title="Ver detalles">👁️</button>
-                                                <button class="btn btn-warning btn-icon" onclick="editarProducto(2)" title="Editar">✏️</button>
-                                                <button class="btn btn-danger btn-icon" onclick="eliminarProducto(2)" title="Eliminar">🗑️</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr data-id="3" onclick="seleccionarFila(this)">
-                                        <td><strong>CAP157</strong></td>
-                                        <td>Cápsulas Composite x 20</td>
-                                        <td>Odontología</td>
-                                        <td><strong>Bs. 89.00</strong></td>
-                                        <td>45 cajas</td>
-                                        <td><span class="badge badge-available">Activo</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-info btn-icon" onclick="verProducto(3)" title="Ver detalles">👁️</button>
-                                                <button class="btn btn-warning btn-icon" onclick="editarProducto(3)" title="Editar">✏️</button>
-                                                <button class="btn btn-danger btn-icon" onclick="eliminarProducto(3)" title="Eliminar">🗑️</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr data-id="4" onclick="seleccionarFila(this)">
-                                        <td><strong>DEN789</strong></td>
-                                        <td>Amalgama Dental Premium</td>
-                                        <td>Odontología</td>
-                                        <td><strong>Bs. 125.00</strong></td>
-                                        <td>12 tubos</td>
-                                        <td><span class="badge badge-low-stock">Stock Bajo</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-info btn-icon" onclick="verProducto(4)" title="Ver detalles">👁️</button>
-                                                <button class="btn btn-warning btn-icon" onclick="editarProducto(4)" title="Editar">✏️</button>
-                                                <button class="btn btn-danger btn-icon" onclick="eliminarProducto(4)" title="Eliminar">🗑️</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr data-id="5" onclick="seleccionarFila(this)">
-                                        <td><strong>STE456</strong></td>
-                                        <td>Esterilizador UV Portátil</td>
-                                        <td>Instrumental</td>
-                                        <td><strong>Bs. 890.00</strong></td>
-                                        <td>3 unidades</td>
-                                        <td><span class="badge badge-paused">Pausado</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-info btn-icon" onclick="verProducto(5)" title="Ver detalles">👁️</button>
-                                                <button class="btn btn-warning btn-icon" onclick="editarProducto(5)" title="Editar">✏️</button>
-                                                <button class="btn btn-danger btn-icon" onclick="eliminarProducto(5)" title="Eliminar">🗑️</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="table-pagination">
-                            <div class="pagination-info">
-                                Mostrando <span id="showing-start">1</span>-<span id="showing-end">5</span> de <span id="total-productos">5</span> productos
-                            </div>
-                            <div class="pagination-controls">
-                                <button class="btn btn-secondary btn-icon" onclick="paginaAnterior()" id="btn-prev" disabled>←</button>
-                                <span id="page-info">Página 1 de 1</span>
-                                <button class="btn btn-secondary btn-icon" onclick="paginaSiguiente()" id="btn-next" disabled>→</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 
     <script>
-        // Variables globales para tabla
-        let filaSeleccionada = null;
-        let ordenActual = { columna: -1, direccion: 'asc' };
-        let productosData = [];
-        
         let pasoActual = 1;
         const totalPasos = 4;
 
+        // ============ MANEJO DE LOGOS ============
+        function handleLogoError() {
+            document.getElementById('sidebarLogo').style.display = 'none';
+            document.getElementById('defaultLogo').style.display = 'flex';
+        }
+        
+        function handleMobileLogoError() {
+            const mobileLogo = document.getElementById('mobileLogo');
+            mobileLogo.src = '';
+            mobileLogo.alt = 'Sistema Roy';
+            mobileLogo.style.fontFamily = 'Inter, sans-serif';
+            mobileLogo.style.fontWeight = '700';
+            mobileLogo.style.fontSize = '1.2rem';
+            mobileLogo.style.color = 'var(--color-purple)';
+        }
+
         // Configuración inicial
         document.addEventListener('DOMContentLoaded', function() {
+            const sidebarLogo = document.getElementById('sidebarLogo');
+            const mobileLogo = document.getElementById('mobileLogo');
+            
+            if (sidebarLogo && (sidebarLogo.complete && sidebarLogo.naturalHeight === 0)) {
+                handleLogoError();
+            }
+            
+            if (mobileLogo && (mobileLogo.complete && mobileLogo.naturalHeight === 0)) {
+                handleMobileLogoError();
+            }
+            
+            setTimeout(function() {
+                if (sidebarLogo && (sidebarLogo.complete && sidebarLogo.naturalHeight === 0)) {
+                    handleLogoError();
+                }
+                if (mobileLogo && (mobileLogo.complete && mobileLogo.naturalHeight === 0)) {
+                    handleMobileLogoError();
+                }
+            }, 1000);
+
             configurarSubidaImagen();
             configurarCalculos();
             configurarValidacion();
-            configurarTabla();
-            configurarNavegacionTeclado();
         });
 
         // ============ FUNCIONES DEL SIDEBAR ============
@@ -1576,16 +540,13 @@
             }
         }
 
-        // Función para paso anterior
         function anteriorPaso() {
             if (pasoActual > 1) {
                 cambiarPaso(pasoActual - 1);
             }
         }
 
-        // Función para cambiar paso
         function cambiarPaso(nuevoPaso) {
-            // Actualizar clases de sección
             document.getElementById(`section-${pasoActual}`).classList.remove('active');
             document.getElementById(`step-${pasoActual}`).classList.remove('active');
             
@@ -1595,22 +556,18 @@
                 document.getElementById(`step-${pasoActual}`).classList.remove('completed');
             }
 
-            // Mostrar nuevo paso
             pasoActual = nuevoPaso;
             document.getElementById(`section-${pasoActual}`).classList.add('active');
             document.getElementById(`step-${pasoActual}`).classList.add('active');
 
-            // Actualizar botones
             document.getElementById('btn-anterior').style.display = pasoActual > 1 ? 'inline-flex' : 'none';
             document.getElementById('btn-siguiente').style.display = pasoActual < totalPasos ? 'inline-flex' : 'none';
             document.getElementById('btn-guardar').style.display = pasoActual === totalPasos ? 'inline-flex' : 'none';
 
-            // Actualizar progreso
             const progreso = (pasoActual / totalPasos) * 100;
             document.getElementById('progress-bar').style.width = `${progreso}%`;
             document.getElementById('progress-text').textContent = `Paso ${pasoActual} de ${totalPasos} - ${progreso}% completado`;
 
-            // Scroll al inicio
             window.scrollTo(0, 0);
         }
 
@@ -1618,7 +575,7 @@
         function validarPasoActual() {
             const campos = {
                 1: ['codigo', 'nombre', 'categoria', 'marca', 'proveedor'],
-                2: ['precio-costo', 'precio-venta'],
+                2: ['precio-costo', 'precio-con-factura', 'precio-sin-factura'],
                 3: ['stock-inicial', 'stock-minimo', 'unidad-medida', 'ubicacion'],
                 4: []
             };
@@ -1629,7 +586,7 @@
                 const elemento = document.getElementById(campo);
                 if (!elemento.value.trim()) {
                     elemento.focus();
-                    elemento.style.borderColor = 'var(--danger)';
+                    elemento.style.borderColor = 'var(--color-danger)';
                     mostrarAlerta(`Por favor completa el campo: ${elemento.previousElementSibling.textContent}`, 'warning');
                     setTimeout(() => {
                         elemento.style.borderColor = '';
@@ -1638,13 +595,18 @@
                 }
             }
 
-            // Validaciones específicas
             if (pasoActual === 2) {
                 const costo = parseFloat(document.getElementById('precio-costo').value);
-                const venta = parseFloat(document.getElementById('precio-venta').value);
+                const conFactura = parseFloat(document.getElementById('precio-con-factura').value);
+                const sinFactura = parseFloat(document.getElementById('precio-sin-factura').value);
                 
-                if (venta <= costo) {
-                    mostrarAlerta('El precio de venta debe ser mayor al precio de costo', 'warning');
+                if (conFactura <= costo || sinFactura <= costo) {
+                    mostrarAlerta('Los precios de venta deben ser mayores al precio de costo', 'warning');
+                    return false;
+                }
+
+                if (sinFactura >= conFactura) {
+                    mostrarAlerta('El precio sin factura debe ser menor al precio con factura', 'warning');
                     return false;
                 }
             }
@@ -1654,20 +616,37 @@
 
         // ============ FUNCIONES DE CÁLCULOS ============
         function configurarCalculos() {
-            document.getElementById('precio-costo').addEventListener('input', calcularMargen);
-            document.getElementById('precio-venta').addEventListener('input', calcularMargen);
+            document.getElementById('precio-costo').addEventListener('input', calcularMargenes);
+            document.getElementById('precio-con-factura').addEventListener('input', calcularMargenes);
+            document.getElementById('precio-sin-factura').addEventListener('input', calcularMargenes);
             document.getElementById('categoria').addEventListener('change', generarCodigoAutomatico);
         }
 
-        function calcularMargen() {
+        function calcularMargenes() {
             const costo = parseFloat(document.getElementById('precio-costo').value) || 0;
-            const venta = parseFloat(document.getElementById('precio-venta').value) || 0;
+            const conFactura = parseFloat(document.getElementById('precio-con-factura').value) || 0;
+            const sinFactura = parseFloat(document.getElementById('precio-sin-factura').value) || 0;
             
-            if (costo > 0 && venta > 0) {
-                const margen = ((venta - costo) / costo) * 100;
-                document.getElementById('margen').value = `${margen.toFixed(2)}%`;
+            if (costo > 0) {
+                if (conFactura > 0) {
+                    const margenConFactura = ((conFactura - costo) / costo) * 100;
+                    document.getElementById('margen-con-factura').value = `${margenConFactura.toFixed(2)}%`;
+                }
+                
+                if (sinFactura > 0) {
+                    const margenSinFactura = ((sinFactura - costo) / costo) * 100;
+                    document.getElementById('margen-sin-factura').value = `${margenSinFactura.toFixed(2)}%`;
+                }
+
+                if (conFactura > 0 && sinFactura > 0) {
+                    const diferencia = conFactura - sinFactura;
+                    const porcentajeDiferencia = ((diferencia / conFactura) * 100).toFixed(2);
+                    document.getElementById('diferencia-precios').value = `Bs. ${diferencia.toFixed(2)} (${porcentajeDiferencia}%)`;
+                }
             } else {
-                document.getElementById('margen').value = '';
+                document.getElementById('margen-con-factura').value = '';
+                document.getElementById('margen-sin-factura').value = '';
+                document.getElementById('diferencia-precios').value = '';
             }
         }
 
@@ -1735,6 +714,47 @@
             }
         }
 
+        // ============ FUNCIONES DE IMAGEN ============
+        function toggleImageSource(tipo) {
+            const btnFile = document.getElementById('btn-file');
+            const btnUrl = document.getElementById('btn-url');
+            const fileArea = document.getElementById('file-upload-area');
+            const urlArea = document.getElementById('url-input-area');
+            const previewImagen = document.getElementById('preview-imagen');
+            
+            if (tipo === 'file') {
+                btnFile.classList.add('active');
+                btnUrl.classList.remove('active');
+                fileArea.style.display = 'block';
+                urlArea.style.display = 'none';
+            } else {
+                btnFile.classList.remove('active');
+                btnUrl.classList.add('active');
+                fileArea.style.display = 'none';
+                urlArea.style.display = 'block';
+            }
+            
+            // Ocultar preview al cambiar de modo
+            previewImagen.style.display = 'none';
+            document.getElementById('upload-area').style.display = 'block';
+        }
+
+        function previewUrl() {
+            const url = document.getElementById('imagen-url').value;
+            const previewImagen = document.getElementById('preview-imagen');
+            
+            if (url) {
+                previewImagen.src = url;
+                previewImagen.style.display = 'block';
+                previewImagen.onerror = () => {
+                    mostrarAlerta('Error al cargar la imagen desde la URL', 'warning');
+                    previewImagen.style.display = 'none';
+                };
+            } else {
+                mostrarAlerta('Por favor ingresa una URL válida', 'warning');
+            }
+        }
+
         // ============ FUNCIONES DE VALIDACIÓN EN TIEMPO REAL ============
         function configurarValidacion() {
             const campos = document.querySelectorAll('.form-input[required]');
@@ -1744,222 +764,6 @@
                         this.style.borderColor = '';
                     }
                 });
-            });
-        }
-
-        // ============ FUNCIONES DE LA TABLA ============
-        function configurarTabla() {
-            // Configurar búsqueda
-            document.getElementById('search-productos').addEventListener('input', filtrarTabla);
-            
-            // Cargar datos iniciales
-            cargarDatosTabla();
-        }
-
-        function cargarDatosTabla() {
-            const filas = document.querySelectorAll('#productos-recientes tr');
-            productosData = Array.from(filas).map((fila, index) => {
-                const celdas = fila.querySelectorAll('td');
-                if (celdas.length > 0) {
-                    return {
-                        id: fila.dataset.id || index,
-                        codigo: celdas[0].textContent.trim(),
-                        nombre: celdas[1].textContent.trim(),
-                        categoria: celdas[2].textContent.trim(),
-                        precio: celdas[3].textContent.trim(),
-                        stock: celdas[4].textContent.trim(),
-                        estado: celdas[5].textContent.trim(),
-                        elemento: fila
-                    };
-                }
-                return null;
-            }).filter(item => item !== null);
-        }
-
-        function seleccionarFila(fila) {
-            // Remover selección anterior
-            if (filaSeleccionada) {
-                filaSeleccionada.classList.remove('selected');
-            }
-            
-            // Agregar nueva selección
-            fila.classList.add('selected');
-            filaSeleccionada = fila;
-        }
-
-        function ordenarTabla(columna) {
-            const tabla = document.getElementById('productos-table');
-            const tbody = tabla.querySelector('tbody');
-            const filas = Array.from(tbody.querySelectorAll('tr'));
-            
-            // Determinar dirección de ordenamiento
-            if (ordenActual.columna === columna) {
-                ordenActual.direccion = ordenActual.direccion === 'asc' ? 'desc' : 'asc';
-            } else {
-                ordenActual.direccion = 'asc';
-            }
-            ordenActual.columna = columna;
-            
-            // Ordenar filas
-            filas.sort((a, b) => {
-                const celda1 = a.cells[columna].textContent.trim();
-                const celda2 = b.cells[columna].textContent.trim();
-                
-                let resultado = 0;
-                if (columna === 3) { // Precio
-                    const precio1 = parseFloat(celda1.replace(/[^\d.]/g, ''));
-                    const precio2 = parseFloat(celda2.replace(/[^\d.]/g, ''));
-                    resultado = precio1 - precio2;
-                } else {
-                    resultado = celda1.localeCompare(celda2);
-                }
-                
-                return ordenActual.direccion === 'asc' ? resultado : -resultado;
-            });
-            
-            // Actualizar tabla
-            filas.forEach(fila => tbody.appendChild(fila));
-            
-            // Actualizar indicadores de ordenamiento
-            actualizarIndicadoresOrden();
-        }
-
-        function actualizarIndicadoresOrden() {
-            const headers = document.querySelectorAll('th[onclick]');
-            headers.forEach((header, index) => {
-                const texto = header.textContent.replace(/[🔽🔼]/g, '').trim();
-                if (index === ordenActual.columna) {
-                    header.textContent = texto + (ordenActual.direccion === 'asc' ? ' 🔼' : ' 🔽');
-                } else {
-                    header.textContent = texto + ' 🔽';
-                }
-            });
-        }
-
-        function filtrarTabla() {
-            const busqueda = document.getElementById('search-productos').value.toLowerCase();
-            const filas = document.querySelectorAll('#productos-recientes tr');
-            
-            filas.forEach(fila => {
-                const texto = fila.textContent.toLowerCase();
-                fila.style.display = texto.includes(busqueda) ? '' : 'none';
-            });
-            
-            actualizarContadorTabla();
-        }
-
-        function actualizarContadorTabla() {
-            const filasVisibles = document.querySelectorAll('#productos-recientes tr:not([style*="display: none"])');
-            document.getElementById('total-productos').textContent = filasVisibles.length;
-            document.getElementById('showing-end').textContent = filasVisibles.length;
-        }
-
-        // ============ FUNCIONES DE ACCIONES DE TABLA ============
-        function verProducto(id) {
-            event.stopPropagation();
-            mostrarAlerta(`Mostrando detalles del producto ID: ${id}`, 'info');
-            // Aquí implementarías la modal o navegación para ver detalles
-        }
-
-        function editarProducto(id) {
-            event.stopPropagation();
-            mostrarAlerta(`Editando producto ID: ${id}`, 'warning');
-            // Aquí implementarías la funcionalidad de edición
-        }
-
-        function eliminarProducto(id) {
-            event.stopPropagation();
-            if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
-                const fila = document.querySelector(`tr[data-id="${id}"]`);
-                if (fila) {
-                    fila.remove();
-                    mostrarAlerta(`Producto ID: ${id} eliminado exitosamente`, 'success');
-                    actualizarContadorTabla();
-                }
-            }
-        }
-
-        function exportarTabla() {
-            mostrarAlerta('Exportando tabla...', 'info');
-            // Implementar funcionalidad de exportación
-        }
-
-        function refreshTabla() {
-            mostrarAlerta('Actualizando tabla...', 'info');
-            // Implementar funcionalidad de actualización
-        }
-
-        function paginaAnterior() {
-            // Implementar paginación
-            mostrarAlerta('Función de paginación en desarrollo', 'info');
-        }
-
-        function paginaSiguiente() {
-            // Implementar paginación
-            mostrarAlerta('Función de paginación en desarrollo', 'info');
-        }
-
-        // ============ NAVEGACIÓN POR TECLADO ============
-        function configurarNavegacionTeclado() {
-            document.addEventListener('keydown', function(e) {
-                // Navegación en tabla
-                if (document.activeElement.closest('.table-container')) {
-                    const filas = Array.from(document.querySelectorAll('#productos-recientes tr:not([style*="display: none"])'));
-                    const filaActual = filas.findIndex(fila => fila.classList.contains('selected'));
-                    
-                    switch(e.key) {
-                        case 'ArrowUp':
-                            e.preventDefault();
-                            if (filaActual > 0) {
-                                seleccionarFila(filas[filaActual - 1]);
-                            }
-                            break;
-                        case 'ArrowDown':
-                            e.preventDefault();
-                            if (filaActual < filas.length - 1) {
-                                seleccionarFila(filas[filaActual + 1]);
-                            } else if (filaActual === -1 && filas.length > 0) {
-                                seleccionarFila(filas[0]);
-                            }
-                            break;
-                        case 'Enter':
-                            if (filaSeleccionada) {
-                                const id = filaSeleccionada.dataset.id;
-                                verProducto(id);
-                            }
-                            break;
-                        case 'Delete':
-                            if (filaSeleccionada) {
-                                const id = filaSeleccionada.dataset.id;
-                                eliminarProducto(id);
-                            }
-                            break;
-                    }
-                }
-                
-                // Atajos globales
-                if (e.ctrlKey || e.metaKey) {
-                    switch(e.key) {
-                        case 'ArrowRight':
-                            e.preventDefault();
-                            if (pasoActual < totalPasos) siguientePaso();
-                            break;
-                        case 'ArrowLeft':
-                            e.preventDefault();
-                            if (pasoActual > 1) anteriorPaso();
-                            break;
-                        case 's':
-                            e.preventDefault();
-                            if (pasoActual === totalPasos) {
-                                document.getElementById('producto-form').dispatchEvent(new Event('submit'));
-                            }
-                            break;
-                        case 'f':
-                            e.preventDefault();
-                            document.getElementById('search-productos').focus();
-                            break;
-                    }
-                }
             });
         }
 
@@ -1982,7 +786,6 @@
                     const nombre = document.getElementById('nombre').value;
                     
                     mostrarAlerta(`Producto "${nombre}" (${codigo}) guardado exitosamente!`, 'success');
-                    agregarProductoReciente();
                     
                     if (confirm('¿Deseas agregar otro producto?')) {
                         limpiarFormulario();
@@ -1991,53 +794,18 @@
             }
         });
 
-        // ============ AGREGAR PRODUCTO A TABLA ============
-        function agregarProductoReciente() {
-            const tabla = document.getElementById('productos-recientes');
-            const codigo = document.getElementById('codigo').value;
-            const nombre = document.getElementById('nombre').value;
-            const categoria = document.getElementById('categoria').options[document.getElementById('categoria').selectedIndex].text;
-            const precio = document.getElementById('precio-venta').value;
-            const stock = document.getElementById('stock-inicial').value;
-            const unidad = document.getElementById('unidad-medida').options[document.getElementById('unidad-medida').selectedIndex].text;
-            const nuevoId = Date.now();
-            
-            const nuevaFila = document.createElement('tr');
-            nuevaFila.dataset.id = nuevoId;
-            nuevaFila.onclick = () => seleccionarFila(nuevaFila);
-            nuevaFila.innerHTML = `
-                <td><strong>${codigo}</strong></td>
-                <td>${nombre}</td>
-                <td>${categoria}</td>
-                <td><strong>Bs. ${parseFloat(precio).toFixed(2)}</strong></td>
-                <td>${stock} ${unidad}</td>
-                <td><span class="badge badge-available">Activo</span></td>
-                <td>
-                    <div class="action-buttons">
-                        <button class="btn btn-info btn-icon" onclick="verProducto(${nuevoId})" title="Ver detalles">👁️</button>
-                        <button class="btn btn-warning btn-icon" onclick="editarProducto(${nuevoId})" title="Editar">✏️</button>
-                        <button class="btn btn-danger btn-icon" onclick="eliminarProducto(${nuevoId})" title="Eliminar">🗑️</button>
-                    </div>
-                </td>
-            `;
-            
-            tabla.insertBefore(nuevaFila, tabla.firstChild);
-            
-            // Mantener solo los últimos 10
-            while (tabla.children.length > 10) {
-                tabla.removeChild(tabla.lastChild);
-            }
-            
-            actualizarContadorTabla();
-        }
-
         // ============ LIMPIAR FORMULARIO ============
         function limpiarFormulario() {
             document.getElementById('producto-form').reset();
             cambiarPaso(1);
             document.getElementById('preview-imagen').style.display = 'none';
             document.getElementById('upload-area').style.display = 'block';
-            document.getElementById('margen').value = '';
+            document.getElementById('margen-con-factura').value = '';
+            document.getElementById('margen-sin-factura').value = '';
+            document.getElementById('diferencia-precios').value = '';
+            
+            // Resetear el selector de imagen
+            toggleImageSource('file');
         }
 
         // ============ MOSTRAR ALERTAS ============
@@ -2059,9 +827,945 @@
             }, 5000);
         }
 
+        // ============ ANIMACIONES DE ENTRADA ============
+        const elements = document.querySelectorAll('.card, .alert');
+        elements.forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                element.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+
         console.log('Sistema de Agregar Producto Roy Representaciones iniciado');
-        console.log('Atajos: Ctrl+→ (Siguiente), Ctrl+← (Anterior), Ctrl+S (Guardar), Ctrl+F (Buscar)');
-        console.log('Navegación tabla: ↑↓ (Navegar), Enter (Ver), Delete (Eliminar)');
+        console.log('Funcionalidades: Formulario multi-paso, cálculo automático de márgenes, subida de imagen por archivo o URL');
     </script>
 </body>
-</html>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Agregar Producto - Sistema Roy Representaciones</title>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Colores basados en el dashboard */
+            --color-purple: #6F42C1;
+            --color-blue: #007BFF;
+            --color-green: #28C76F;
+            --color-gold: #FFD700;
+            --text-dark: #2D3748;
+            --text-gray: #718096;
+            --text-light: #A0AEC0;
+            
+            /* Colores de fondo */
+            --bg-primary: rgba(255, 255, 255, 0.85);
+            --bg-secondary: rgba(240, 244, 255, 0.7);
+            --bg-tertiary: rgba(230, 240, 255, 0.5);
+            
+            /* Sombras */
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+            
+            /* Radios */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Espaciado */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #f0f4ff, #e6f0ff, #f0f9ff);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 16px;
+            background-attachment: fixed;
+            font-weight: 400;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Elementos decorativos de fondo (como en el dashboard) */
+        .bg-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--color-purple);
+            top: -100px;
+            left: -100px;
+        }
+        
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--color-blue);
+            bottom: -150px;
+            right: -150px;
+        }
+        
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--color-green);
+            top: 50%;
+            left: 70%;
+        }
+
+        /* ============ SIDEBAR MODERNO ============ */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: var(--space-xl);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .sidebar-header::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--color-purple), var(--color-blue), var(--color-green), var(--color-purple));
+            background-size: 300% 300%;
+            border-radius: 0 0 22px 0;
+            animation: gradientMove 4s ease infinite;
+            z-index: -1;
+        }
+
+        .sidebar-header::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 0 0 18px 0;
+            z-index: -1;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            margin-bottom: var(--space-md);
+            width: 100%;
+        }
+
+        .sidebar-logo-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: var(--space-md);
+        }
+
+        .logo-default {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            color: white;
+            font-weight: 900;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: var(--space-xs);
+        }
+
+        .sidebar-nav {
+            padding: var(--space-md);
+        }
+
+        .nav-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-md);
+            padding: 0 var(--space-md);
+        }
+
+        .nav-item {
+            margin-bottom: var(--space-xs);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: var(--space-md);
+            color: var(--text-gray);
+            text-decoration: none;
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.875rem;
+            gap: var(--space-sm);
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-link:hover {
+            background: rgba(111, 66, 193, 0.1);
+            color: var(--color-purple);
+            transform: translateX(4px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        /* ============ MAIN CONTENT ============ */
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: var(--space-xl);
+        }
+
+        /* ============ NAVEGACIÓN MÓVIL ============ */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-sm);
+            z-index: 1001;
+            padding: var(--space-md);
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        .mobile-logo {
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* ============ LAYOUT RESPONSIVO ============ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: var(--space-3xl);
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--space-xl);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* ============ CARDS CON EFECTOS DE LUZ ============ */
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--color-purple), var(--color-blue), var(--color-green), var(--color-purple));
+            background-size: 300% 300%;
+            border-radius: calc(var(--radius-xl) + 3px);
+            animation: gradientMove 4s ease infinite;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: calc(var(--radius-xl) - 2px);
+            z-index: -1;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============ TIPOGRAFÍA MODERNA ============ */
+        .text-display {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: var(--space-lg);
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: var(--space-lg);
+            letter-spacing: -0.02em;
+        }
+
+        .text-h2 {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.01em;
+        }
+
+        .text-h3 {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--color-blue);
+            margin-bottom: var(--space-md);
+        }
+
+        .text-body {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+        }
+
+        /* ============ BOTONES MODERNOS ============ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            letter-spacing: 0.025em;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--color-purple), var(--color-blue), var(--color-green), var(--color-purple));
+            background-size: 300% 300%;
+            border-radius: calc(var(--radius-lg) + 3px);
+            animation: gradientMove 4s ease infinite;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--color-purple), var(--color-blue));
+            color: white;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: linear-gradient(90deg, var(--color-purple), var(--color-blue));
+            border-radius: calc(var(--radius-lg) - 2px);
+            z-index: -1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--color-blue);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-secondary::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: calc(var(--radius-lg) - 2px);
+            z-index: -1;
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-blue);
+            color: white;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ============ FORMULARIOS MODERNOS ============ */
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            margin-bottom: var(--space-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text-dark);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            transform: scale(1.01);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-light);
+        }
+
+        .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 1rem center;
+            background-repeat: no-repeat;
+            background-size: 1.25rem;
+            padding-right: 3rem;
+            appearance: none;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-help {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: var(--space-xs);
+        }
+
+        /* ============ STEPS INDICATOR ============ */
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--space-xl);
+            padding: var(--space-lg) 0;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            width: 80px;
+            height: 2px;
+            background: var(--bg-tertiary);
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .step.completed:not(:last-child)::after {
+            background: var(--color-green);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-number {
+            background: var(--color-blue);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .step.completed .step-number {
+            background: var(--color-green);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-label {
+            margin-left: var(--space-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-gray);
+            white-space: nowrap;
+        }
+
+        /* ============ FORM SECTIONS ============ */
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============ UPLOAD AREA ============ */
+        .upload-area {
+            border: 2px dashed rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            text-align: center;
+            background: var(--bg-secondary);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: var(--color-blue);
+            background: rgba(0, 123, 255, 0.05);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--color-green);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-md);
+            opacity: 0.5;
+        }
+
+        .upload-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-gray);
+            margin-bottom: var(--space-sm);
+        }
+
+        .upload-subtext {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .preview-image {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin: var(--space-md) auto;
+            display: block;
+        }
+
+        /* Nuevo estilo para selector de imagen */
+        .image-input-container {
+            display: flex;
+            gap: var(--space-md);
+            align-items: center;
+            margin-bottom: var(--space-md);
+        }
+
+        .image-source-toggle {
+            display: flex;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: var(--radius-lg);
+            padding: 0.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .toggle-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--text-gray);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ============ PROGRESS BAR ============ */
+        .progress {
+            height: 6px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            margin: var(--space-md) 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-purple), var(--color-blue));
+            border-radius: var(--radius-sm);
+            transition: width 0.3s ease;
+        }
+
+        .step-info {
+            text-align: center;
+            flex: 1;
+            margin: 0 var(--space-md);
+        }
+
+        .step-text {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: var(--space-xs);
+        }
+
+        /* ============ FORM ACTIONS ============ */
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-lg);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            margin-top: var(--space-xl);
+        }
+
+        /* ============ ALERTAS ============ */
+        .alert {
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--space-lg) 0;
+            border-left: 4px solid;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: #dd6b20;
+            color: #9c4221;
+        }
+
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1);
+            border-left-color: #e53e3e;
+            color: #c53030;
+        }
+
+        .alert-info {
+            background: rgba(59, 130, 246, 0.1);
+            border-left-color: #3182ce;
+            color: #2c5282;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: #38a169;
+            color: #276749;
+        }
+
+        /* ============ UTILIDADES ============ */
+        .text-center { text-align: center; }
+        .mb-0 { margin-bottom: 0; }
+        .mt-lg { margin-top: var(--space-lg); }
+        .font-bold { font-weight: 700; }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding-top: 70px;
+                padding: var(--space-md);
+            }
+
+            .mobile-header {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0;
+            }
+            
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                padding: var(--space-lg);
+            }
+
+            .form-actions {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+
+            .step-info {
+                order: -1;
+                margin: 0 0 var(--space-md) 0;
+            }
+
+            .steps-container {
+                overflow-x: auto;
+                padding: var(--space-md) 0;
+            }
+
+            .step:not(:last-child)::after {
+                width: 60px;
+            }
+
+            .step-label {
+                display: none;
+            }
+
+            .image-input-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding-top: 60px;
+                padding: var(--space-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Elementos decorativos de fondo -->
+    <div class
