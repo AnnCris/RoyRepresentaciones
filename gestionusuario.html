@@ -6,39 +6,50 @@
     <title>Gestión de Usuarios - Sistema Roy Representaciones</title>
     <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
+            /* Colores basados en el dashboard */
             --color-purple: #6F42C1;
             --color-blue: #007BFF;
             --color-green: #28C76F;
             --color-gold: #FFD700;
-            --text-dark: #1A1A1A;
-            --text-gray: #555555;
-            --text-light: #888888;
+            --text-dark: #2D3748;
+            --text-gray: #718096;
+            --text-light: #A0AEC0;
             --text-muted: #9CA3AF;
-            --bg-primary: #FFFFFF;
-            --bg-secondary: #F8FAFC;
-            --bg-tertiary: #F1F5F9;
-            --bg-card: rgba(255, 255, 255, 0.95);
+            
+            /* Colores de fondo */
+            --bg-primary: rgba(255, 255, 255, 0.85);
+            --bg-secondary: rgba(240, 244, 255, 0.7);
+            --bg-tertiary: rgba(230, 240, 255, 0.5);
+            
+            /* Estados */
             --success: #10B981;
             --warning: #F59E0B;
             --danger: #EF4444;
             --info: #3B82F6;
-            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* Sombras */
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+            
+            /* Radios */
             --radius-sm: 0.375rem;
             --radius-md: 0.5rem;
             --radius-lg: 0.75rem;
             --radius-xl: 1rem;
             --radius-2xl: 1.5rem;
+            
+            /* Espaciado */
             --space-xs: 0.25rem;
             --space-sm: 0.5rem;
             --space-md: 1rem;
             --space-lg: 1.5rem;
             --space-xl: 2rem;
             --space-2xl: 3rem;
+            --space-3xl: 4rem;
         }
 
         * {
@@ -48,18 +59,230 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #ffffff, #cfe8ff);
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #f0f4ff, #e6f0ff, #f0f9ff);
             min-height: 100vh;
             color: var(--text-dark);
             line-height: 1.6;
             font-size: 16px;
             background-attachment: fixed;
             font-weight: 400;
-            padding-top: 70px;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        .navbar {
+        /* Elementos decorativos de fondo */
+        .bg-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--color-purple);
+            top: -100px;
+            left: -100px;
+        }
+        
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--color-blue);
+            bottom: -150px;
+            right: -150px;
+        }
+        
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--color-green);
+            top: 50%;
+            left: 70%;
+        }
+
+        /* ============ SIDEBAR MODERNO ============ */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: var(--space-xl);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .sidebar-header::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--color-purple), var(--color-blue), var(--color-green), var(--color-purple));
+            background-size: 300% 300%;
+            border-radius: 0 0 22px 0;
+            animation: gradientMove 4s ease infinite;
+            z-index: -1;
+        }
+
+        .sidebar-header::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 0 0 18px 0;
+            z-index: -1;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            margin-bottom: var(--space-md);
+            width: 100%;
+        }
+
+        .sidebar-logo-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: var(--space-md);
+        }
+
+        .logo-default {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            color: white;
+            font-weight: 900;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: var(--space-xs);
+        }
+
+        .sidebar-nav {
+            padding: var(--space-md);
+        }
+
+        .nav-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-md);
+            padding: 0 var(--space-md);
+        }
+
+        .nav-item {
+            margin-bottom: var(--space-xs);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: var(--space-md);
+            color: var(--text-gray);
+            text-decoration: none;
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.875rem;
+            gap: var(--space-sm);
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-link:hover {
+            background: rgba(111, 66, 193, 0.1);
+            color: var(--color-purple);
+            transform: translateX(4px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* ============ MAIN CONTENT ============ */
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: var(--space-xl);
+        }
+
+        /* ============ NAVEGACIÓN MÓVIL ============ */
+        .mobile-header {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -68,100 +291,131 @@
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: var(--shadow-sm);
-            z-index: 1000;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .navbar-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--space-lg);
-            display: flex;
+            z-index: 1001;
+            padding: var(--space-md);
             align-items: center;
             justify-content: space-between;
-            height: 70px;
         }
 
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            gap: var(--space-sm);
-            transition: all 0.3s ease;
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
         }
 
-        .navbar-logo {
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
-            color: white;
-            width: 40px;
+        .mobile-logo {
             height: 40px;
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 0.875rem;
-            box-shadow: var(--shadow-md);
+            object-fit: contain;
         }
 
-        .navbar-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            letter-spacing: -0.01em;
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
 
-        .navbar-menu {
-            display: flex;
-            align-items: center;
-            gap: var(--space-md);
-        }
-
-        .navbar-link {
-            padding: var(--space-sm) var(--space-md);
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.875rem;
-            border-radius: var(--radius-md);
-            transition: all 0.3s ease;
-        }
-
-        .navbar-link:hover {
-            color: var(--color-purple);
-            background: rgba(111, 66, 193, 0.05);
-        }
-
-        .navbar-link.active {
-            color: var(--color-purple);
-            background: rgba(111, 66, 193, 0.1);
-        }
-
+        /* ============ CONTENIDO ============ */
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: var(--space-xl);
         }
 
         .section {
-            margin-bottom: var(--space-2xl);
+            margin-bottom: var(--space-3xl);
         }
 
+        .grid {
+            display: grid;
+            gap: var(--space-xl);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* ============ CARDS CON EFECTOS DE LUZ ============ */
         .card {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-2xl);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius-xl);
             padding: var(--space-xl);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-md);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--color-purple), var(--color-blue), var(--color-green), var(--color-purple));
+            background-size: 300% 300%;
+            border-radius: calc(var(--radius-xl) + 3px);
+            animation: gradientMove 4s ease infinite;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: calc(var(--radius-xl) - 2px);
+            z-index: -1;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============ TIPOGRAFÍA MODERNA ============ */
+        .text-display {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: var(--space-lg);
+            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
         }
 
         .text-h1 {
@@ -190,23 +444,95 @@
             margin-bottom: var(--space-md);
         }
 
-        .grid {
+        .text-body {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--text-gray);
+            margin-bottom: var(--space-md);
+            text-align: center;
+        }
+
+        /* ============ ESTADÍSTICAS ============ */
+        .stats-grid {
             display: grid;
-            gap: var(--space-xl);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
         }
 
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        .stat-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--color-purple), var(--color-blue), var(--color-green), var(--color-purple));
+            background-size: 300% 300%;
+            border-radius: calc(var(--radius-lg) + 3px);
+            animation: gradientMove 4s ease infinite;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .grid-4 {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        .stat-card:hover::before {
+            opacity: 1;
         }
 
+        .stat-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: calc(var(--radius-lg) - 2px);
+            z-index: -1;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-purple);
+            margin-bottom: var(--space-sm);
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============ FORMULARIOS ============ */
         .form-group {
             margin-bottom: var(--space-lg);
         }
@@ -217,17 +543,18 @@
             border: 2px solid rgba(0, 0, 0, 0.1);
             border-radius: var(--radius-lg);
             font-size: 1rem;
-            background: var(--bg-primary);
+            background: rgba(255, 255, 255, 0.9);
             color: var(--text-dark);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: inherit;
+            backdrop-filter: blur(10px);
         }
 
         .form-input:focus {
             outline: none;
             border-color: var(--color-blue);
             box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-            background: #FAFBFF;
+            background: rgba(255, 255, 255, 0.95);
             transform: scale(1.01);
         }
 
@@ -251,6 +578,7 @@
             display: block;
         }
 
+        /* ============ BOTONES ============ */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -263,40 +591,88 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
-            margin: var(--space-sm);
             letter-spacing: 0.025em;
-            min-width: 140px;
+            position: relative;
+            overflow: hidden;
+            margin: var(--space-xs);
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--color-purple), var(--color-blue), var(--color-green), var(--color-purple));
+            background-size: 300% 300%;
+            border-radius: calc(var(--radius-lg) + 3px);
+            animation: gradientMove 4s ease infinite;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
         }
 
         .btn-sm {
             padding: 0.5rem 1rem;
             font-size: 0.75rem;
-            min-width: auto;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            background: linear-gradient(90deg, var(--color-purple), var(--color-blue));
             color: white;
             box-shadow: var(--shadow-md);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: linear-gradient(90deg, var(--color-purple), var(--color-blue));
+            border-radius: calc(var(--radius-lg) - 2px);
+            z-index: -1;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px) scale(1.02);
-            box-shadow: var(--shadow-xl);
-            background: linear-gradient(135deg, var(--color-blue), var(--color-green));
+            box-shadow: var(--shadow-lg);
         }
 
         .btn-secondary {
-            background: var(--bg-primary);
+            background: rgba(255, 255, 255, 0.8);
             color: var(--color-blue);
-            border: 2px solid var(--color-blue);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: var(--shadow-sm);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-secondary::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: calc(var(--radius-lg) - 2px);
+            z-index: -1;
         }
 
         .btn-secondary:hover {
             background: var(--color-blue);
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-md);
         }
 
         .btn-danger {
@@ -323,6 +699,7 @@
             box-shadow: var(--shadow-md);
         }
 
+        /* ============ USUARIOS ============ */
         .user-avatar {
             width: 50px;
             height: 50px;
@@ -379,13 +756,14 @@
             color: white;
         }
 
+        /* ============ TABLA ============ */
         .table-container {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
             border-radius: var(--radius-xl);
             overflow: hidden;
             box-shadow: var(--shadow-lg);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             overflow-x: auto;
         }
 
@@ -422,6 +800,7 @@
             transform: scale(1.01);
         }
 
+        /* ============ BÚSQUEDA ============ */
         .search-container {
             position: relative;
             margin-bottom: var(--space-xl);
@@ -441,42 +820,7 @@
             font-size: 1.1rem;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-lg);
-            margin-bottom: var(--space-xl);
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            padding: var(--space-lg);
-            border-radius: var(--radius-lg);
-            text-align: center;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--color-purple);
-            margin-bottom: var(--space-sm);
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
+        /* ============ MODAL ============ */
         .modal {
             display: none;
             position: fixed;
@@ -490,13 +834,15 @@
         }
 
         .modal-content {
-            background-color: var(--bg-primary);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             margin: 5% auto;
             padding: var(--space-xl);
             border-radius: var(--radius-2xl);
             width: 90%;
             max-width: 600px;
-            box-shadow: var(--shadow-xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .close {
@@ -505,20 +851,45 @@
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .close:hover {
             color: var(--text-dark);
+            transform: scale(1.1);
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding-top: 70px;
+                padding: var(--space-md);
+            }
+
+            .mobile-header {
+                display: flex;
+            }
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: var(--space-md);
+                padding: 0;
             }
             
-            .grid-2,
-            .grid-3,
-            .grid-4 {
+            .grid-2, .grid-3, .grid-4 {
                 grid-template-columns: 1fr;
             }
             
@@ -535,267 +906,446 @@
                 font-size: 0.875rem;
             }
         }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding-top: 60px;
+                padding: var(--space-sm);
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="#" class="navbar-brand">
-                <div class="navbar-logo">ROY</div>
-                <span class="navbar-title">Sistema Roy</span>
+    <!-- Elementos decorativos de fondo -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-brand">
+                <!-- Logo desde la carpeta assets -->
+                <img src="assets/images/Roydent.png" alt="Logo de RoyDent" class="sidebar-logo-img" id="sidebarLogo" onerror="handleLogoError()">
+                <!-- Logo por defecto (oculto inicialmente) -->
+                <div class="logo-default" id="defaultLogo" style="display: none;">
+                    ROY
+                </div>
+                <div>
+                    <div class="sidebar-title">Sistema RoyDent</div>
+                    <div class="sidebar-subtitle">Y Mundo Medico</div>
+                </div>
             </a>
-            <div class="navbar-menu">
-                <a href="dashboard.html" class="navbar-link">Dashboard</a>
-                <a href="configuracion.html" class="navbar-link">Configuración</a>
-                <a href="#" class="navbar-link active">Usuarios</a>
-                <a href="backup.html" class="navbar-link">Backup</a>
-            </div>
         </div>
-    </nav>
-
-    <div class="container">
-        <!-- Header -->
-        <div class="section">
-            <div class="card">
-                <h1 class="text-h1">Gestión de Usuarios</h1>
-                <p style="color: var(--text-gray);">Administra usuarios, roles y permisos del sistema Mundo Médico y RoyDent</p>
-            </div>
-        </div>
-
-        <!-- Estadísticas de Usuarios -->
-        <div class="section">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">12</div>
-                    <div class="stat-label">Usuarios Totales</div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-title">Principal</div>
+                <div class="nav-item">
+                    <a href="dashboard.html" class="nav-link">
+                        <div class="nav-icon">🏠</div>
+                        Dashboard
+                    </a>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">8</div>
-                    <div class="stat-label">Usuarios Activos</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">2</div>
-                    <div class="stat-label">Administradores</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">Vendedores</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">24h</div>
-                    <div class="stat-label">Última Conexión</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📊</div>
+                        Analíticas
+                    </a>
                 </div>
             </div>
-        </div>
 
-        <!-- Búsqueda y Filtros -->
-        <div class="section">
-            <div class="card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg);">
-                    <h2 class="text-h2" style="margin-bottom: 0;">Gestión de Usuarios</h2>
-                    <button class="btn btn-primary" onclick="abrirModalUsuario()">Nuevo Usuario</button>
+            <div class="nav-section">
+                <div class="nav-title">Productos</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">➕</div>
+                        Agregar Producto
+                    </a>
                 </div>
-                
-                <div class="grid grid-3">
-                    <div class="form-group">
-                        <label class="text-label">Rol</label>
-                        <select class="form-input form-select" id="filtro-rol">
-                            <option value="todos">Todos los roles</option>
-                            <option value="admin">Administrador</option>
-                            <option value="vendedor">Vendedor</option>
-                            <option value="inventario">Inventario</option>
-                            <option value="readonly">Solo Lectura</option>
-                        </select>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📦</div>
+                        Lista de Productos
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">🏷️</div>
+                        Categorías
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">🔄</div>
+                        Control FIFO
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Inventario</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📋</div>
+                        Inventario General
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">⚠️</div>
+                        Stock Bajo
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📍</div>
+                        Ubicaciones
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Ventas</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">🛒</div>
+                        Nueva Venta
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">💰</div>
+                        Historial Ventas
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">👥</div>
+                        Clientes
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Reportes</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📈</div>
+                        Reportes de Ventas
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📉</div>
+                        Análisis de Inventario
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">💼</div>
+                        Reportes Financieros
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Configuración</div>
+                <div class="nav-item">
+                    <a href="configuracion.html" class="nav-link">
+                        <div class="nav-icon">⚙️</div>
+                        Configuración
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">👤</div>
+                        Perfil
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <div class="nav-icon">👥</div>
+                        Usuarios
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="backup.html" class="nav-link">
+                        <div class="nav-icon">💾</div>
+                        Backup
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header" id="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+        <img src="assets/images/Roydent.png" alt="Logo de RoyDent" class="mobile-logo" id="mobileLogo" onerror="handleMobileLogoError()">
+    </header>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Header -->
+            <div class="section">
+                <div class="card">
+                    <div class="card-content">
+                        <h1 class="text-display">Gestión de Usuarios</h1>
+                        <p class="text-body">Administra usuarios, roles y permisos del sistema Mundo Médico y RoyDent</p>
                     </div>
-                    <div class="form-group">
-                        <label class="text-label">Estado</label>
-                        <select class="form-input form-select" id="filtro-estado">
-                            <option value="todos">Todos</option>
-                            <option value="activo">Activos</option>
-                            <option value="inactivo">Inactivos</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="text-label">Sucursal</label>
-                        <select class="form-input form-select" id="filtro-sucursal">
-                            <option value="todas">Todas</option>
-                            <option value="roydent">RoyDent</option>
-                            <option value="mundo_medico">Mundo Médico</option>
-                            <option value="deposito">Depósito</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="search-container">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" class="form-input search-input" id="busqueda" placeholder="Buscar por nombre, usuario o email...">
                 </div>
             </div>
-        </div>
 
-        <!-- Lista de Usuarios -->
-        <div class="section">
-            <div class="card">
-                <h2 class="text-h2">Lista de Usuarios</h2>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Usuario</th>
-                                <th>Email</th>
-                                <th>Rol</th>
-                                <th>Sucursal</th>
-                                <th>Última Conexión</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="usuarios-table">
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center; gap: var(--space-md);">
-                                        <div class="user-avatar">JR</div>
-                                        <div>
-                                            <div style="font-weight: 600;">Juan Rodríguez</div>
-                                            <div style="font-size: 0.875rem; color: var(--text-gray);">@juan.rodriguez</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>juan.rodriguez@royrepresentaciones.com</td>
-                                <td><span class="badge badge-admin">Administrador</span></td>
-                                <td>Oficina Central</td>
-                                <td>Hace 2 horas</td>
-                                <td><span class="badge badge-activo">Activo</span></td>
-                                <td>
-                                    <button class="btn btn-secondary btn-sm" onclick="editarUsuario('user-001')">Editar</button>
-                                    <button class="btn btn-info btn-sm" onclick="verPermisos('user-001')">Permisos</button>
-                                </td>
-                            </tr>
+            <!-- Estadísticas de Usuarios -->
+            <div class="section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Usuarios Totales</div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Usuarios Activos</div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Administradores</div>
+                    </div>
+                    <div class="stat-card info">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Vendedores</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24h</div>
+                        <div class="stat-label">Última Conexión</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Búsqueda y Filtros -->
+            <div class="section">
+                <div class="card">
+                    <div class="card-content">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg);">
+                            <h2 class="text-h2" style="margin-bottom: 0;">Gestión de Usuarios</h2>
+                            <button class="btn btn-primary" onclick="abrirModalUsuario()">👤 Nuevo Usuario</button>
+                        </div>
+                        
+                        <div class="grid grid-3">
+                            <div class="form-group">
+                                <label class="text-label">Rol</label>
+                                <select class="form-input form-select" id="filtro-rol">
+                                    <option value="todos">Todos los roles</option>
+                                    <option value="admin">Administrador</option>
+                                    <option value="vendedor">Vendedor</option>
+                                    <option value="inventario">Inventario</option>
+                                    <option value="readonly">Solo Lectura</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-label">Estado</label>
+                                <select class="form-input form-select" id="filtro-estado">
+                                    <option value="todos">Todos</option>
+                                    <option value="activo">Activos</option>
+                                    <option value="inactivo">Inactivos</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-label">Sucursal</label>
+                                <select class="form-input form-select" id="filtro-sucursal">
+                                    <option value="todas">Todas</option>
+                                    <option value="roydent">RoyDent</option>
+                                    <option value="mundo_medico">Mundo Médico</option>
+                                    <option value="deposito">Depósito</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="search-container">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="form-input search-input" id="busqueda" placeholder="Buscar por nombre, usuario o email...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Usuarios -->
+            <div class="section">
+                <div class="card">
+                    <div class="card-content">
+                        <h2 class="text-h2">Lista de Usuarios</h2>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Email</th>
+                                        <th>Rol</th>
+                                        <th>Sucursal</th>
+                                        <th>Última Conexión</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usuarios-table">
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: var(--space-md);">
+                                                <div class="user-avatar">JR</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Juan Rodríguez</div>
+                                                    <div style="font-size: 0.875rem; color: var(--text-gray);">@juan.rodriguez</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>juan.rodriguez@royrepresentaciones.com</td>
+                                        <td><span class="badge badge-admin">Administrador</span></td>
+                                        <td>Oficina Central</td>
+                                        <td>Hace 2 horas</td>
+                                        <td><span class="badge badge-activo">Activo</span></td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="editarUsuario('user-001')">Editar</button>
+                                            <button class="btn btn-info btn-sm" onclick="verPermisos('user-001')">Permisos</button>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: var(--space-md);">
+                                                <div class="user-avatar">MG</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">María García</div>
+                                                    <div style="font-size: 0.875rem; color: var(--text-gray);">@maria.garcia</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>maria.garcia@mundomedico.com</td>
+                                        <td><span class="badge badge-vendedor">Vendedor</span></td>
+                                        <td>Mundo Médico</td>
+                                        <td>Hace 1 día</td>
+                                        <td><span class="badge badge-activo">Activo</span></td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="editarUsuario('user-002')">Editar</button>
+                                            <button class="btn btn-info btn-sm" onclick="verPermisos('user-002')">Permisos</button>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: var(--space-md);">
+                                                <div class="user-avatar">CP</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Carlos Pérez</div>
+                                                    <div style="font-size: 0.875rem; color: var(--text-gray);">@carlos.perez</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>carlos.perez@roydent.com</td>
+                                        <td><span class="badge badge-inventario">Inventario</span></td>
+                                        <td>RoyDent</td>
+                                        <td>Hace 3 horas</td>
+                                        <td><span class="badge badge-activo">Activo</span></td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="editarUsuario('user-003')">Editar</button>
+                                            <button class="btn btn-info btn-sm" onclick="verPermisos('user-003')">Permisos</button>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: var(--space-md);">
+                                                <div class="user-avatar">AL</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Ana López</div>
+                                                    <div style="font-size: 0.875rem; color: var(--text-gray);">@ana.lopez</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>ana.lopez@mundomedico.com</td>
+                                        <td><span class="badge badge-vendedor">Vendedor</span></td>
+                                        <td>Mundo Médico</td>
+                                        <td>Hace 5 días</td>
+                                        <td><span class="badge badge-inactivo">Inactivo</span></td>
+                                        <td>
+                                            <button class="btn btn-warning btn-sm" onclick="activarUsuario('user-004')">Activar</button>
+                                            <button class="btn btn-danger btn-sm" onclick="eliminarUsuario('user-004')">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roles y Permisos -->
+            <div class="section">
+                <div class="card">
+                    <div class="card-content">
+                        <h2 class="text-h2">Configuración de Roles</h2>
+                        <div class="grid grid-2">
+                            <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-lg);">
+                                <h3 style="color: var(--color-gold); margin-bottom: var(--space-md);">Administrador</h3>
+                                <ul style="color: var(--text-gray); line-height: 1.8;">
+                                    <li>Acceso completo al sistema</li>
+                                    <li>Gestión de usuarios y roles</li>
+                                    <li>Configuración del sistema</li>
+                                    <li>Backup y restauración</li>
+                                    <li>Reportes avanzados</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-sm" style="margin-top: var(--space-md);">Editar Permisos</button>
+                            </div>
                             
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center; gap: var(--space-md);">
-                                        <div class="user-avatar">MG</div>
-                                        <div>
-                                            <div style="font-weight: 600;">María García</div>
-                                            <div style="font-size: 0.875rem; color: var(--text-gray);">@maria.garcia</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>maria.garcia@mundomedico.com</td>
-                                <td><span class="badge badge-vendedor">Vendedor</span></td>
-                                <td>Mundo Médico</td>
-                                <td>Hace 1 día</td>
-                                <td><span class="badge badge-activo">Activo</span></td>
-                                <td>
-                                    <button class="btn btn-secondary btn-sm" onclick="editarUsuario('user-002')">Editar</button>
-                                    <button class="btn btn-info btn-sm" onclick="verPermisos('user-002')">Permisos</button>
-                                </td>
-                            </tr>
+                            <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-lg);">
+                                <h3 style="color: var(--color-blue); margin-bottom: var(--space-md);">Vendedor</h3>
+                                <ul style="color: var(--text-gray); line-height: 1.8;">
+                                    <li>Gestión de ventas</li>
+                                    <li>Consulta de productos</li>
+                                    <li>Gestión de clientes</li>
+                                    <li>Reportes de ventas</li>
+                                    <li>Consulta de inventario</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-sm" style="margin-top: var(--space-md);">Editar Permisos</button>
+                            </div>
                             
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center; gap: var(--space-md);">
-                                        <div class="user-avatar">CP</div>
-                                        <div>
-                                            <div style="font-weight: 600;">Carlos Pérez</div>
-                                            <div style="font-size: 0.875rem; color: var(--text-gray);">@carlos.perez</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>carlos.perez@roydent.com</td>
-                                <td><span class="badge badge-inventario">Inventario</span></td>
-                                <td>RoyDent</td>
-                                <td>Hace 3 horas</td>
-                                <td><span class="badge badge-activo">Activo</span></td>
-                                <td>
-                                    <button class="btn btn-secondary btn-sm" onclick="editarUsuario('user-003')">Editar</button>
-                                    <button class="btn btn-info btn-sm" onclick="verPermisos('user-003')">Permisos</button>
-                                </td>
-                            </tr>
+                            <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-lg);">
+                                <h3 style="color: var(--color-green); margin-bottom: var(--space-md);">Inventario</h3>
+                                <ul style="color: var(--text-gray); line-height: 1.8;">
+                                    <li>Gestión completa de inventario</li>
+                                    <li>Control de stock</li>
+                                    <li>Gestión de proveedores</li>
+                                    <li>Reportes de inventario</li>
+                                    <li>Alertas de vencimiento</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-sm" style="margin-top: var(--space-md);">Editar Permisos</button>
+                            </div>
                             
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center; gap: var(--space-md);">
-                                        <div class="user-avatar">AL</div>
-                                        <div>
-                                            <div style="font-weight: 600;">Ana López</div>
-                                            <div style="font-size: 0.875rem; color: var(--text-gray);">@ana.lopez</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>ana.lopez@mundomedico.com</td>
-                                <td><span class="badge badge-vendedor">Vendedor</span></td>
-                                <td>Mundo Médico</td>
-                                <td>Hace 5 días</td>
-                                <td><span class="badge badge-inactivo">Inactivo</span></td>
-                                <td>
-                                    <button class="btn btn-warning btn-sm" onclick="activarUsuario('user-004')">Activar</button>
-                                    <button class="btn btn-danger btn-sm" onclick="eliminarUsuario('user-004')">Eliminar</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Roles y Permisos -->
-        <div class="section">
-            <div class="card">
-                <h2 class="text-h2">Configuración de Roles</h2>
-                <div class="grid grid-2">
-                    <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-lg);">
-                        <h3 style="color: var(--color-gold); margin-bottom: var(--space-md);">Administrador</h3>
-                        <ul style="color: var(--text-gray); line-height: 1.8;">
-                            <li>Acceso completo al sistema</li>
-                            <li>Gestión de usuarios y roles</li>
-                            <li>Configuración del sistema</li>
-                            <li>Backup y restauración</li>
-                            <li>Reportes avanzados</li>
-                        </ul>
-                        <button class="btn btn-secondary btn-sm" style="margin-top: var(--space-md);">Editar Permisos</button>
-                    </div>
-                    
-                    <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-lg);">
-                        <h3 style="color: var(--color-blue); margin-bottom: var(--space-md);">Vendedor</h3>
-                        <ul style="color: var(--text-gray); line-height: 1.8;">
-                            <li>Gestión de ventas</li>
-                            <li>Consulta de productos</li>
-                            <li>Gestión de clientes</li>
-                            <li>Reportes de ventas</li>
-                            <li>Consulta de inventario</li>
-                        </ul>
-                        <button class="btn btn-secondary btn-sm" style="margin-top: var(--space-md);">Editar Permisos</button>
-                    </div>
-                    
-                    <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-lg);">
-                        <h3 style="color: var(--color-green); margin-bottom: var(--space-md);">Inventario</h3>
-                        <ul style="color: var(--text-gray); line-height: 1.8;">
-                            <li>Gestión completa de inventario</li>
-                            <li>Control de stock</li>
-                            <li>Gestión de proveedores</li>
-                            <li>Reportes de inventario</li>
-                            <li>Alertas de vencimiento</li>
-                        </ul>
-                        <button class="btn btn-secondary btn-sm" style="margin-top: var(--space-md);">Editar Permisos</button>
-                    </div>
-                    
-                    <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-lg);">
-                        <h3 style="color: var(--text-gray); margin-bottom: var(--space-md);">Solo Lectura</h3>
-                        <ul style="color: var(--text-gray); line-height: 1.8;">
-                            <li>Consulta de productos</li>
-                            <li>Ver reportes básicos</li>
-                            <li>Consulta de inventario</li>
-                            <li>Sin permisos de modificación</li>
-                            <li>Acceso limitado</li>
-                        </ul>
-                        <button class="btn btn-secondary btn-sm" style="margin-top: var(--space-md);">Editar Permisos</button>
+                            <div style="background: var(--bg-secondary); padding: var(--space-lg); border-radius: var(--radius-lg);">
+                                <h3 style="color: var(--text-gray); margin-bottom: var(--space-md);">Solo Lectura</h3>
+                                <ul style="color: var(--text-gray); line-height: 1.8;">
+                                    <li>Consulta de productos</li>
+                                    <li>Ver reportes básicos</li>
+                                    <li>Consulta de inventario</li>
+                                    <li>Sin permisos de modificación</li>
+                                    <li>Acceso limitado</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-sm" style="margin-top: var(--space-md);">Editar Permisos</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- Modal Nuevo/Editar Usuario -->
     <div id="modalUsuario" class="modal">
@@ -852,6 +1402,68 @@
     </div>
 
     <script>
+        // ============ MANEJO DE LOGOS ============
+        function handleLogoError() {
+            document.getElementById('sidebarLogo').style.display = 'none';
+            document.getElementById('defaultLogo').style.display = 'flex';
+        }
+        
+        function handleMobileLogoError() {
+            const mobileLogo = document.getElementById('mobileLogo');
+            mobileLogo.src = '';
+            mobileLogo.alt = 'Sistema Roy';
+            mobileLogo.style.fontFamily = 'Inter, sans-serif';
+            mobileLogo.style.fontWeight = '700';
+            mobileLogo.style.fontSize = '1.2rem';
+            mobileLogo.style.color = 'var(--color-purple)';
+        }
+        
+        // Verificar si las imágenes se cargaron correctamente
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarLogo = document.getElementById('sidebarLogo');
+            const mobileLogo = document.getElementById('mobileLogo');
+            
+            if (sidebarLogo && (sidebarLogo.complete && sidebarLogo.naturalHeight === 0)) {
+                handleLogoError();
+            }
+            
+            if (mobileLogo && (mobileLogo.complete && mobileLogo.naturalHeight === 0)) {
+                handleMobileLogoError();
+            }
+            
+            setTimeout(function() {
+                if (sidebarLogo && (sidebarLogo.complete && sidebarLogo.naturalHeight === 0)) {
+                    handleLogoError();
+                }
+                if (mobileLogo && (mobileLogo.complete && mobileLogo.naturalHeight === 0)) {
+                    handleMobileLogoError();
+                }
+            }, 1000);
+
+            // ============ ANIMACIONES DE ENTRADA ============
+            const cards = document.querySelectorAll('.card, .stat-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // ============ FUNCIONES DEL SIDEBAR ============
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // ============ FUNCIONES DE MODAL ============
         function abrirModalUsuario(userId = null) {
             const modal = document.getElementById('modalUsuario');
             const titulo = document.getElementById('tituloModal');
@@ -870,40 +1482,75 @@
             document.getElementById('modalUsuario').style.display = 'none';
         }
 
+        // ============ FUNCIONES DE GESTIÓN DE USUARIOS ============
         function editarUsuario(userId) {
-            abrirModalUsuario(userId);
+            mostrarAlerta('Cargando datos del usuario para edición...', 'info');
+            setTimeout(() => {
+                abrirModalUsuario(userId);
+            }, 500);
         }
 
         function verPermisos(userId) {
-            alert('Mostrando permisos detallados del usuario: ' + userId);
+            mostrarAlerta('Mostrando permisos detallados del usuario...', 'info');
         }
 
         function activarUsuario(userId) {
             if (confirm('¿Activar este usuario?')) {
-                alert('Usuario activado exitosamente');
+                mostrarAlerta('Usuario activado exitosamente', 'success');
             }
         }
 
         function eliminarUsuario(userId) {
             if (confirm('¿Estás seguro de eliminar este usuario? Esta acción no se puede deshacer.')) {
-                alert('Usuario eliminado del sistema');
+                mostrarAlerta('Usuario eliminado del sistema', 'warning');
             }
         }
 
-        // Manejar envío del formulario
+        // ============ FUNCIÓN PARA MOSTRAR ALERTAS ============
+        function mostrarAlerta(mensaje, tipo) {
+            const alerta = document.createElement('div');
+            alerta.className = `alert alert-${tipo}`;
+            alerta.innerHTML = `<strong>${tipo === 'success' ? 'Éxito!' : tipo === 'warning' ? 'Advertencia:' : tipo === 'danger' ? 'Crítico:' : 'Info:'}</strong> ${mensaje}`;
+            alerta.style.position = 'fixed';
+            alerta.style.top = '20px';
+            alerta.style.right = '20px';
+            alerta.style.zIndex = '1000';
+            alerta.style.minWidth = '300px';
+            alerta.style.boxShadow = 'var(--shadow-lg)';
+            alerta.style.padding = 'var(--space-lg)';
+            alerta.style.borderRadius = 'var(--radius-lg)';
+            alerta.style.background = 'rgba(255, 255, 255, 0.95)';
+            alerta.style.backdropFilter = 'blur(10px)';
+            alerta.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+            
+            document.body.appendChild(alerta);
+            
+            setTimeout(() => {
+                alerta.style.opacity = '0';
+                alerta.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    alerta.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // ============ MANEJO DEL FORMULARIO ============
         document.getElementById('formUsuario').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const nombre = document.getElementById('modal-nombre').value;
             const usuario = document.getElementById('modal-usuario').value;
+            const rol = document.getElementById('modal-rol').value;
             
-            if (nombre && usuario) {
-                alert('Usuario "' + nombre + '" creado exitosamente');
+            if (nombre && usuario && rol) {
+                mostrarAlerta(`Usuario "${nombre}" creado exitosamente con rol de ${rol}`, 'success');
                 cerrarModalUsuario();
+            } else {
+                mostrarAlerta('Por favor completa todos los campos requeridos', 'warning');
             }
         });
 
-        // Cerrar modal al hacer clic fuera
+        // ============ CERRAR MODAL AL HACER CLIC FUERA ============
         window.onclick = function(event) {
             const modal = document.getElementById('modalUsuario');
             if (event.target === modal) {
@@ -911,20 +1558,170 @@
             }
         }
 
-        // Animaciones de entrada
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.card, .stat-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 100);
+        // ============ FILTROS DE BÚSQUEDA ============
+        document.getElementById('busqueda').addEventListener('input', function(e) {
+            const busqueda = e.target.value.toLowerCase();
+            const filas = document.querySelectorAll('#usuarios-table tr');
+            
+            filas.forEach(fila => {
+                const texto = fila.textContent.toLowerCase();
+                if (texto.includes(busqueda)) {
+                    fila.style.display = '';
+                } else {
+                    fila.style.display = 'none';
+                }
             });
         });
+
+        // ============ FILTROS DE DROPDOWNS ============
+        ['filtro-rol', 'filtro-estado', 'filtro-sucursal'].forEach(filtroId => {
+            document.getElementById(filtroId).addEventListener('change', function() {
+                aplicarFiltros();
+            });
+        });
+
+        function aplicarFiltros() {
+            const filtroRol = document.getElementById('filtro-rol').value;
+            const filtroEstado = document.getElementById('filtro-estado').value;
+            const filtroSucursal = document.getElementById('filtro-sucursal').value;
+            const filas = document.querySelectorAll('#usuarios-table tr');
+            
+            filas.forEach(fila => {
+                let mostrar = true;
+                const texto = fila.textContent.toLowerCase();
+                
+                if (filtroRol !== 'todos' && !texto.includes(filtroRol)) {
+                    mostrar = false;
+                }
+                
+                if (filtroEstado !== 'todos' && !texto.includes(filtroEstado)) {
+                    mostrar = false;
+                }
+                
+                if (filtroSucursal !== 'todas') {
+                    const sucursales = {
+                        'roydent': 'roydent',
+                        'mundo_medico': 'mundo médico',
+                        'deposito': 'depósito',
+                        'central': 'central'
+                    };
+                    if (!texto.includes(sucursales[filtroSucursal] || filtroSucursal)) {
+                        mostrar = false;
+                    }
+                }
+                
+                fila.style.display = mostrar ? '' : 'none';
+            });
+        }
+
+        // ============ NAVEGACIÓN ============
+        function irADashboard() {
+            mostrarAlerta('Redirigiendo al dashboard...', 'info');
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1000);
+        }
+
+        function irAConfiguracion() {
+            mostrarAlerta('Abriendo configuración del sistema...', 'info');
+            setTimeout(() => {
+                window.location.href = 'configuracion.html';
+            }, 1000);
+        }
+
+        function irABackup() {
+            mostrarAlerta('Accediendo al sistema de backup...', 'info');
+            setTimeout(() => {
+                window.location.href = 'backup.html';
+            }, 1000);
+        }
+
+        // ============ ESTADÍSTICAS EN TIEMPO REAL ============
+        function actualizarEstadisticas() {
+            const stats = [
+                { selector: '.stat-card:nth-child(1) .stat-number', min: 10, max: 15 },
+                { selector: '.stat-card:nth-child(2) .stat-number', min: 6, max: 12 },
+                { selector: '.stat-card:nth-child(3) .stat-number', min: 1, max: 3 },
+                { selector: '.stat-card:nth-child(4) .stat-number', min: 3, max: 8 }
+            ];
+
+            stats.forEach(stat => {
+                const elemento = document.querySelector(stat.selector);
+                if (elemento) {
+                    const nuevoValor = Math.floor(Math.random() * (stat.max - stat.min + 1)) + stat.min;
+                    
+                    elemento.style.transform = 'scale(1.1)';
+                    elemento.style.transition = 'transform 0.3s ease';
+                    
+                    setTimeout(() => {
+                        elemento.textContent = nuevoValor;
+                        elemento.style.transform = 'scale(1)';
+                    }, 150);
+                }
+            });
+        }
+
+        // Actualizar estadísticas cada minuto
+        setInterval(actualizarEstadisticas, 60000);
+
+        // ============ FUNCIONES ADICIONALES ============
+        function exportarUsuarios() {
+            mostrarAlerta('Generando archivo de exportación de usuarios...', 'info');
+            setTimeout(() => {
+                mostrarAlerta('Lista de usuarios exportada exitosamente', 'success');
+            }, 2000);
+        }
+
+        function importarUsuarios() {
+            mostrarAlerta('Abriendo asistente de importación...', 'info');
+        }
+
+        function generarReporteUsuarios() {
+            mostrarAlerta('Generando reporte detallado de usuarios...', 'info');
+            setTimeout(() => {
+                mostrarAlerta('Reporte de usuarios generado correctamente', 'success');
+            }, 3000);
+        }
+
+        // ============ VALIDACIONES DE SEGURIDAD ============
+        function validarPassword(password) {
+            const minLength = 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            
+            return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar;
+        }
+
+        function validarEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        // Agregar validaciones al formulario
+        document.getElementById('modal-password').addEventListener('blur', function(e) {
+            const password = e.target.value;
+            if (password && !validarPassword(password)) {
+                mostrarAlerta('La contraseña debe tener al menos 8 caracteres, incluir mayúsculas, minúsculas, números y símbolos', 'warning');
+                e.target.style.borderColor = 'var(--danger)';
+            } else if (password) {
+                e.target.style.borderColor = 'var(--success)';
+            }
+        });
+
+        document.getElementById('modal-email').addEventListener('blur', function(e) {
+            const email = e.target.value;
+            if (email && !validarEmail(email)) {
+                mostrarAlerta('Por favor ingresa un email válido', 'warning');
+                e.target.style.borderColor = 'var(--danger)';
+            } else if (email) {
+                e.target.style.borderColor = 'var(--success)';
+            }
+        });
+
+        console.log('Sistema de Gestión de Usuarios - Roy Representaciones iniciado');
+        console.log('Funcionalidades: CRUD usuarios, roles, permisos, búsqueda y filtros');
     </script>
 </body>
 </html>
