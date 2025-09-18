@@ -9,17 +9,20 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style type="text/tailwindcss">
     :root {
-        --color-purple: #6F42C1;
-        --color-blue: #007BFF;
-        --color-green: #28C76F;
+        /* Colores principales - Tema Dorado y Verde VIBRANTES */
         --color-gold: #FFD700;
+        --color-gold-light: #FFEF94;
+        --color-gold-dark: #DAA520;
+        --color-green: #00C851;
+        --color-green-light: #4CAF50;
+        --color-green-dark: #2E7D32;
         --text-dark: #2D3748;
         --text-gray: #718096;
     }
 
     body {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #f0f4ff, #e6f0ff, #f0f9ff);
+        background: linear-gradient(135deg, #FFFACD, #F0FFF0, #FFFAF0);
         min-height: 100vh;
         color: var(--text-dark);
         display: flex;
@@ -35,10 +38,10 @@
         border-radius: 20px;
         padding: 2.5rem;
         overflow: hidden;
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
         z-index: 2;
         width: 100%;
         max-width: 450px;
@@ -53,10 +56,10 @@
         right: -3px;
         bottom: -3px;
         background: linear-gradient(45deg, 
-            var(--color-purple), 
-            var(--color-blue), 
-            var(--color-green),
-            var(--color-purple));
+            var(--color-gold), 
+            var(--color-green), 
+            var(--color-gold-light),
+            var(--color-gold));
         background-size: 300% 300%;
         border-radius: 22px;
         animation: gradientMove 4s ease infinite;
@@ -71,7 +74,7 @@
         left: 2px;
         right: 2px;
         bottom: 2px;
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.9);
         border-radius: 18px;
         z-index: -1;
     }
@@ -98,43 +101,46 @@
         background: rgba(255, 255, 255, 0.8);
     }
     .form-input:focus {
-        border-color: var(--color-blue);
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+        border-color: var(--color-green);
+        box-shadow: 0 0 0 3px rgba(0, 200, 81, 0.3);
     }
 
     .btn-primary {
-        background: linear-gradient(90deg, var(--color-purple), var(--color-blue));
+        background: linear-gradient(90deg, var(--color-gold), var(--color-green));
         @apply w-full text-white py-3 px-4 rounded-lg font-bold shadow-lg transition duration-300;
+        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
     }
     .btn-primary:hover {
-        background: linear-gradient(90deg, var(--color-blue), var(--color-purple));
+        background: linear-gradient(90deg, var(--color-green), var(--color-gold));
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6);
     }
 
     .btn-whatsapp {
         background: linear-gradient(135deg, #25D366, #128C7E);
         @apply w-full text-white py-3 px-4 rounded-lg font-bold shadow-lg transition duration-300 flex items-center justify-center gap-2;
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
     }
     .btn-whatsapp:hover {
         background: linear-gradient(135deg, #128C7E, #25D366);
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
     }
 
     .link {
-        color: var(--color-blue);
+        color: var(--color-green);
         transition: all 0.3s;
         font-weight: 500;
     }
     .link:hover {
         color: var(--color-gold);
-        text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+        text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
     }
 
     .logo-image {
         @apply w-32 h-32 mx-auto rounded-full shadow-lg object-cover;
         border: none;
+        box-shadow: 0 8px 32px rgba(255, 215, 0, 0.4);
     }
 
     /* Elementos decorativos de fondo */
@@ -142,14 +148,14 @@
         position: absolute;
         border-radius: 50%;
         filter: blur(60px);
-        opacity: 0.2;
+        opacity: 0.25;
         z-index: 0;
     }
     
     .blob-1 {
         width: 400px;
         height: 400px;
-        background: var(--color-purple);
+        background: var(--color-gold);
         top: -100px;
         left: -100px;
     }
@@ -157,7 +163,7 @@
     .blob-2 {
         width: 500px;
         height: 500px;
-        background: var(--color-blue);
+        background: var(--color-green);
         bottom: -150px;
         right: -150px;
     }
@@ -165,18 +171,18 @@
     .blob-3 {
         width: 300px;
         height: 300px;
-        background: var(--color-green);
+        background: var(--color-gold-light);
         top: 50%;
         left: 70%;
     }
 
     .form-label {
         @apply block text-sm font-medium mb-2;
-        color: var(--text-gray);
+        color: var(--color-green-dark);
     }
 
     .lock-icon {
-        background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+        background: linear-gradient(135deg, var(--color-gold), var(--color-green));
         width: 80px;
         height: 80px;
         margin: 0 auto 1.5rem auto;
@@ -184,7 +190,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 10px 30px rgba(111, 66, 193, 0.3);
+        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
     }
 
     .divider {
@@ -200,11 +206,11 @@
         left: 0;
         right: 0;
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+        background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
     }
 
     .divider-text {
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.8);
         padding: 0 1rem;
         color: var(--text-gray);
         font-size: 0.875rem;
@@ -214,12 +220,12 @@
     }
 
     .success-message {
-        background: rgba(16, 185, 129, 0.1);
-        border: 1px solid #10B981;
+        background: rgba(0, 200, 81, 0.1);
+        border: 2px solid var(--color-green);
         border-radius: 0.75rem;
         padding: 1rem;
         margin-bottom: 1.5rem;
-        color: #047857;
+        color: var(--color-green-dark);
         font-weight: 600;
         text-align: center;
         display: none;
@@ -227,7 +233,7 @@
 
     .error-message {
         background: rgba(239, 68, 68, 0.1);
-        border: 1px solid #EF4444;
+        border: 2px solid #EF4444;
         border-radius: 0.75rem;
         padding: 1rem;
         margin-bottom: 1.5rem;
@@ -253,7 +259,7 @@
                 <h2 class="text-3xl font-bold text-[var(--text-dark)]">¿Olvidaste tu contraseña?</h2>
                 <p class="mt-2 text-[var(--text-gray)]">
                     No te preocupes. Ingresa tu correo o celular para recuperarla en 
-                    <span class="font-semibold text-[var(--color-blue)]">RoyDent y Mundo Medico</span>
+                    <span class="font-semibold" style="color: var(--color-green);">RoyDent</span>
                 </p>
             </div>
 

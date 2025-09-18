@@ -6,14 +6,16 @@
     <title>Roy Dent & Mundo Médico - Insumos Médicos y Dentales</title>
     <style>
         :root {
+            /* Colores principales - Tema Dorado y Verde VIBRANTES */
+            --color-gold: #FFD700;
+            --color-gold-light: #FFEF94;
+            --color-gold-dark: #DAA520;
+            --color-green: #00C851;
+            --color-green-light: #4CAF50;
+            --color-green-dark: #2E7D32;
+            
             --bg-primary: #FDFEFE;
             --bg-secondary: #F8FAFC;
-            --color-purple: #6F42C1;
-            --color-blue: #007BFF;
-            --color-green: #28A745;
-            --color-gold: #FFD700;
-            --color-metallic-gold: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00);
-            --color-metallic-green: linear-gradient(135deg, #28A745, #20C997, #17A2B8);
             --success: #10B981;
             --warning: #F59E0B;
             --danger: #EF4444;
@@ -39,6 +41,7 @@
             line-height: 1.6;
             color: var(--text-primary);
             overflow-x: hidden;
+            background: linear-gradient(135deg, #FFFACD, #F0FFF0, #FFFAF0);
         }
 
         /* Header con efecto glassmorphism */
@@ -46,12 +49,12 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.4);
             z-index: 1000;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3);
             transition: all 0.3s ease;
         }
 
@@ -75,13 +78,13 @@
             height: 55px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 8px 32px rgba(111, 66, 193, 0.4);
+            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.6);
             transition: all 0.3s ease;
         }
 
         .logo-image:hover {
             transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 12px 40px rgba(111, 66, 193, 0.6);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.8);
         }
 
         .logo-text {
@@ -93,7 +96,7 @@
             color: #000000;
             transition: all 0.3s ease;
             position: relative;
-            background: linear-gradient(45deg, #6F42C1, #007BFF, #28A745, #FFD700);
+            background: linear-gradient(45deg, var(--color-gold), var(--color-green), var(--color-gold-light), var(--color-gold));
             background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -124,8 +127,8 @@
         }
 
         .nav-link:hover {
-            color: var(--color-blue);
-            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-green);
+            background: rgba(255, 215, 0, 0.2);
             backdrop-filter: blur(10px);
             transform: translateY(-2px);
         }
@@ -137,7 +140,7 @@
             height: 3px;
             bottom: -5px;
             left: 50%;
-            background: linear-gradient(90deg, var(--color-blue), var(--color-purple));
+            background: linear-gradient(90deg, var(--color-gold), var(--color-green));
             transition: all 0.3s ease;
             border-radius: 2px;
         }
@@ -148,17 +151,17 @@
         }
 
         .login-btn {
-            background: linear-gradient(135deg, #6F42C1, #007BFF, #28A745);
+            background: linear-gradient(135deg, var(--color-gold), var(--color-green));
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(111, 66, 193, 0.3);
+            border: 2px solid rgba(255, 215, 0, 0.5);
             color: white;
             padding: 0.8rem 2rem;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 32px rgba(111, 66, 193, 0.4);
+            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.6);
             position: relative;
             overflow: hidden;
         }
@@ -179,11 +182,11 @@
         }
 
         .login-btn:hover {
-            background: linear-gradient(135deg, #007BFF, #28A745, #6F42C1);
+            background: linear-gradient(135deg, var(--color-green), var(--color-gold));
             color: white;
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 45px rgba(111, 66, 193, 0.5);
-            border-color: rgba(111, 66, 193, 0.5);
+            box-shadow: 0 15px 45px rgba(255, 215, 0, 0.8);
+            border-color: rgba(0, 200, 81, 0.7);
         }
 
         /* Hero Section con Carousel Moderno */
@@ -262,7 +265,7 @@
 
         .hero-roy, .hero-mundo {
             color: #000000;
-            background: linear-gradient(45deg, #6F42C1, #007BFF, #28A745, #FFD700);
+            background: linear-gradient(45deg, var(--color-gold), var(--color-green), var(--color-gold-light), var(--color-gold));
             background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -311,9 +314,9 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue), var(--color-green));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-green));
             color: white;
-            box-shadow: 0 10px 30px rgba(111, 66, 193, 0.4);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
         }
 
         .btn-primary::before {
@@ -333,21 +336,21 @@
 
         .btn-primary:hover {
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.5);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.8);
         }
 
         .btn-secondary {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            color: var(--text-primary);
+            color: var(--color-green-dark);
             border: 2px solid var(--glass-border);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.4);
-            color: var(--color-blue);
+            color: var(--color-green);
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
@@ -368,7 +371,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(111, 66, 193, 0.03), transparent 70%);
+            background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.08), transparent 70%);
             pointer-events: none;
         }
 
@@ -377,11 +380,11 @@
             font-size: 3rem;
             font-weight: 900;
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue), var(--color-green), var(--warning));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-green), var(--color-gold-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 0 20px rgba(111, 66, 193, 0.3));
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
             position: relative;
         }
 
@@ -462,7 +465,7 @@
         .about-text h3 {
             font-size: 2rem;
             margin-bottom: 1.5rem;
-            color: var(--text-primary);
+            color: var(--color-green-dark);
             font-weight: 800;
         }
 
@@ -505,7 +508,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(111, 66, 193, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
             transition: left 0.6s ease;
         }
 
@@ -521,26 +524,26 @@
         .service-icon {
             width: 90px;
             height: 90px;
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue), var(--warning), var(--color-green));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-green));
             border-radius: 50%;
             margin: 0 auto 2rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            box-shadow: 0 15px 35px rgba(111, 66, 193, 0.3);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.5);
             transition: all 0.3s ease;
         }
 
         .service-card:hover .service-icon {
             transform: rotateY(180deg) scale(1.1);
-            box-shadow: 0 20px 50px rgba(111, 66, 193, 0.5);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.7);
         }
 
         .service-card h3 {
             font-size: 1.6rem;
             margin-bottom: 1.5rem;
-            color: var(--text-primary);
+            color: var(--color-green-dark);
             font-weight: 700;
         }
 
@@ -611,7 +614,7 @@
         .product-info h4 {
             font-size: 1.3rem;
             margin-bottom: 0.8rem;
-            color: var(--text-primary);
+            color: var(--color-green-dark);
             font-weight: 700;
         }
 
@@ -654,7 +657,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at top right, rgba(111, 66, 193, 0.1), transparent 50%);
+            background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.15), transparent 50%);
             pointer-events: none;
         }
 
@@ -686,7 +689,7 @@
 
         .location-roy h4 {
             color: #000000;
-            background: linear-gradient(45deg, #FFD700, #FFA500, #FF8C00);
+            background: linear-gradient(45deg, var(--color-gold), var(--color-gold-light), var(--color-gold-dark));
             background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -696,7 +699,7 @@
 
         .location-mundo h4 {
             color: #000000;
-            background: linear-gradient(45deg, #6F42C1, #007BFF, #28A745);
+            background: linear-gradient(45deg, var(--color-green), var(--color-green-light), var(--color-green-dark));
             background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -712,14 +715,14 @@
         }
 
         .location-card .phone {
-            color: var(--text-primary);
+            color: var(--color-green-dark);
             font-weight: 700;
             font-size: 1.1rem;
         }
 
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue), var(--color-green), var(--warning));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-green));
             color: white;
             text-align: center;
             padding: 5rem 2rem;
@@ -788,7 +791,7 @@
 
         .footer-section h4 {
             margin-bottom: 1.5rem;
-            color: var(--color-blue);
+            color: var(--color-green);
             font-size: 1.3rem;
             font-weight: 800;
         }
@@ -810,7 +813,7 @@
         }
 
         .footer-section a:hover {
-            color: var(--color-blue);
+            color: var(--color-green);
             transform: translateX(8px);
         }
 
@@ -820,7 +823,7 @@
             left: -25px;
             opacity: 0;
             transition: all 0.3s ease;
-            color: var(--color-blue);
+            color: var(--color-green);
         }
 
         .footer-section a:hover::before {
@@ -846,7 +849,7 @@
         .footer-logo-circle {
             width: 45px;
             height: 45px;
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-green));
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -854,7 +857,7 @@
             color: white;
             font-weight: bold;
             font-size: 1.1rem;
-            box-shadow: 0 10px 25px rgba(111, 66, 193, 0.3);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
         }
 
         .footer-logo-text {
@@ -864,7 +867,7 @@
 
         .footer-logo-roy, .footer-logo-mundo {
             color: #000000;
-            background: linear-gradient(45deg, #6F42C1, #007BFF, #28A745, #FFD700);
+            background: linear-gradient(45deg, var(--color-gold), var(--color-green), var(--color-gold-light), var(--color-gold));
             background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -918,7 +921,7 @@
             <div class="logo">
                 <img src="assets/images/Roydent.png" alt="Logo Roy Dent & Mundo Médico" class="logo-image">
                 <div class="logo-text">
-                    <span class="logo-roy">Roy Dent</span> & <span class="logo-mundo">Mundo Médico</span>
+                    <span class="logo-roy">Roy Dent</span>
                 </div>
             </div>
             <ul class="nav-menu">
@@ -938,7 +941,7 @@
         <div class="hero-background hero-bg-3"></div>
         <div class="hero-content">
             <h1 class="hero-title">
-                <span class="hero-roy">Roy Dent</span> & <span class="hero-mundo">Mundo Médico</span>
+                <span class="hero-roy">Roy Dent</span> 
             </h1>
             <p class="hero-subtitle">
                 Líderes en distribución de insumos médicos y dentales de la más alta calidad. 

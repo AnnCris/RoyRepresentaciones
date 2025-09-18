@@ -9,17 +9,20 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style type="text/tailwindcss">
     :root {
-        --color-purple: #6F42C1;
-        --color-blue: #007BFF;
-        --color-green: #28C76F;
+        /* Colores principales - Tema Dorado y Verde VIBRANTES */
         --color-gold: #FFD700;
+        --color-gold-light: #FFEF94;
+        --color-gold-dark: #DAA520;
+        --color-green: #00C851;
+        --color-green-light: #4CAF50;
+        --color-green-dark: #2E7D32;
         --text-dark: #2D3748;
         --text-gray: #718096;
     }
 
     body {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #f0f4ff, #e6f0ff, #f0f9ff);
+        background: linear-gradient(135deg, #FFFACD, #F0FFF0, #FFFAF0);
         min-height: 100vh;
         color: var(--text-dark);
         display: flex;
@@ -35,10 +38,10 @@
         border-radius: 20px;
         padding: 2.5rem;
         overflow: hidden;
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
         z-index: 2;
         width: 100%;
         max-width: 800px;
@@ -53,10 +56,10 @@
         right: -3px;
         bottom: -3px;
         background: linear-gradient(45deg, 
-            var(--color-purple), 
-            var(--color-blue), 
-            var(--color-green),
-            var(--color-purple));
+            var(--color-gold), 
+            var(--color-green), 
+            var(--color-gold-light),
+            var(--color-gold));
         background-size: 300% 300%;
         border-radius: 22px;
         animation: gradientMove 4s ease infinite;
@@ -71,7 +74,7 @@
         left: 2px;
         right: 2px;
         bottom: 2px;
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.9);
         border-radius: 18px;
         z-index: -1;
     }
@@ -98,8 +101,8 @@
         background: rgba(255, 255, 255, 0.8);
     }
     .form-input:focus {
-        border-color: var(--color-blue);
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+        border-color: var(--color-green);
+        box-shadow: 0 0 0 3px rgba(0, 200, 81, 0.3);
     }
 
     .form-select {
@@ -112,36 +115,39 @@
         padding-right: 3rem;
     }
     .form-select:focus {
-        border-color: var(--color-blue);
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+        border-color: var(--color-green);
+        box-shadow: 0 0 0 3px rgba(0, 200, 81, 0.3);
     }
 
     .btn-primary {
-        background: linear-gradient(90deg, var(--color-purple), var(--color-blue));
+        background: linear-gradient(90deg, var(--color-gold), var(--color-green));
         @apply w-full text-white py-3 px-4 rounded-lg font-bold shadow-lg transition duration-300;
+        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
     }
     .btn-primary:hover {
-        background: linear-gradient(90deg, var(--color-blue), var(--color-purple));
+        background: linear-gradient(90deg, var(--color-green), var(--color-gold));
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6);
     }
 
     .link {
-        color: var(--color-blue);
+        color: var(--color-green);
         transition: all 0.3s;
         font-weight: 500;
     }
     .link:hover {
         color: var(--color-gold);
-        text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+        text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
     }
 
     .custom-image {
         @apply w-32 h-32 mx-auto rounded-full shadow-lg object-cover;
+        box-shadow: 0 8px 32px rgba(255, 215, 0, 0.4);
     }
 
     .logo-default {
-        @apply w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-[#6F42C1] to-[#007BFF] flex items-center justify-center shadow-lg;
+        @apply w-32 h-32 mx-auto rounded-full flex items-center justify-center shadow-lg;
+        background: linear-gradient(135deg, var(--color-gold), var(--color-green));
     }
 
     /* Elementos decorativos de fondo */
@@ -149,14 +155,14 @@
         position: absolute;
         border-radius: 50%;
         filter: blur(60px);
-        opacity: 0.2;
+        opacity: 0.25;
         z-index: 0;
     }
     
     .blob-1 {
         width: 400px;
         height: 400px;
-        background: var(--color-purple);
+        background: var(--color-gold);
         top: -100px;
         left: -100px;
     }
@@ -164,7 +170,7 @@
     .blob-2 {
         width: 500px;
         height: 500px;
-        background: var(--color-blue);
+        background: var(--color-green);
         bottom: -150px;
         right: -150px;
     }
@@ -172,14 +178,14 @@
     .blob-3 {
         width: 300px;
         height: 300px;
-        background: var(--color-green);
+        background: var(--color-gold-light);
         top: 50%;
         left: 70%;
     }
 
     .form-label {
         @apply block text-sm font-medium mb-2;
-        color: var(--text-gray);
+        color: var(--color-green-dark);
     }
 
     /* Estilos para el ojito de contraseña */
@@ -193,7 +199,7 @@
         top: 70%;
         transform: translateY(-50%);
         cursor: pointer;
-        color: var(--text-gray);
+        color: var(--color-gold-dark);
         background: none;
         border: none;
         outline: none;
@@ -206,7 +212,7 @@
     }
     
     .toggle-password:hover {
-        color: var(--color-blue);
+        color: var(--color-green);
     }
     
     .toggle-password svg {
@@ -248,7 +254,7 @@
                 
                 <h2 class="text-3xl font-bold text-[var(--text-dark)] mt-4">Crear Cuenta</h2>
                 <p class="mt-2 text-[var(--text-gray)]">
-                    Únete a <span class="font-semibold text-[var(--color-blue)]">RoyDent y Mundo Medico</span>
+                    Únete a <span class="font-semibold" style="color: var(--color-green);">RoyDent</span>
                 </p>
             </div>
 
