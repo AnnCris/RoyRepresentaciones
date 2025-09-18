@@ -7,16 +7,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --color-purple: #6F42C1;
-            --color-blue: #007BFF;
-            --color-green: #28C76F;
             --color-gold: #FFD700;
+            --color-dark-gold: #B8860B;
+            --color-light-gold: #FFF8DC;
+            --color-green: #228B22;
+            --color-light-green: #32CD32;
+            --color-dark-green: #006400;
+            --color-blue: #4169E1;
             --text-dark: #2D3748;
             --text-gray: #718096;
-            --bg-light: #f0f4ff;
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.18);
-            --shadow-gold: rgba(255, 215, 0, 0.3);
+            --text-gold: #B8860B;
+            --bg-light: #fffdf0;
+            --glass-bg: rgba(255, 248, 220, 0.8);
+            --glass-border: rgba(255, 215, 0, 0.3);
+            --shadow-gold: rgba(255, 215, 0, 0.4);
             --shadow-green: rgba(34, 139, 34, 0.3);
         }
 
@@ -28,7 +32,7 @@
 
         body {
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f0f4ff, #e6f0ff, #f0f9ff);
+            background: linear-gradient(135deg, #fffdf0, #fff8dc, #fafad2);
             color: var(--text-dark);
             min-height: 100vh;
             overflow-x: hidden;
@@ -47,7 +51,7 @@
         .blob-1 {
             width: 400px;
             height: 400px;
-            background: var(--color-purple);
+            background: var(--color-gold);
             top: -100px;
             left: -100px;
         }
@@ -55,7 +59,7 @@
         .blob-2 {
             width: 500px;
             height: 500px;
-            background: var(--color-blue);
+            background: var(--color-dark-gold);
             bottom: -150px;
             right: -150px;
         }
@@ -70,7 +74,7 @@
 
         /* Header con estilo de login */
         .catalog-header {
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue), var(--color-green));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-dark-gold), var(--color-green));
             padding: 3rem 2rem;
             text-align: center;
             position: relative;
@@ -125,7 +129,7 @@
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px var(--shadow-gold);
             border: 1px solid var(--glass-border);
             position: relative;
         }
@@ -137,7 +141,7 @@
             left: -3px;
             right: -3px;
             bottom: -3px;
-            background: linear-gradient(45deg, var(--color-purple), var(--color-blue), var(--color-green), var(--color-purple));
+            background: linear-gradient(45deg, var(--color-gold), var(--color-green), var(--color-dark-gold), var(--color-gold));
             background-size: 300% 300%;
             border-radius: 22px;
             animation: gradientMove 4s ease infinite;
@@ -151,7 +155,7 @@
             left: 2px;
             right: 2px;
             bottom: 2px;
-            background: rgba(255, 255, 255, 0.85);
+            background: var(--glass-bg);
             border-radius: 18px;
             z-index: -1;
         }
@@ -185,16 +189,16 @@
             border: 2px solid transparent;
             border-radius: 15px;
             font-size: 1.1rem;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 15px var(--shadow-gold);
             transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
         }
 
         .search-input:focus {
             outline: none;
-            border-color: var(--color-blue);
-            box-shadow: 0 5px 25px rgba(0, 123, 255, 0.2);
+            border-color: var(--color-gold);
+            box-shadow: 0 5px 25px var(--shadow-gold);
         }
 
         .search-icon {
@@ -202,7 +206,7 @@
             left: 1.2rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--color-green);
+            color: var(--color-gold);
             font-size: 1.2rem;
         }
 
@@ -210,27 +214,27 @@
             padding: 1rem 1.5rem;
             border: 2px solid transparent;
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             color: var(--text-dark);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px var(--shadow-gold);
             font-family: 'Inter', sans-serif;
         }
 
         .filter-select:focus {
             outline: none;
-            border-color: var(--color-green);
-            box-shadow: 0 5px 25px rgba(40, 199, 111, 0.2);
+            border-color: var(--color-gold);
+            box-shadow: 0 5px 25px var(--shadow-gold);
         }
 
         .view-toggle {
             display: flex;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             padding: 0.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px var(--shadow-gold);
         }
 
         .view-btn {
@@ -246,9 +250,9 @@
         }
 
         .view-btn.active {
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            background: linear-gradient(135deg, var(--color-green), var(--color-light-green));
             color: white;
-            box-shadow: 0 3px 10px rgba(111, 66, 193, 0.3);
+            box-shadow: 0 3px 10px var(--shadow-green);
         }
 
         /* Container principal */
@@ -271,12 +275,12 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px var(--shadow-gold);
             border: 1px solid var(--glass-border);
         }
 
         .results-count {
-            color: var(--text-gray);
+            color: var(--text-gold);
             font-weight: 600;
         }
 
@@ -306,7 +310,7 @@
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 35px var(--shadow-gold);
             border: 1px solid var(--glass-border);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -321,7 +325,7 @@
             left: -3px;
             right: -3px;
             bottom: -3px;
-            background: linear-gradient(45deg, var(--color-purple), var(--color-blue), var(--color-green), var(--color-purple));
+            background: linear-gradient(45deg, var(--color-gold), var(--color-green), var(--color-dark-gold), var(--color-gold));
             background-size: 300% 300%;
             border-radius: 22px;
             animation: gradientMove 4s ease infinite;
@@ -341,14 +345,14 @@
             left: 2px;
             right: 2px;
             bottom: 2px;
-            background: rgba(255, 255, 255, 0.85);
+            background: var(--glass-bg);
             border-radius: 18px;
             z-index: -1;
         }
 
         .product-card:hover {
             transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 25px 60px rgba(255, 215, 0, 0.3);
         }
 
         .product-image {
@@ -378,7 +382,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(111, 66, 193, 0.1), rgba(0, 123, 255, 0.1), rgba(40, 199, 111, 0.1));
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(34, 139, 34, 0.1), rgba(184, 134, 11, 0.1));
         }
 
         /* Badges de estado mejorados */
@@ -398,7 +402,7 @@
         }
 
         .badge-available {
-            background: linear-gradient(135deg, var(--color-green), #1e9c5a);
+            background: linear-gradient(135deg, var(--color-green), var(--color-dark-green));
             color: white;
         }
 
@@ -413,7 +417,7 @@
         }
 
         .badge-featured {
-            background: linear-gradient(135deg, var(--color-gold), #e6be00);
+            background: linear-gradient(135deg, var(--color-gold), var(--color-dark-gold));
             color: white;
         }
 
@@ -425,7 +429,7 @@
         }
 
         .product-category {
-            background: linear-gradient(135deg, var(--color-green), var(--color-blue));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-dark-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -487,16 +491,16 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+            background: linear-gradient(135deg, var(--color-green), var(--color-light-green));
             color: white;
-            box-shadow: 0 8px 25px rgba(111, 66, 193, 0.3);
+            box-shadow: 0 8px 25px var(--shadow-green);
             flex: 1;
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, var(--color-blue), var(--color-purple));
+            background: linear-gradient(135deg, var(--color-light-green), var(--color-green));
             transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0, 123, 255, 0.3);
+            box-shadow: 0 12px 35px var(--shadow-green);
         }
 
         /* Vista de lista - CORREGIDA */
@@ -552,14 +556,14 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px var(--shadow-gold);
             border: 1px solid var(--glass-border);
         }
 
         .no-results h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--text-dark);
+            color: var(--text-gold);
         }
 
         /* Modal para detalles del producto */
@@ -579,14 +583,14 @@
 
         .modal-content {
             position: relative;
-            background: white;
+            background: var(--glass-bg);
             margin: 5% auto;
             padding: 0;
             width: 90%;
             max-width: 1000px;
             border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.4);
             animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
@@ -596,7 +600,7 @@
             right: 20px;
             font-size: 2rem;
             color: white;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(255, 215, 0, 0.8);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -609,7 +613,7 @@
         }
 
         .close-modal:hover {
-            background: rgba(0, 0, 0, 0.7);
+            background: var(--color-gold);
             transform: rotate(90deg);
         }
 
@@ -632,7 +636,7 @@
             left: 0;
             width: 100%;
             height: 50%;
-            background: linear-gradient(to top, white, transparent);
+            background: linear-gradient(to top, var(--glass-bg), transparent);
         }
 
         .modal-body {
@@ -643,7 +647,7 @@
         }
 
         .modal-category {
-            background: linear-gradient(135deg, var(--color-green), var(--color-blue));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-dark-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -678,13 +682,13 @@
 
         .detail-item {
             padding: 1.5rem;
-            background: var(--bg-light);
+            background: rgba(255, 248, 220, 0.6);
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px var(--shadow-gold);
         }
 
         .detail-item h4 {
-            color: var(--color-green);
+            color: var(--color-gold);
             font-size: 1rem;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
@@ -736,15 +740,15 @@
         @keyframes pulse {
             0% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(34, 139, 34, 0.7);
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
             }
             70% {
                 transform: scale(1);
-                box-shadow: 0 0 0 15px rgba(34, 139, 34, 0);
+                box-shadow: 0 0 0 15px rgba(255, 215, 0, 0);
             }
             100% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(34, 139, 34, 0);
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
             }
         }
 
@@ -940,7 +944,7 @@
             <div class="product-card" data-category="medical" data-name="Equipo Rayos X">
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Equipo Rayos X">
-                    <div class="status-badge badge-featured">Destacado</div>
+                    <div class="status-badge badge-available">Disponible</div>
                 </div>
                 <div class="product-info">
                     <div class="product-category">Radiología</div>
@@ -1317,12 +1321,12 @@
                     filterProducts();
                     
                     // Efecto visual de búsqueda
-                    this.style.borderColor = 'var(--color-green)';
-                    this.style.boxShadow = '0 5px 25px rgba(40, 199, 111, 0.2)';
+                    this.style.borderColor = 'var(--color-gold)';
+                    this.style.boxShadow = '0 5px 25px var(--shadow-gold)';
                     
                     setTimeout(() => {
                         this.style.borderColor = 'transparent';
-                        this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                        this.style.boxShadow = '0 5px 15px var(--shadow-gold)';
                     }, 300);
                 }, 300);
             });
