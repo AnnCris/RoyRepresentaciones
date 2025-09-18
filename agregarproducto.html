@@ -1,849 +1,3 @@
-<!-- Elementos decorativos de fondo -->
-    <div class="bg-blob blob-1"></div>
-    <div class="bg-blob blob-2"></div>
-    <div class="bg-blob blob-3"></div>
-    
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <a href="#" class="sidebar-brand">
-                <!-- Logo desde la carpeta assets -->
-                <img src="assets/images/Roydent.png" alt="Logo de RoyDent" class="sidebar-logo-img" id="sidebarLogo" onerror="handleLogoError()">
-                <!-- Logo por defecto (oculto inicialmente) -->
-                <div class="logo-default" id="defaultLogo" style="display: none;">
-                    ROY
-                </div>
-                <div>
-                    <div class="sidebar-title">Sistema RoyDent</div>
-                    <div class="sidebar-subtitle">Y Mundo Medico</div>
-                </div>
-            </a>
-        </div>
-        
-        <nav class="sidebar-nav">
-            <div class="nav-section">
-                <div class="nav-title">Principal</div>
-                <div class="nav-item">
-                    <a href="dashboard.html" class="nav-link">
-                        <div class="nav-icon">🏠</div>
-                        Dashboard
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">📊</div>
-                        Analíticas
-                    </a>
-                </div>
-            </div>
-
-            <div class="nav-section">
-                <div class="nav-title">Productos</div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link active">
-                        <div class="nav-icon">➕</div>
-                        Agregar Producto
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">📦</div>
-                        Lista de Productos
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">🏷️</div>
-                        Categorías
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">🔄</div>
-                        Control FIFO
-                    </a>
-                </div>
-            </div>
-
-            <div class="nav-section">
-                <div class="nav-title">Inventario</div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">📋</div>
-                        Inventario General
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">⚠️</div>
-                        Stock Bajo
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">📍</div>
-                        Ubicaciones
-                    </a>
-                </div>
-            </div>
-
-            <div class="nav-section">
-                <div class="nav-title">Ventas</div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">🛒</div>
-                        Nueva Venta
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">💰</div>
-                        Historial Ventas
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">👥</div>
-                        Clientes
-                    </a>
-                </div>
-            </div>
-
-            <div class="nav-section">
-                <div class="nav-title">Reportes</div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">📈</div>
-                        Reportes de Ventas
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">📉</div>
-                        Análisis de Inventario
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">💼</div>
-                        Reportes Financieros
-                    </a>
-                </div>
-            </div>
-
-            <div class="nav-section">
-                <div class="nav-title">Configuración</div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">⚙️</div>
-                        Configuración
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">👤</div>
-                        Perfil
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">👥</div>
-                        Usuarios
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="nav-icon">💾</div>
-                        Backup
-                    </a>
-                </div>
-            </div>
-        </nav>
-    </aside>
-
-    <!-- Mobile Header -->
-    <header class="mobile-header" id="mobile-header">
-        <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
-        <img src="assets/images/Roydent.png" alt="Logo de RoyDent" class="mobile-logo" id="mobileLogo" onerror="handleMobileLogoError()">
-    </header>
-
-    <!-- Sidebar Overlay -->
-    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <!-- Header -->
-            <div class="section">
-                <div class="card">
-                    <div class="card-content">
-                        <h1 class="text-display text-center">Agregar Nuevo Producto</h1>
-                        <p class="text-body text-center">Registra productos médicos y odontológicos con control FIFO automático</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Steps Indicator -->
-            <div class="section">
-                <div class="card">
-                    <div class="steps-container">
-                        <div class="step active" id="step-1">
-                            <div class="step-number">1</div>
-                            <div class="step-label">Información Básica</div>
-                        </div>
-                        <div class="step" id="step-2">
-                            <div class="step-number">2</div>
-                            <div class="step-label">Precios y Costos</div>
-                        </div>
-                        <div class="step" id="step-3">
-                            <div class="step-number">3</div>
-                            <div class="step-label">Inventario</div>
-                        </div>
-                        <div class="step" id="step-4">
-                            <div class="step-number">4</div>
-                            <div class="step-label">Imagen y Finalización</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Form -->
-            <div class="section">
-                <div class="card">
-                    <form id="producto-form">
-                        <!-- Paso 1: Información Básica -->
-                        <div class="form-section active" id="section-1">
-                            <h3 class="text-h3">Información Básica del Producto</h3>
-                            
-                            <div class="grid grid-2">
-                                <div class="form-group">
-                                    <label class="form-label">Código del Producto</label>
-                                    <input type="text" class="form-input" id="codigo" placeholder="Ej: ANE001" required>
-                                    <div class="form-help">Código único para identificación</div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Nombre del Producto</label>
-                                    <input type="text" class="form-input" id="nombre" placeholder="Ej: Anestesia Lidocaína 2% x 50ml" required>
-                                </div>
-                            </div>
-
-                            <div class="grid grid-3">
-                                <div class="form-group">
-                                    <label class="form-label">Categoría</label>
-                                    <select class="form-input form-select" id="categoria" required>
-                                        <option value="">Seleccionar categoría...</option>
-                                        <option value="anestesicos">Anestésicos</option>
-                                        <option value="proteccion">Protección</option>
-                                        <option value="odontologia">Odontología</option>
-                                        <option value="higiene">Higiene Oral</option>
-                                        <option value="instrumental">Instrumental</option>
-                                        <option value="material-medico">Material Médico</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Marca</label>
-                                    <input type="text" class="form-input" id="marca" placeholder="Ej: Braun, 3M, Oral-B" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Proveedor</label>
-                                    <select class="form-input form-select" id="proveedor" required>
-                                        <option value="">Seleccionar proveedor...</option>
-                                        <option value="proveedor-1">Distribuidora Médica S.A.</option>
-                                        <option value="proveedor-2">Importadora Dental Ltda.</option>
-                                        <option value="proveedor-3">Suministros Hospitalarios</option>
-                                        <option value="proveedor-4">Equipos Médicos Bolivia</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Descripción Detallada</label>
-                                <textarea class="form-input form-textarea" id="descripcion" placeholder="Descripción completa del producto, características técnicas, indicaciones de uso..."></textarea>
-                            </div>
-                        </div>
-
-                        <!-- Paso 2: Precios y Costos -->
-                        <div class="form-section" id="section-2">
-                            <h3 class="text-h3">Precios y Costos</h3>
-                            
-                            <div class="grid grid-3">
-                                <div class="form-group">
-                                    <label class="form-label">Precio de Costo</label>
-                                    <input type="number" class="form-input" id="precio-costo" step="0.01" placeholder="0.00" required>
-                                    <div class="form-help">Precio de compra al proveedor</div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Precio con Factura (Al por menor)</label>
-                                    <input type="number" class="form-input" id="precio-con-factura" step="0.01" placeholder="0.00" required>
-                                    <div class="form-help">Precio de venta al por menor con factura</div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Precio sin Factura (Al por mayor)</label>
-                                    <input type="number" class="form-input" id="precio-sin-factura" step="0.01" placeholder="0.00" required>
-                                    <div class="form-help">Precio de venta al por mayor sin factura</div>
-                                </div>
-                            </div>
-
-                            <div class="grid grid-3">
-                                <div class="form-group">
-                                    <label class="form-label">Margen Con Factura</label>
-                                    <input type="text" class="form-input" id="margen-con-factura" readonly style="background: var(--bg-secondary);">
-                                    <div class="form-help">Calculado automáticamente</div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Margen Sin Factura</label>
-                                    <input type="text" class="form-input" id="margen-sin-factura" readonly style="background: var(--bg-secondary);">
-                                    <div class="form-help">Calculado automáticamente</div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Moneda</label>
-                                    <select class="form-input form-select" id="moneda">
-                                        <option value="BOB">Bolivianos (Bs.)</option>
-                                        <option value="USD">Dólares (USD)</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="grid grid-2">
-                                <div class="form-group">
-                                    <label class="form-label">Impuesto (%)</label>
-                                    <input type="number" class="form-input" id="impuesto" value="13" min="0" max="100" step="0.01">
-                                    <div class="form-help">IVA u otros impuestos aplicables</div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Diferencia de Precios</label>
-                                    <input type="text" class="form-input" id="diferencia-precios" readonly style="background: var(--bg-secondary);">
-                                    <div class="form-help">Diferencia entre precio con y sin factura</div>
-                                </div>
-                            </div>
-
-                            <div class="alert alert-info">
-                                <strong>Recomendación:</strong> El margen recomendado para productos médicos es entre 25% y 40%. El precio sin factura debería ser menor al precio con factura.
-                            </div>
-                        </div>
-
-                        <!-- Paso 3: Inventario y Stock -->
-                        <div class="form-section" id="section-3">
-                            <h3 class="text-h3">Control de Inventario</h3>
-                            
-                            <div class="grid grid-3">
-                                <div class="form-group">
-                                    <label class="form-label">Stock Inicial</label>
-                                    <input type="number" class="form-input" id="stock-inicial" min="0" placeholder="0" required>
-                                    <div class="form-help">Cantidad inicial en inventario</div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Stock Mínimo</label>
-                                    <input type="number" class="form-input" id="stock-minimo" min="0" placeholder="0" required>
-                                    <div class="form-help">Nivel de alerta para reposición</div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Stock Máximo</label>
-                                    <input type="number" class="form-input" id="stock-maximo" min="0" placeholder="0">
-                                    <div class="form-help">Capacidad máxima de almacenaje</div>
-                                </div>
-                            </div>
-
-                            <div class="grid grid-2">
-                                <div class="form-group">
-                                    <label class="form-label">Unidad de Medida</label>
-                                    <select class="form-input form-select" id="unidad-medida" required>
-                                        <option value="">Seleccionar unidad...</option>
-                                        <option value="unidad">Unidad</option>
-                                        <option value="caja">Caja</option>
-                                        <option value="frasco">Frasco</option>
-                                        <option value="par">Par</option>
-                                        <option value="paquete">Paquete</option>
-                                        <option value="kit">Kit</option>
-                                        <option value="ml">Mililitros (ml)</option>
-                                        <option value="gr">Gramos (gr)</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Ubicación en Almacén</label>
-                                    <select class="form-input form-select" id="ubicacion" required>
-                                        <option value="">Seleccionar ubicación...</option>
-                                        <option value="deposito">Depósito Principal</option>
-                                        <option value="roydent">Roydent (Tienda Central)</option>
-                                        <option value="mundo-medico">Mundo Médico (Sucursal)</option>
-                                        <option value="refrigerado">Área Refrigerada</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="grid grid-2">
-                                <div class="form-group">
-                                    <label class="form-label">Fecha de Vencimiento</label>
-                                    <input type="date" class="form-input" id="fecha-vencimiento">
-                                    <div class="form-help">Dejar vacío si no aplica</div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Requiere Refrigeración</label>
-                                    <select class="form-input form-select" id="refrigeracion">
-                                        <option value="no">No requiere</option>
-                                        <option value="si">Sí requiere</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Paso 4: Imagen y Finalización -->
-                        <div class="form-section" id="section-4">
-                            <h3 class="text-h3">Imagen y Finalización</h3>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Imagen del Producto</label>
-                                
-                                <!-- Selector de tipo de imagen -->
-                                <div class="image-input-container">
-                                    <div class="image-source-toggle">
-                                        <button type="button" class="toggle-btn active" id="btn-file" onclick="toggleImageSource('file')">Subir Archivo</button>
-                                        <button type="button" class="toggle-btn" id="btn-url" onclick="toggleImageSource('url')">URL de Imagen</button>
-                                    </div>
-                                </div>
-
-                                <!-- Área de subida de archivo -->
-                                <div id="file-upload-area">
-                                    <div class="upload-area" id="upload-area">
-                                        <div class="upload-icon">📷</div>
-                                        <div class="upload-text">Arrastra una imagen aquí</div>
-                                        <div class="upload-subtext">o haz clic para seleccionar archivo (JPG, PNG, máx. 5MB)</div>
-                                    </div>
-                                    <input type="file" id="imagen-input" accept="image/*" style="display: none;">
-                                </div>
-
-                                <!-- Campo de URL -->
-                                <div id="url-input-area" style="display: none;">
-                                    <input type="url" class="form-input" id="imagen-url" placeholder="https://ejemplo.com/imagen.jpg">
-                                    <button type="button" class="btn btn-secondary" onclick="previewUrl()" style="margin-top: 0.5rem; width: auto;">Previsualizar</button>
-                                    <div class="form-help">Pega la URL de una imagen desde internet</div>
-                                </div>
-
-                                <img id="preview-imagen" class="preview-image" style="display: none;">
-                            </div>
-
-                            <div class="grid grid-2">
-                                <div class="form-group">
-                                    <label class="form-label">Estado del Producto</label>
-                                    <select class="form-input form-select" id="estado">
-                                        <option value="activo">Activo</option>
-                                        <option value="pausa">En Pausa</option>
-                                        <option value="descontinuado">Descontinuado</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Código de Barras</label>
-                                    <input type="text" class="form-input" id="codigo-barras" placeholder="Código de barras (opcional)">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Notas Adicionales</label>
-                                <textarea class="form-input form-textarea" id="notas" placeholder="Instrucciones especiales, condiciones de almacenamiento, advertencias..."></textarea>
-                            </div>
-
-                            <div class="alert alert-success">
-                                <strong>Resumen:</strong> Una vez completado, el producto será registrado automáticamente en el sistema FIFO y estará disponible para ventas e inventario.
-                            </div>
-                        </div>
-
-                        <!-- Botones de Navegación -->
-                        <div class="form-actions">
-                            <button type="button" class="btn btn-secondary" id="btn-anterior" onclick="anteriorPaso()" style="display: none;">
-                                ← Anterior
-                            </button>
-                            
-                            <div class="step-info">
-                                <div class="progress">
-                                    <div class="progress-bar" id="progress-bar" style="width: 25%;"></div>
-                                </div>
-                                <div class="step-text" id="progress-text">
-                                    Paso 1 de 4 - 25% completado
-                                </div>
-                            </div>
-                            
-                            <button type="button" class="btn btn-primary" id="btn-siguiente" onclick="siguientePaso()">
-                                Siguiente →
-                            </button>
-                            <button type="submit" class="btn btn-primary" id="btn-guardar" style="display: none;">
-                                Guardar Producto
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        let pasoActual = 1;
-        const totalPasos = 4;
-
-        // ============ MANEJO DE LOGOS ============
-        function handleLogoError() {
-            document.getElementById('sidebarLogo').style.display = 'none';
-            document.getElementById('defaultLogo').style.display = 'flex';
-        }
-        
-        function handleMobileLogoError() {
-            const mobileLogo = document.getElementById('mobileLogo');
-            mobileLogo.src = '';
-            mobileLogo.alt = 'Sistema Roy';
-            mobileLogo.style.fontFamily = 'Inter, sans-serif';
-            mobileLogo.style.fontWeight = '700';
-            mobileLogo.style.fontSize = '1.2rem';
-            mobileLogo.style.color = 'var(--color-purple)';
-        }
-
-        // Configuración inicial
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebarLogo = document.getElementById('sidebarLogo');
-            const mobileLogo = document.getElementById('mobileLogo');
-            
-            if (sidebarLogo && (sidebarLogo.complete && sidebarLogo.naturalHeight === 0)) {
-                handleLogoError();
-            }
-            
-            if (mobileLogo && (mobileLogo.complete && mobileLogo.naturalHeight === 0)) {
-                handleMobileLogoError();
-            }
-            
-            setTimeout(function() {
-                if (sidebarLogo && (sidebarLogo.complete && sidebarLogo.naturalHeight === 0)) {
-                    handleLogoError();
-                }
-                if (mobileLogo && (mobileLogo.complete && mobileLogo.naturalHeight === 0)) {
-                    handleMobileLogoError();
-                }
-            }, 1000);
-
-            configurarSubidaImagen();
-            configurarCalculos();
-            configurarValidacion();
-        });
-
-        // ============ FUNCIONES DEL SIDEBAR ============
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-
-        // ============ FUNCIONES DE NAVEGACIÓN DE PASOS ============
-        function siguientePaso() {
-            if (validarPasoActual()) {
-                if (pasoActual < totalPasos) {
-                    cambiarPaso(pasoActual + 1);
-                }
-            }
-        }
-
-        function anteriorPaso() {
-            if (pasoActual > 1) {
-                cambiarPaso(pasoActual - 1);
-            }
-        }
-
-        function cambiarPaso(nuevoPaso) {
-            document.getElementById(`section-${pasoActual}`).classList.remove('active');
-            document.getElementById(`step-${pasoActual}`).classList.remove('active');
-            
-            if (nuevoPaso > pasoActual) {
-                document.getElementById(`step-${pasoActual}`).classList.add('completed');
-            } else {
-                document.getElementById(`step-${pasoActual}`).classList.remove('completed');
-            }
-
-            pasoActual = nuevoPaso;
-            document.getElementById(`section-${pasoActual}`).classList.add('active');
-            document.getElementById(`step-${pasoActual}`).classList.add('active');
-
-            document.getElementById('btn-anterior').style.display = pasoActual > 1 ? 'inline-flex' : 'none';
-            document.getElementById('btn-siguiente').style.display = pasoActual < totalPasos ? 'inline-flex' : 'none';
-            document.getElementById('btn-guardar').style.display = pasoActual === totalPasos ? 'inline-flex' : 'none';
-
-            const progreso = (pasoActual / totalPasos) * 100;
-            document.getElementById('progress-bar').style.width = `${progreso}%`;
-            document.getElementById('progress-text').textContent = `Paso ${pasoActual} de ${totalPasos} - ${progreso}% completado`;
-
-            window.scrollTo(0, 0);
-        }
-
-        // ============ FUNCIONES DE VALIDACIÓN ============
-        function validarPasoActual() {
-            const campos = {
-                1: ['codigo', 'nombre', 'categoria', 'marca', 'proveedor'],
-                2: ['precio-costo', 'precio-con-factura', 'precio-sin-factura'],
-                3: ['stock-inicial', 'stock-minimo', 'unidad-medida', 'ubicacion'],
-                4: []
-            };
-
-            const camposRequeridos = campos[pasoActual] || [];
-            
-            for (let campo of camposRequeridos) {
-                const elemento = document.getElementById(campo);
-                if (!elemento.value.trim()) {
-                    elemento.focus();
-                    elemento.style.borderColor = 'var(--color-danger)';
-                    mostrarAlerta(`Por favor completa el campo: ${elemento.previousElementSibling.textContent}`, 'warning');
-                    setTimeout(() => {
-                        elemento.style.borderColor = '';
-                    }, 3000);
-                    return false;
-                }
-            }
-
-            if (pasoActual === 2) {
-                const costo = parseFloat(document.getElementById('precio-costo').value);
-                const conFactura = parseFloat(document.getElementById('precio-con-factura').value);
-                const sinFactura = parseFloat(document.getElementById('precio-sin-factura').value);
-                
-                if (conFactura <= costo || sinFactura <= costo) {
-                    mostrarAlerta('Los precios de venta deben ser mayores al precio de costo', 'warning');
-                    return false;
-                }
-
-                if (sinFactura >= conFactura) {
-                    mostrarAlerta('El precio sin factura debe ser menor al precio con factura', 'warning');
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        // ============ FUNCIONES DE CÁLCULOS ============
-        function configurarCalculos() {
-            document.getElementById('precio-costo').addEventListener('input', calcularMargenes);
-            document.getElementById('precio-con-factura').addEventListener('input', calcularMargenes);
-            document.getElementById('precio-sin-factura').addEventListener('input', calcularMargenes);
-            document.getElementById('categoria').addEventListener('change', generarCodigoAutomatico);
-        }
-
-        function calcularMargenes() {
-            const costo = parseFloat(document.getElementById('precio-costo').value) || 0;
-            const conFactura = parseFloat(document.getElementById('precio-con-factura').value) || 0;
-            const sinFactura = parseFloat(document.getElementById('precio-sin-factura').value) || 0;
-            
-            if (costo > 0) {
-                if (conFactura > 0) {
-                    const margenConFactura = ((conFactura - costo) / costo) * 100;
-                    document.getElementById('margen-con-factura').value = `${margenConFactura.toFixed(2)}%`;
-                }
-                
-                if (sinFactura > 0) {
-                    const margenSinFactura = ((sinFactura - costo) / costo) * 100;
-                    document.getElementById('margen-sin-factura').value = `${margenSinFactura.toFixed(2)}%`;
-                }
-
-                if (conFactura > 0 && sinFactura > 0) {
-                    const diferencia = conFactura - sinFactura;
-                    const porcentajeDiferencia = ((diferencia / conFactura) * 100).toFixed(2);
-                    document.getElementById('diferencia-precios').value = `Bs. ${diferencia.toFixed(2)} (${porcentajeDiferencia}%)`;
-                }
-            } else {
-                document.getElementById('margen-con-factura').value = '';
-                document.getElementById('margen-sin-factura').value = '';
-                document.getElementById('diferencia-precios').value = '';
-            }
-        }
-
-        function generarCodigoAutomatico() {
-            const categoria = document.getElementById('categoria').value;
-            const prefijos = {
-                'anestesicos': 'ANE',
-                'proteccion': 'PRO',
-                'odontologia': 'ODO',
-                'higiene': 'HIG',
-                'instrumental': 'INS',
-                'material-medico': 'MED'
-            };
-            
-            if (categoria && prefijos[categoria] && !document.getElementById('codigo').value) {
-                const numero = Math.floor(Math.random() * 900) + 100;
-                document.getElementById('codigo').value = `${prefijos[categoria]}${numero}`;
-            }
-        }
-
-        // ============ FUNCIONES DE SUBIDA DE IMAGEN ============
-        function configurarSubidaImagen() {
-            const uploadArea = document.getElementById('upload-area');
-            const inputImagen = document.getElementById('imagen-input');
-            const previewImagen = document.getElementById('preview-imagen');
-
-            uploadArea.addEventListener('click', () => inputImagen.click());
-
-            uploadArea.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadArea.classList.add('dragover');
-            });
-
-            uploadArea.addEventListener('dragleave', () => {
-                uploadArea.classList.remove('dragover');
-            });
-
-            uploadArea.addEventListener('drop', (e) => {
-                e.preventDefault();
-                uploadArea.classList.remove('dragover');
-                const archivos = e.dataTransfer.files;
-                if (archivos.length > 0) {
-                    procesarImagen(archivos[0]);
-                }
-            });
-
-            inputImagen.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) {
-                    procesarImagen(e.target.files[0]);
-                }
-            });
-
-            function procesarImagen(archivo) {
-                if (archivo.type.startsWith('image/') && archivo.size <= 5 * 1024 * 1024) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        previewImagen.src = e.target.result;
-                        previewImagen.style.display = 'block';
-                        uploadArea.style.display = 'none';
-                    };
-                    reader.readAsDataURL(archivo);
-                } else {
-                    mostrarAlerta('Selecciona una imagen válida (máx. 5MB)', 'warning');
-                }
-            }
-        }
-
-        // ============ FUNCIONES DE IMAGEN ============
-        function toggleImageSource(tipo) {
-            const btnFile = document.getElementById('btn-file');
-            const btnUrl = document.getElementById('btn-url');
-            const fileArea = document.getElementById('file-upload-area');
-            const urlArea = document.getElementById('url-input-area');
-            const previewImagen = document.getElementById('preview-imagen');
-            
-            if (tipo === 'file') {
-                btnFile.classList.add('active');
-                btnUrl.classList.remove('active');
-                fileArea.style.display = 'block';
-                urlArea.style.display = 'none';
-            } else {
-                btnFile.classList.remove('active');
-                btnUrl.classList.add('active');
-                fileArea.style.display = 'none';
-                urlArea.style.display = 'block';
-            }
-            
-            // Ocultar preview al cambiar de modo
-            previewImagen.style.display = 'none';
-            document.getElementById('upload-area').style.display = 'block';
-        }
-
-        function previewUrl() {
-            const url = document.getElementById('imagen-url').value;
-            const previewImagen = document.getElementById('preview-imagen');
-            
-            if (url) {
-                previewImagen.src = url;
-                previewImagen.style.display = 'block';
-                previewImagen.onerror = () => {
-                    mostrarAlerta('Error al cargar la imagen desde la URL', 'warning');
-                    previewImagen.style.display = 'none';
-                };
-            } else {
-                mostrarAlerta('Por favor ingresa una URL válida', 'warning');
-            }
-        }
-
-        // ============ FUNCIONES DE VALIDACIÓN EN TIEMPO REAL ============
-        function configurarValidacion() {
-            const campos = document.querySelectorAll('.form-input[required]');
-            campos.forEach(campo => {
-                campo.addEventListener('blur', function() {
-                    if (this.value.trim()) {
-                        this.style.borderColor = '';
-                    }
-                });
-            });
-        }
-
-        // ============ GUARDAR PRODUCTO ============
-        document.getElementById('producto-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (validarPasoActual()) {
-                const btnGuardar = document.getElementById('btn-guardar');
-                const textoOriginal = btnGuardar.innerHTML;
-                
-                btnGuardar.innerHTML = 'Guardando...';
-                btnGuardar.disabled = true;
-                
-                setTimeout(() => {
-                    btnGuardar.innerHTML = textoOriginal;
-                    btnGuardar.disabled = false;
-                    
-                    const codigo = document.getElementById('codigo').value;
-                    const nombre = document.getElementById('nombre').value;
-                    
-                    mostrarAlerta(`Producto "${nombre}" (${codigo}) guardado exitosamente!`, 'success');
-                    
-                    if (confirm('¿Deseas agregar otro producto?')) {
-                        limpiarFormulario();
-                    }
-                }, 2000);
-            }
-        });
-
-        // ============ LIMPIAR FORMULARIO ============
-        function limpiarFormulario() {
-            document.getElementById('producto-form').reset();
-            cambiarPaso(1);
-            document.getElementById('preview-imagen').style.display = 'none';
-            document.getElementById('upload-area').style.display = 'block';
-            document.getElementById('margen-con-factura').value = '';
-            document.getElementById('margen-sin-factura').value = '';
-            document.getElementById('diferencia-precios').value = '';
-            
-            // Resetear el selector de imagen
-            toggleImageSource('file');
-        }
-
-        // ============ MOSTRAR ALERTAS ============
-        function mostrarAlerta(mensaje, tipo) {
-            const alerta = document.createElement('div');
-            alerta.className = `alert alert-${tipo}`;
-            alerta.innerHTML = `<strong>${tipo === 'success' ? 'Éxito!' : tipo === 'warning' ? 'Advertencia:' : 'Info:'}</strong> ${mensaje}`;
-            alerta.style.position = 'fixed';
-            alerta.style.top = '20px';
-            alerta.style.right = '20px';
-            alerta.style.zIndex = '1000';
-            alerta.style.minWidth = '300px';
-            alerta.style.boxShadow = 'var(--shadow-lg)';
-            
-            document.body.appendChild(alerta);
-            
-            setTimeout(() => {
-                alerta.remove();
-            }, 5000);
-        }
-
-        // ============ ANIMACIONES DE ENTRADA ============
-        const elements = document.querySelectorAll('.card, .alert');
-        elements.forEach((element, index) => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                element.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
-            }, index * 100);
-        });
-
-        console.log('Sistema de Agregar Producto Roy Representaciones iniciado');
-        console.log('Funcionalidades: Formulario multi-paso, cálculo automático de márgenes, subida de imagen por archivo o URL');
-    </script>
-</body>
 </html><!DOCTYPE html>
 <html lang="es">
 <head>
@@ -1768,4 +922,854 @@
 </head>
 <body>
     <!-- Elementos decorativos de fondo -->
-    <div class
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-brand">
+                <!-- Logo desde la carpeta assets -->
+                <img src="assets/images/Roydent.png" alt="Logo de RoyDent" class="sidebar-logo-img" id="sidebarLogo" onerror="handleLogoError()">
+                <!-- Logo por defecto (oculto inicialmente) -->
+                <div class="logo-default" id="defaultLogo" style="display: none;">
+                    ROY
+                </div>
+                <div>
+                    <div class="sidebar-title">Sistema RoyDent</div>
+                    <div class="sidebar-subtitle">Y Mundo Medico</div>
+                </div>
+            </a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-title">Principal</div>
+                <div class="nav-item">
+                    <a href="panel-admin.html" class="nav-link">
+                        <div class="nav-icon">🏠</div>
+                        Dashboard
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📊</div>
+                        Analíticas
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Productos</div>
+                <div class="nav-item">
+                    <a href="agregarproducto.html" class="nav-link active">
+                        <div class="nav-icon">➕</div>
+                        Agregar Producto
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📦</div>
+                        Lista de Productos
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="gestioncategorias.html" class="nav-link">
+                        <div class="nav-icon">🏷️</div>
+                        Categorías
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">🔄</div>
+                        Control FIFO
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Inventario</div>
+                <div class="nav-item">
+                    <a href="inventario.html" class="nav-link">
+                        <div class="nav-icon">📋</div>
+                        Inventario General
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">⚠️</div>
+                        Stock Bajo
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📍</div>
+                        Ubicaciones
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="gestionproveedores.html" class="nav-link">
+                        <div class="nav-icon">👨‍💼</div>
+                        Proveedores
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Ventas</div>
+                <div class="nav-item">
+                    <a href="nuevaventa.html" class="nav-link">
+                        <div class="nav-icon">🛒</div>
+                        Nueva Venta
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="historialventa.html" class="nav-link">
+                        <div class="nav-icon">💰</div>
+                        Historial Ventas
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="gestionclientes.html" class="nav-link">
+                        <div class="nav-icon">👥</div>
+                        Clientes
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Reportes</div>
+                <div class="nav-item">
+                    <a href="reportesventa.html" class="nav-link">
+                        <div class="nav-icon">📈</div>
+                        Reportes de Ventas
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">📉</div>
+                        Análisis de Inventario
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="nav-icon">💼</div>
+                        Reportes Financieros
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Configuración</div>
+                <div class="nav-item">
+                    <a href="configuracion.html" class="nav-link">
+                        <div class="nav-icon">⚙️</div>
+                        Configuración
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="perfilusuario.html" class="nav-link">
+                        <div class="nav-icon">👤</div>
+                        Perfil
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="gestionusuario.html" class="nav-link">
+                        <div class="nav-icon">👥</div>
+                        Usuarios
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="backups.html" class="nav-link">
+                        <div class="nav-icon">💾</div>
+                        Backup
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header" id="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+        <img src="assets/images/Roydent.png" alt="Logo de RoyDent" class="mobile-logo" id="mobileLogo" onerror="handleMobileLogoError()">
+    </header>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Header -->
+            <div class="section">
+                <div class="card">
+                    <div class="card-content">
+                        <h1 class="text-display text-center">Agregar Nuevo Producto</h1>
+                        <p class="text-body text-center">Registra productos médicos y odontológicos con control FIFO automático</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Steps Indicator -->
+            <div class="section">
+                <div class="card">
+                    <div class="steps-container">
+                        <div class="step active" id="step-1">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Información Básica</div>
+                        </div>
+                        <div class="step" id="step-2">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Precios y Costos</div>
+                        </div>
+                        <div class="step" id="step-3">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Inventario</div>
+                        </div>
+                        <div class="step" id="step-4">
+                            <div class="step-number">4</div>
+                            <div class="step-label">Imagen y Finalización</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="section">
+                <div class="card">
+                    <form id="producto-form">
+                        <!-- Paso 1: Información Básica -->
+                        <div class="form-section active" id="section-1">
+                            <h3 class="text-h3">Información Básica del Producto</h3>
+                            
+                            <div class="grid grid-2">
+                                <div class="form-group">
+                                    <label class="form-label">Código del Producto</label>
+                                    <input type="text" class="form-input" id="codigo" placeholder="Ej: ANE001" required>
+                                    <div class="form-help">Código único para identificación</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Nombre del Producto</label>
+                                    <input type="text" class="form-input" id="nombre" placeholder="Ej: Anestesia Lidocaína 2% x 50ml" required>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-3">
+                                <div class="form-group">
+                                    <label class="form-label">Categoría</label>
+                                    <select class="form-input form-select" id="categoria" required>
+                                        <option value="">Seleccionar categoría...</option>
+                                        <option value="anestesicos">Anestésicos</option>
+                                        <option value="proteccion">Protección</option>
+                                        <option value="odontologia">Odontología</option>
+                                        <option value="higiene">Higiene Oral</option>
+                                        <option value="instrumental">Instrumental</option>
+                                        <option value="material-medico">Material Médico</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Marca</label>
+                                    <input type="text" class="form-input" id="marca" placeholder="Ej: Braun, 3M, Oral-B" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Proveedor</label>
+                                    <select class="form-input form-select" id="proveedor" required>
+                                        <option value="">Seleccionar proveedor...</option>
+                                        <option value="proveedor-1">Distribuidora Médica S.A.</option>
+                                        <option value="proveedor-2">Importadora Dental Ltda.</option>
+                                        <option value="proveedor-3">Suministros Hospitalarios</option>
+                                        <option value="proveedor-4">Equipos Médicos Bolivia</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Descripción Detallada</label>
+                                <textarea class="form-input form-textarea" id="descripcion" placeholder="Descripción completa del producto, características técnicas, indicaciones de uso..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Paso 2: Precios y Costos -->
+                        <div class="form-section" id="section-2">
+                            <h3 class="text-h3">Precios y Costos</h3>
+                            
+                            <div class="grid grid-3">
+                                <div class="form-group">
+                                    <label class="form-label">Precio de Costo</label>
+                                    <input type="number" class="form-input" id="precio-costo" step="0.01" placeholder="0.00" required>
+                                    <div class="form-help">Precio de compra al proveedor</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Precio con Factura (Al por menor)</label>
+                                    <input type="number" class="form-input" id="precio-con-factura" step="0.01" placeholder="0.00" required>
+                                    <div class="form-help">Precio de venta al por menor con factura</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Precio sin Factura (Al por mayor)</label>
+                                    <input type="number" class="form-input" id="precio-sin-factura" step="0.01" placeholder="0.00" required>
+                                    <div class="form-help">Precio de venta al por mayor sin factura</div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-3">
+                                <div class="form-group">
+                                    <label class="form-label">Margen Con Factura</label>
+                                    <input type="text" class="form-input" id="margen-con-factura" readonly style="background: var(--bg-secondary);">
+                                    <div class="form-help">Calculado automáticamente</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Margen Sin Factura</label>
+                                    <input type="text" class="form-input" id="margen-sin-factura" readonly style="background: var(--bg-secondary);">
+                                    <div class="form-help">Calculado automáticamente</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Moneda</label>
+                                    <select class="form-input form-select" id="moneda">
+                                        <option value="BOB">Bolivianos (Bs.)</option>
+                                        <option value="USD">Dólares (USD)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-2">
+                                <div class="form-group">
+                                    <label class="form-label">Impuesto (%)</label>
+                                    <input type="number" class="form-input" id="impuesto" value="13" min="0" max="100" step="0.01">
+                                    <div class="form-help">IVA u otros impuestos aplicables</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Diferencia de Precios</label>
+                                    <input type="text" class="form-input" id="diferencia-precios" readonly style="background: var(--bg-secondary);">
+                                    <div class="form-help">Diferencia entre precio con y sin factura</div>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-info">
+                                <strong>Recomendación:</strong> El margen recomendado para productos médicos es entre 25% y 40%. El precio sin factura debería ser menor al precio con factura.
+                            </div>
+                        </div>
+
+                        <!-- Paso 3: Inventario y Stock -->
+                        <div class="form-section" id="section-3">
+                            <h3 class="text-h3">Control de Inventario</h3>
+                            
+                            <div class="grid grid-3">
+                                <div class="form-group">
+                                    <label class="form-label">Stock Inicial</label>
+                                    <input type="number" class="form-input" id="stock-inicial" min="0" placeholder="0" required>
+                                    <div class="form-help">Cantidad inicial en inventario</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Stock Mínimo</label>
+                                    <input type="number" class="form-input" id="stock-minimo" min="0" placeholder="0" required>
+                                    <div class="form-help">Nivel de alerta para reposición</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Stock Máximo</label>
+                                    <input type="number" class="form-input" id="stock-maximo" min="0" placeholder="0">
+                                    <div class="form-help">Capacidad máxima de almacenaje</div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-2">
+                                <div class="form-group">
+                                    <label class="form-label">Unidad de Medida</label>
+                                    <select class="form-input form-select" id="unidad-medida" required>
+                                        <option value="">Seleccionar unidad...</option>
+                                        <option value="unidad">Unidad</option>
+                                        <option value="caja">Caja</option>
+                                        <option value="frasco">Frasco</option>
+                                        <option value="par">Par</option>
+                                        <option value="paquete">Paquete</option>
+                                        <option value="kit">Kit</option>
+                                        <option value="ml">Mililitros (ml)</option>
+                                        <option value="gr">Gramos (gr)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Ubicación en Almacén</label>
+                                    <select class="form-input form-select" id="ubicacion" required>
+                                        <option value="">Seleccionar ubicación...</option>
+                                        <option value="deposito">Depósito Principal</option>
+                                        <option value="roydent">Roydent (Tienda Central)</option>
+                                        <option value="mundo-medico">Mundo Médico (Sucursal)</option>
+                                        <option value="refrigerado">Área Refrigerada</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-2">
+                                <div class="form-group">
+                                    <label class="form-label">Fecha de Vencimiento</label>
+                                    <input type="date" class="form-input" id="fecha-vencimiento">
+                                    <div class="form-help">Dejar vacío si no aplica</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Requiere Refrigeración</label>
+                                    <select class="form-input form-select" id="refrigeracion">
+                                        <option value="no">No requiere</option>
+                                        <option value="si">Sí requiere</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Paso 4: Imagen y Finalización -->
+                        <div class="form-section" id="section-4">
+                            <h3 class="text-h3">Imagen y Finalización</h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Imagen del Producto</label>
+                                
+                                <!-- Selector de tipo de imagen -->
+                                <div class="image-input-container">
+                                    <div class="image-source-toggle">
+                                        <button type="button" class="toggle-btn active" id="btn-file" onclick="toggleImageSource('file')">Subir Archivo</button>
+                                        <button type="button" class="toggle-btn" id="btn-url" onclick="toggleImageSource('url')">URL de Imagen</button>
+                                    </div>
+                                </div>
+
+                                <!-- Área de subida de archivo -->
+                                <div id="file-upload-area">
+                                    <div class="upload-area" id="upload-area">
+                                        <div class="upload-icon">📷</div>
+                                        <div class="upload-text">Arrastra una imagen aquí</div>
+                                        <div class="upload-subtext">o haz clic para seleccionar archivo (JPG, PNG, máx. 5MB)</div>
+                                    </div>
+                                    <input type="file" id="imagen-input" accept="image/*" style="display: none;">
+                                </div>
+
+                                <!-- Campo de URL -->
+                                <div id="url-input-area" style="display: none;">
+                                    <input type="url" class="form-input" id="imagen-url" placeholder="https://ejemplo.com/imagen.jpg">
+                                    <button type="button" class="btn btn-secondary" onclick="previewUrl()" style="margin-top: 0.5rem; width: auto;">Previsualizar</button>
+                                    <div class="form-help">Pega la URL de una imagen desde internet</div>
+                                </div>
+
+                                <img id="preview-imagen" class="preview-image" style="display: none;">
+                            </div>
+
+                            <div class="grid grid-2">
+                                <div class="form-group">
+                                    <label class="form-label">Estado del Producto</label>
+                                    <select class="form-input form-select" id="estado">
+                                        <option value="activo">Activo</option>
+                                        <option value="pausa">En Pausa</option>
+                                        <option value="descontinuado">Descontinuado</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Código de Barras</label>
+                                    <input type="text" class="form-input" id="codigo-barras" placeholder="Código de barras (opcional)">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Notas Adicionales</label>
+                                <textarea class="form-input form-textarea" id="notas" placeholder="Instrucciones especiales, condiciones de almacenamiento, advertencias..."></textarea>
+                            </div>
+
+                            <div class="alert alert-success">
+                                <strong>Resumen:</strong> Una vez completado, el producto será registrado automáticamente en el sistema FIFO y estará disponible para ventas e inventario.
+                            </div>
+                        </div>
+
+                        <!-- Botones de Navegación -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="btn-anterior" onclick="anteriorPaso()" style="display: none;">
+                                ← Anterior
+                            </button>
+                            
+                            <div class="step-info">
+                                <div class="progress">
+                                    <div class="progress-bar" id="progress-bar" style="width: 25%;"></div>
+                                </div>
+                                <div class="step-text" id="progress-text">
+                                    Paso 1 de 4 - 25% completado
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="btn btn-primary" id="btn-siguiente" onclick="siguientePaso()">
+                                Siguiente →
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="btn-guardar" style="display: none;">
+                                Guardar Producto
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let pasoActual = 1;
+        const totalPasos = 4;
+
+        // ============ MANEJO DE LOGOS ============
+        function handleLogoError() {
+            document.getElementById('sidebarLogo').style.display = 'none';
+            document.getElementById('defaultLogo').style.display = 'flex';
+        }
+        
+        function handleMobileLogoError() {
+            const mobileLogo = document.getElementById('mobileLogo');
+            mobileLogo.src = '';
+            mobileLogo.alt = 'Sistema Roy';
+            mobileLogo.style.fontFamily = 'Inter, sans-serif';
+            mobileLogo.style.fontWeight = '700';
+            mobileLogo.style.fontSize = '1.2rem';
+            mobileLogo.style.color = 'var(--color-purple)';
+        }
+
+        // Configuración inicial
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarLogo = document.getElementById('sidebarLogo');
+            const mobileLogo = document.getElementById('mobileLogo');
+            
+            if (sidebarLogo && (sidebarLogo.complete && sidebarLogo.naturalHeight === 0)) {
+                handleLogoError();
+            }
+            
+            if (mobileLogo && (mobileLogo.complete && mobileLogo.naturalHeight === 0)) {
+                handleMobileLogoError();
+            }
+            
+            setTimeout(function() {
+                if (sidebarLogo && (sidebarLogo.complete && sidebarLogo.naturalHeight === 0)) {
+                    handleLogoError();
+                }
+                if (mobileLogo && (mobileLogo.complete && mobileLogo.naturalHeight === 0)) {
+                    handleMobileLogoError();
+                }
+            }, 1000);
+
+            configurarSubidaImagen();
+            configurarCalculos();
+            configurarValidacion();
+        });
+
+        // ============ FUNCIONES DEL SIDEBAR ============
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // ============ FUNCIONES DE NAVEGACIÓN DE PASOS ============
+        function siguientePaso() {
+            if (validarPasoActual()) {
+                if (pasoActual < totalPasos) {
+                    cambiarPaso(pasoActual + 1);
+                }
+            }
+        }
+
+        function anteriorPaso() {
+            if (pasoActual > 1) {
+                cambiarPaso(pasoActual - 1);
+            }
+        }
+
+        function cambiarPaso(nuevoPaso) {
+            document.getElementById(`section-${pasoActual}`).classList.remove('active');
+            document.getElementById(`step-${pasoActual}`).classList.remove('active');
+            
+            if (nuevoPaso > pasoActual) {
+                document.getElementById(`step-${pasoActual}`).classList.add('completed');
+            } else {
+                document.getElementById(`step-${pasoActual}`).classList.remove('completed');
+            }
+
+            pasoActual = nuevoPaso;
+            document.getElementById(`section-${pasoActual}`).classList.add('active');
+            document.getElementById(`step-${pasoActual}`).classList.add('active');
+
+            document.getElementById('btn-anterior').style.display = pasoActual > 1 ? 'inline-flex' : 'none';
+            document.getElementById('btn-siguiente').style.display = pasoActual < totalPasos ? 'inline-flex' : 'none';
+            document.getElementById('btn-guardar').style.display = pasoActual === totalPasos ? 'inline-flex' : 'none';
+
+            const progreso = (pasoActual / totalPasos) * 100;
+            document.getElementById('progress-bar').style.width = `${progreso}%`;
+            document.getElementById('progress-text').textContent = `Paso ${pasoActual} de ${totalPasos} - ${progreso}% completado`;
+
+            window.scrollTo(0, 0);
+        }
+
+        // ============ FUNCIONES DE VALIDACIÓN ============
+        function validarPasoActual() {
+            const campos = {
+                1: ['codigo', 'nombre', 'categoria', 'marca', 'proveedor'],
+                2: ['precio-costo', 'precio-con-factura', 'precio-sin-factura'],
+                3: ['stock-inicial', 'stock-minimo', 'unidad-medida', 'ubicacion'],
+                4: []
+            };
+
+            const camposRequeridos = campos[pasoActual] || [];
+            
+            for (let campo of camposRequeridos) {
+                const elemento = document.getElementById(campo);
+                if (!elemento.value.trim()) {
+                    elemento.focus();
+                    elemento.style.borderColor = 'var(--color-danger)';
+                    mostrarAlerta(`Por favor completa el campo: ${elemento.previousElementSibling.textContent}`, 'warning');
+                    setTimeout(() => {
+                        elemento.style.borderColor = '';
+                    }, 3000);
+                    return false;
+                }
+            }
+
+            if (pasoActual === 2) {
+                const costo = parseFloat(document.getElementById('precio-costo').value);
+                const conFactura = parseFloat(document.getElementById('precio-con-factura').value);
+                const sinFactura = parseFloat(document.getElementById('precio-sin-factura').value);
+                
+                if (conFactura <= costo || sinFactura <= costo) {
+                    mostrarAlerta('Los precios de venta deben ser mayores al precio de costo', 'warning');
+                    return false;
+                }
+
+                if (sinFactura >= conFactura) {
+                    mostrarAlerta('El precio sin factura debe ser menor al precio con factura', 'warning');
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        // ============ FUNCIONES DE CÁLCULOS ============
+        function configurarCalculos() {
+            document.getElementById('precio-costo').addEventListener('input', calcularMargenes);
+            document.getElementById('precio-con-factura').addEventListener('input', calcularMargenes);
+            document.getElementById('precio-sin-factura').addEventListener('input', calcularMargenes);
+            document.getElementById('categoria').addEventListener('change', generarCodigoAutomatico);
+        }
+
+        function calcularMargenes() {
+            const costo = parseFloat(document.getElementById('precio-costo').value) || 0;
+            const conFactura = parseFloat(document.getElementById('precio-con-factura').value) || 0;
+            const sinFactura = parseFloat(document.getElementById('precio-sin-factura').value) || 0;
+            
+            if (costo > 0) {
+                if (conFactura > 0) {
+                    const margenConFactura = ((conFactura - costo) / costo) * 100;
+                    document.getElementById('margen-con-factura').value = `${margenConFactura.toFixed(2)}%`;
+                }
+                
+                if (sinFactura > 0) {
+                    const margenSinFactura = ((sinFactura - costo) / costo) * 100;
+                    document.getElementById('margen-sin-factura').value = `${margenSinFactura.toFixed(2)}%`;
+                }
+
+                if (conFactura > 0 && sinFactura > 0) {
+                    const diferencia = conFactura - sinFactura;
+                    const porcentajeDiferencia = ((diferencia / conFactura) * 100).toFixed(2);
+                    document.getElementById('diferencia-precios').value = `Bs. ${diferencia.toFixed(2)} (${porcentajeDiferencia}%)`;
+                }
+            } else {
+                document.getElementById('margen-con-factura').value = '';
+                document.getElementById('margen-sin-factura').value = '';
+                document.getElementById('diferencia-precios').value = '';
+            }
+        }
+
+        function generarCodigoAutomatico() {
+            const categoria = document.getElementById('categoria').value;
+            const prefijos = {
+                'anestesicos': 'ANE',
+                'proteccion': 'PRO',
+                'odontologia': 'ODO',
+                'higiene': 'HIG',
+                'instrumental': 'INS',
+                'material-medico': 'MED'
+            };
+            
+            if (categoria && prefijos[categoria] && !document.getElementById('codigo').value) {
+                const numero = Math.floor(Math.random() * 900) + 100;
+                document.getElementById('codigo').value = `${prefijos[categoria]}${numero}`;
+            }
+        }
+
+        // ============ FUNCIONES DE SUBIDA DE IMAGEN ============
+        function configurarSubidaImagen() {
+            const uploadArea = document.getElementById('upload-area');
+            const inputImagen = document.getElementById('imagen-input');
+            const previewImagen = document.getElementById('preview-imagen');
+
+            uploadArea.addEventListener('click', () => inputImagen.click());
+
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                const archivos = e.dataTransfer.files;
+                if (archivos.length > 0) {
+                    procesarImagen(archivos[0]);
+                }
+            });
+
+            inputImagen.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    procesarImagen(e.target.files[0]);
+                }
+            });
+
+            function procesarImagen(archivo) {
+                if (archivo.type.startsWith('image/') && archivo.size <= 5 * 1024 * 1024) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        previewImagen.src = e.target.result;
+                        previewImagen.style.display = 'block';
+                        uploadArea.style.display = 'none';
+                    };
+                    reader.readAsDataURL(archivo);
+                } else {
+                    mostrarAlerta('Selecciona una imagen válida (máx. 5MB)', 'warning');
+                }
+            }
+        }
+
+        // ============ FUNCIONES DE IMAGEN ============
+        function toggleImageSource(tipo) {
+            const btnFile = document.getElementById('btn-file');
+            const btnUrl = document.getElementById('btn-url');
+            const fileArea = document.getElementById('file-upload-area');
+            const urlArea = document.getElementById('url-input-area');
+            const previewImagen = document.getElementById('preview-imagen');
+            
+            if (tipo === 'file') {
+                btnFile.classList.add('active');
+                btnUrl.classList.remove('active');
+                fileArea.style.display = 'block';
+                urlArea.style.display = 'none';
+            } else {
+                btnFile.classList.remove('active');
+                btnUrl.classList.add('active');
+                fileArea.style.display = 'none';
+                urlArea.style.display = 'block';
+            }
+            
+            // Ocultar preview al cambiar de modo
+            previewImagen.style.display = 'none';
+            document.getElementById('upload-area').style.display = 'block';
+        }
+
+        function previewUrl() {
+            const url = document.getElementById('imagen-url').value;
+            const previewImagen = document.getElementById('preview-imagen');
+            
+            if (url) {
+                previewImagen.src = url;
+                previewImagen.style.display = 'block';
+                previewImagen.onerror = () => {
+                    mostrarAlerta('Error al cargar la imagen desde la URL', 'warning');
+                    previewImagen.style.display = 'none';
+                };
+            } else {
+                mostrarAlerta('Por favor ingresa una URL válida', 'warning');
+            }
+        }
+
+        // ============ FUNCIONES DE VALIDACIÓN EN TIEMPO REAL ============
+        function configurarValidacion() {
+            const campos = document.querySelectorAll('.form-input[required]');
+            campos.forEach(campo => {
+                campo.addEventListener('blur', function() {
+                    if (this.value.trim()) {
+                        this.style.borderColor = '';
+                    }
+                });
+            });
+        }
+
+        // ============ GUARDAR PRODUCTO ============
+        document.getElementById('producto-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validarPasoActual()) {
+                const btnGuardar = document.getElementById('btn-guardar');
+                const textoOriginal = btnGuardar.innerHTML;
+                
+                btnGuardar.innerHTML = 'Guardando...';
+                btnGuardar.disabled = true;
+                
+                setTimeout(() => {
+                    btnGuardar.innerHTML = textoOriginal;
+                    btnGuardar.disabled = false;
+                    
+                    const codigo = document.getElementById('codigo').value;
+                    const nombre = document.getElementById('nombre').value;
+                    
+                    mostrarAlerta(`Producto "${nombre}" (${codigo}) guardado exitosamente!`, 'success');
+                    
+                    if (confirm('¿Deseas agregar otro producto?')) {
+                        limpiarFormulario();
+                    }
+                }, 2000);
+            }
+        });
+
+        // ============ LIMPIAR FORMULARIO ============
+        function limpiarFormulario() {
+            document.getElementById('producto-form').reset();
+            cambiarPaso(1);
+            document.getElementById('preview-imagen').style.display = 'none';
+            document.getElementById('upload-area').style.display = 'block';
+            document.getElementById('margen-con-factura').value = '';
+            document.getElementById('margen-sin-factura').value = '';
+            document.getElementById('diferencia-precios').value = '';
+            
+            // Resetear el selector de imagen
+            toggleImageSource('file');
+        }
+
+        // ============ MOSTRAR ALERTAS ============
+        function mostrarAlerta(mensaje, tipo) {
+            const alerta = document.createElement('div');
+            alerta.className = `alert alert-${tipo}`;
+            alerta.innerHTML = `<strong>${tipo === 'success' ? 'Éxito!' : tipo === 'warning' ? 'Advertencia:' : 'Info:'}</strong> ${mensaje}`;
+            alerta.style.position = 'fixed';
+            alerta.style.top = '20px';
+            alerta.style.right = '20px';
+            alerta.style.zIndex = '1000';
+            alerta.style.minWidth = '300px';
+            alerta.style.boxShadow = 'var(--shadow-lg)';
+            
+            document.body.appendChild(alerta);
+            
+            setTimeout(() => {
+                alerta.remove();
+            }, 5000);
+        }
+
+        // ============ ANIMACIONES DE ENTRADA ============
+        const elements = document.querySelectorAll('.card, .alert');
+        elements.forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                element.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+
+        console.log('Sistema de Agregar Producto Roy Representaciones iniciado');
+        console.log('Funcionalidades: Formulario multi-paso, cálculo automático de márgenes, subida de imagen por archivo o URL');
+    </script>
+</body>
