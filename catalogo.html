@@ -7,21 +7,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
+            /* Colores principales - Tema Dorado y Verde VIBRANTES */
             --color-gold: #FFD700;
-            --color-dark-gold: #B8860B;
-            --color-light-gold: #FFF8DC;
-            --color-green: #228B22;
-            --color-light-green: #32CD32;
-            --color-dark-green: #006400;
+            --color-gold-light: #FFEF94;
+            --color-gold-dark: #DAA520;
+            --color-green: #00C851;
+            --color-green-light: #4CAF50;
+            --color-green-dark: #2E7D32;
             --color-blue: #4169E1;
             --text-dark: #2D3748;
             --text-gray: #718096;
-            --text-gold: #B8860B;
-            --bg-light: #fffdf0;
-            --glass-bg: rgba(255, 248, 220, 0.8);
+            --text-gold: #DAA520;
+            --bg-light: #FFFACD;
+            --glass-bg: rgba(255, 255, 255, 0.85);
             --glass-border: rgba(255, 215, 0, 0.3);
             --shadow-gold: rgba(255, 215, 0, 0.4);
-            --shadow-green: rgba(34, 139, 34, 0.3);
+            --shadow-green: rgba(0, 200, 81, 0.3);
         }
 
         * {
@@ -32,7 +33,7 @@
 
         body {
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #fffdf0, #fff8dc, #fafad2);
+            background: linear-gradient(135deg, #FFFACD, #F0FFF0, #FFFAF0);
             color: var(--text-dark);
             min-height: 100vh;
             overflow-x: hidden;
@@ -44,7 +45,7 @@
             position: fixed;
             border-radius: 50%;
             filter: blur(60px);
-            opacity: 0.2;
+            opacity: 0.25;
             z-index: 0;
         }
         
@@ -59,7 +60,7 @@
         .blob-2 {
             width: 500px;
             height: 500px;
-            background: var(--color-dark-gold);
+            background: var(--color-green);
             bottom: -150px;
             right: -150px;
         }
@@ -67,19 +68,19 @@
         .blob-3 {
             width: 300px;
             height: 300px;
-            background: var(--color-green);
+            background: var(--color-gold-light);
             top: 50%;
             left: 70%;
         }
 
-        /* Header con estilo de login */
+        /* Header con estilo vibrante */
         .catalog-header {
-            background: linear-gradient(135deg, var(--color-gold), var(--color-dark-gold), var(--color-green));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-green), var(--color-gold-dark));
             padding: 3rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
         }
 
         .catalog-header::before {
@@ -114,7 +115,7 @@
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Barra de búsqueda con efecto de vidrio */
+        /* Barra de búsqueda con efectos vibrantes */
         .search-container {
             max-width: 1200px;
             margin: -30px auto 3rem;
@@ -129,8 +130,8 @@
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 30px var(--shadow-gold);
-            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px var(--shadow-gold);
+            border: 2px solid var(--glass-border);
             position: relative;
         }
 
@@ -141,7 +142,7 @@
             left: -3px;
             right: -3px;
             bottom: -3px;
-            background: linear-gradient(45deg, var(--color-gold), var(--color-green), var(--color-dark-gold), var(--color-gold));
+            background: linear-gradient(45deg, var(--color-gold), var(--color-green), var(--color-gold-light), var(--color-gold));
             background-size: 300% 300%;
             border-radius: 22px;
             animation: gradientMove 4s ease infinite;
@@ -186,11 +187,11 @@
         .search-input {
             width: 100%;
             padding: 1rem 1.5rem 1rem 3.5rem;
-            border: 2px solid transparent;
+            border: 2px solid rgba(255, 215, 0, 0.3);
             border-radius: 15px;
             font-size: 1.1rem;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 5px 15px var(--shadow-gold);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 25px var(--shadow-gold);
             transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
         }
@@ -198,7 +199,7 @@
         .search-input:focus {
             outline: none;
             border-color: var(--color-gold);
-            box-shadow: 0 5px 25px var(--shadow-gold);
+            box-shadow: 0 12px 35px var(--shadow-gold);
         }
 
         .search-icon {
@@ -212,29 +213,29 @@
 
         .filter-select {
             padding: 1rem 1.5rem;
-            border: 2px solid transparent;
+            border: 2px solid rgba(255, 215, 0, 0.3);
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             color: var(--text-dark);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px var(--shadow-gold);
+            box-shadow: 0 8px 25px var(--shadow-gold);
             font-family: 'Inter', sans-serif;
         }
 
         .filter-select:focus {
             outline: none;
             border-color: var(--color-gold);
-            box-shadow: 0 5px 25px var(--shadow-gold);
+            box-shadow: 0 12px 35px var(--shadow-gold);
         }
 
         .view-toggle {
             display: flex;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 0.5rem;
-            box-shadow: 0 5px 15px var(--shadow-gold);
+            box-shadow: 0 8px 25px var(--shadow-gold);
         }
 
         .view-btn {
@@ -250,9 +251,9 @@
         }
 
         .view-btn.active {
-            background: linear-gradient(135deg, var(--color-green), var(--color-light-green));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-green));
             color: white;
-            box-shadow: 0 3px 10px var(--shadow-green);
+            box-shadow: 0 8px 25px var(--shadow-gold);
         }
 
         /* Container principal */
@@ -275,8 +276,8 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 15px;
-            box-shadow: 0 10px 30px var(--shadow-gold);
-            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px var(--shadow-gold);
+            border: 2px solid var(--glass-border);
         }
 
         .results-count {
@@ -303,15 +304,15 @@
             gap: 1.5rem;
         }
 
-        /* Tarjetas de productos con efecto de vidrio */
+        /* Tarjetas de productos con efectos vibrantes */
         .product-card {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 35px var(--shadow-gold);
-            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px var(--shadow-gold);
+            border: 2px solid var(--glass-border);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             animation: fadeInUp 0.6s ease-out forwards;
@@ -325,7 +326,7 @@
             left: -3px;
             right: -3px;
             bottom: -3px;
-            background: linear-gradient(45deg, var(--color-gold), var(--color-green), var(--color-dark-gold), var(--color-gold));
+            background: linear-gradient(45deg, var(--color-gold), var(--color-green), var(--color-gold-light), var(--color-gold));
             background-size: 300% 300%;
             border-radius: 22px;
             animation: gradientMove 4s ease infinite;
@@ -352,7 +353,7 @@
 
         .product-card:hover {
             transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 60px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 35px 80px rgba(255, 215, 0, 0.4);
         }
 
         .product-image {
@@ -382,7 +383,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(34, 139, 34, 0.1), rgba(184, 134, 11, 0.1));
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(0, 200, 81, 0.1), rgba(218, 165, 32, 0.1));
         }
 
         /* Badges de estado mejorados */
@@ -397,12 +398,12 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             z-index: 3;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
         }
 
         .badge-available {
-            background: linear-gradient(135deg, var(--color-green), var(--color-dark-green));
+            background: linear-gradient(135deg, var(--color-green), var(--color-green-dark));
             color: white;
         }
 
@@ -417,7 +418,7 @@
         }
 
         .badge-featured {
-            background: linear-gradient(135deg, var(--color-gold), var(--color-dark-gold));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
             color: white;
         }
 
@@ -429,7 +430,7 @@
         }
 
         .product-category {
-            background: linear-gradient(135deg, var(--color-gold), var(--color-dark-gold));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -491,19 +492,19 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--color-green), var(--color-light-green));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-green));
             color: white;
-            box-shadow: 0 8px 25px var(--shadow-green);
+            box-shadow: 0 12px 35px var(--shadow-gold);
             flex: 1;
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, var(--color-light-green), var(--color-green));
+            background: linear-gradient(135deg, var(--color-green), var(--color-gold));
             transform: translateY(-3px);
-            box-shadow: 0 12px 35px var(--shadow-green);
+            box-shadow: 0 16px 45px var(--shadow-gold);
         }
 
-        /* Vista de lista - CORREGIDA */
+        /* Vista de lista */
         .products-grid.list-view .product-card {
             display: flex;
             flex-direction: row;
@@ -556,8 +557,8 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
-            box-shadow: 0 10px 30px var(--shadow-gold);
-            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px var(--shadow-gold);
+            border: 2px solid var(--glass-border);
         }
 
         .no-results h3 {
@@ -590,7 +591,7 @@
             max-width: 1000px;
             border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 35px 80px rgba(255, 215, 0, 0.5);
             animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
@@ -600,7 +601,7 @@
             right: 20px;
             font-size: 2rem;
             color: white;
-            background: rgba(255, 215, 0, 0.8);
+            background: rgba(255, 215, 0, 0.9);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -647,7 +648,7 @@
         }
 
         .modal-category {
-            background: linear-gradient(135deg, var(--color-gold), var(--color-dark-gold));
+            background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -682,13 +683,13 @@
 
         .detail-item {
             padding: 1.5rem;
-            background: rgba(255, 248, 220, 0.6);
+            background: rgba(255, 250, 205, 0.7);
             border-radius: 15px;
-            box-shadow: 0 5px 15px var(--shadow-gold);
+            box-shadow: 0 8px 25px var(--shadow-gold);
         }
 
         .detail-item h4 {
-            color: var(--color-gold);
+            color: var(--color-gold-dark);
             font-size: 1rem;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
